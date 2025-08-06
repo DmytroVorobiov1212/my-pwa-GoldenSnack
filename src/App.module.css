@@ -1,0 +1,116 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+/* .nav {
+  display: flex;
+  gap: 4px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: orange;
+} */
+
+/* Базові стилі для навігації */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  background-color: #121212;
+  border-bottom: 1px solid #333;
+}
+
+/* Стиль посилань */
+.link {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Активне посилання */
+.active {
+  color: #fff;
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+}
+
+/* Ховер ефект для десктопа */
+.link:hover {
+  color: #fff;
+}
+
+/* --- Адаптив для телефону --- */
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    /* посилання стають вертикальними */
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .link {
+    font-size: 20px;
+    /* трохи більший шрифт для торкання пальцем */
+    width: 100%;
+    /* розтягуємо на всю ширину */
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .active {
+    background-color: #222;
+  }
+}

@@ -1,0 +1,107 @@
+.container {
+    padding: 10px;
+    background-color: #121212;
+    color: #fff;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.input {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 350px;
+    padding: 14px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.tableWrapper {
+    max-height: 75vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 6px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+/* Заголовки таблиці */
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #121212;
+    z-index: 1;
+}
+
+th,
+td {
+    border-bottom: 1px solid #444;
+    padding: 10px;
+    font-size: 15px;
+    text-align: left;
+}
+
+/* Робимо рядки клікабельними (для майбутнього розширення, наприклад, модалки) */
+tbody tr {
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #1f1f1f;
+}
+
+/* Адаптив */
+@media (max-width: 600px) {
+    .title {
+        font-size: 18px;
+    }
+
+    .input {
+        /* font-size: 18px; */
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    th,
+    td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    /* Робимо таблицю компактнішою і зручнішою для свайпу */
+    .table {
+        min-width: 450px;
+    }
+}
+
+.resetButton {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    background-color: #282828;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.resetButton:hover {
+    background-color: #333;
+}
