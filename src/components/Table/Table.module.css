@@ -1,9 +1,32 @@
+/* Контейнер для таблиці */
 .container {
-    padding: 10px;
+    margin: 0 auto;
+    padding: 0 16px;
     background-color: #121212;
     color: #fff;
     min-height: 100vh;
     font-family: Arial, sans-serif;
+}
+
+/* --- Брейкпоінти --- */
+@media screen and (min-width: 375px) {
+    .container {
+        width: 375px;
+        padding: 0 32px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 768px;
+        padding: 0 32px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .container {
+        width: 1440px;
+    }
 }
 
 .title {
@@ -55,7 +78,6 @@ td {
     text-align: left;
 }
 
-/* Робимо рядки клікабельними (для майбутнього розширення, наприклад, модалки) */
 tbody tr {
     cursor: pointer;
     transition: background 0.2s ease;
@@ -72,7 +94,6 @@ tbody tr:hover {
     }
 
     .input {
-        /* font-size: 18px; */
         font-size: 16px;
         padding: 12px;
     }
@@ -83,7 +104,6 @@ tbody tr:hover {
         padding: 8px;
     }
 
-    /* Робимо таблицю компактнішою і зручнішою для свайпу */
     .table {
         min-width: 450px;
     }
