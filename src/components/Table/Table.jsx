@@ -34,7 +34,7 @@ const Table = ({ data }) => {
       {/* Кнопка скидання показується тільки якщо пошук не порожній або обраний Tubus ≠ all */}
       {search !== '' && (
         <button className={styles.resetButton} onClick={resetFilters}>
-          Скинути фільтри
+          Vyčistit
         </button>
       )}
 
