@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #121212;
+    color: white;
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+}
+
+/* Плавна анімація знизу вверх */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    max-width: 100%;
+    width: 220px;
+    height: auto;
+    margin-bottom: 28px;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #ffd700;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #ccc;
+    max-width: 320px;
+}
