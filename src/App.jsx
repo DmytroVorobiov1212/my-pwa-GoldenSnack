@@ -15,6 +15,9 @@ const buildLinkClass = ({ isActive }) => {
 
 const App = () => {
   useEffect(() => {
+    if (!navigator.onLine) {
+      toast.error('Jste offline');
+    }
     const handleOnline = () => toast.success('Připojení obnoveno');
     const handleOffline = () => toast.error('Jste nyní offline');
 
