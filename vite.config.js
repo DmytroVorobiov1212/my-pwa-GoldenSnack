@@ -29,6 +29,23 @@ export default defineConfig({
           }
         ]
       },
+      workbox: {
+        runtimeCaching: [
+          {
+            // Кешуємо всі HTML/JS/CSS/зображення
+            urlPattern: ({ request }) =>
+              ['document', 'script', 'style', 'image', 'font'].includes(request.destination),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'app-cache',
+              expiration: {
+                maxEntries: 200,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 днів
+              }
+            }
+          }
+        ]
+      },
       devOptions: {
         enabled: true // дозволяє тестувати PWA у dev-режимі
       }

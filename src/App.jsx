@@ -5,14 +5,30 @@ import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
 import NotFound from './pages/NotFound/NotFound';
 import css from './App.module.css';
+import { Toaster, toast } from 'react-hot-toast';
+import { useEffect } from 'react';
+import { toastOptions } from './utils/toastStyle';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
 };
 
 const App = () => {
+  useEffect(() => {
+    const handleOnline = () => toast.success('Připojení obnoveno');
+    const handleOffline = () => toast.error('Jste nyní offline');
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
   return (
-    <div>
+    <>
       <nav className={css.nav}>
         <NavLink to="/" className={buildLinkClass}>
           Home
@@ -31,7 +47,8 @@ const App = () => {
         <Route path="/velteko" element={<Velteko />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </div>
+      <Toaster toastOptions={toastOptions} />
+    </>
   );
 };
 
