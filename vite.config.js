@@ -46,6 +46,8 @@ export default defineConfig({
           }
         ]
       },
+      includeAssets: ['icons/icon-192x192.png', 'icons/icon-512x512.png'],
+
       devOptions: {
         enabled: true // дозволяє тестувати PWA у dev-режимі
       }
