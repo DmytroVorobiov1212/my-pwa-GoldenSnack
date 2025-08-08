@@ -115,3 +115,21 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.swiper-pagination-bullet {
+  background-color: #fff !important;
+  opacity: 0.5;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #00ffff !important;
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.swiper-pagination {
+  bottom: 10px !important;
+}

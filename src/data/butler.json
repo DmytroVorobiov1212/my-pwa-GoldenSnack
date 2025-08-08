@@ -1,0 +1,267 @@
+[
+  {
+    "groupName": "Golden rings 80g",
+    "variants": [
+      {
+        "id": "golden-rings-sul",
+        "title": "Golden rings 80g sůl",
+        "image": "/products/GoldenRings/ring-sul.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "19",
+          "Program rentgen": "19",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-rings-syr",
+        "title": "Golden rings 80g sýr",
+        "image": "/products/GoldenRings/ring-syr.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "22",
+          "Program rentgen": "22",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-rings-paprika",
+        "title": "Golden rings 80g paprika",
+        "image": "/products/GoldenRings/ring-paprika.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "20",
+          "Program rentgen": "20",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-rings-sunka",
+        "title": "Golden rings 80g šunka",
+        "image": "/products/GoldenRings/ring-sunka.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "21",
+          "Program rentgen": "21",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden cracker 80g",
+    "variants": [
+      {
+        "id": "golden-cracker-sul",
+        "title": "Golden cracker 80g sůl",
+        "image": "/products/GoldenCracker/cracker-sul.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "14",
+          "Program rentgen": "14",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-cracker-syr",
+        "title": "Golden cracker 80g sýr",
+        "image": "/products/GoldenCracker/cracker-syr.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "18",
+          "Program rentgen": "18",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-cracker-paprika",
+        "title": "Golden cracker 80g paprika",
+        "image": "/products/GoldenCracker/cracker-paprika.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "15",
+          "Program rentgen": "15",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-cracker-sunka",
+        "title": "Golden cracker 80g šunka",
+        "image": "/products/GoldenCracker/cracker-sunka.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "17",
+          "Program rentgen": "17",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-cracker-cesnek",
+        "title": "Golden cracker 80g česnek",
+        "image": "/products/GoldenCracker/cracker-cesnek.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "16 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "16",
+          "Program rentgen": "16",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack 100g",
+    "variants": [
+      {
+        "id": "golden-snack-100g-sunka",
+        "title": "Golden Snack 100g šunka",
+        "image": "/products/GoldenSnack/snack-sunka100g.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "28 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "153",
+          "Program váha": "29",
+          "Program rentgen": "29",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      },
+      {
+        "id": "golden-snack-100g-slanina",
+        "title": "Golden Snack 100g slanina",
+        "image": "/products/GoldenSnack/snack-slanina100g.png",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "28 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "155",
+          "Program váha": "30",
+          "Program rentgen": "30",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Bacon snack slanina - 50g",
+    "variants": [
+      {
+        "id": "bacon-snack-slanina-50g",
+        "title": "Bacon snack slanina - 50g",
+        "image": "/products/BaconSnack50g/snack-bacon50g.png",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "55 mm",
+          "Šířka fólie": "830",
+          "Fotobuňka": "408",
+          "Datum": "245",
+          "Program váha": "11",
+          "Program rentgen": "11",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "135"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack - hranolky 65g",
+    "variants": [
+      {
+        "id": "hranolky-solene-65g",
+        "title": "Golden Snack - hranolky solené - 65g",
+        "image": "/products/Hranolky/hranolky-sul.png",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "50 mm",
+          "Šířka fólie": "830",
+          "Fotobuňka": "408",
+          "Datum": "252",
+          "Program váha": "100",
+          "Program rentgen": "100",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "135"
+        }
+      },
+      {
+        "id": "hranolky-cheddar-65g",
+        "title": "Golden Snack - hranolky s příchutí chedaru - 65g",
+        "image": "/products/Hranolky/hranolky-cheddar.png",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "50 mm",
+          "Šířka fólie": "830",
+          "Fotobuňka": "408",
+          "Datum": "252",
+          "Program váha": "99",
+          "Program rentgen": "99",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "135"
+        }
+      },
+      {
+        "id": "hranolky-kethup-65g",
+        "title": "Golden Snack - hranolky s příchutí kečupu - 65g",
+        "image": "/products/Hranolky/hranolky-kethup.png",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "50 mm",
+          "Šířka fólie": "859",
+          "Fotobuňka": "332",
+          "Datum": "155",
+          "Program váha": "98",
+          "Program rentgen": "98",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "150"
+        }
+      }
+    ]
+  }
+]

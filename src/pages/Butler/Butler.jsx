@@ -1,8 +1,12 @@
-import Table from '../../components/Table/Table';
-import { dataButler } from '../../data/dataButler';
+import dataButler from '../../data/butler.json';
+import ButlerList from '../../components/ButlerList/ButlerList';
 
 const Butler = () => {
-  return <Table data={dataButler} />;
+  return (
+    <>
+      <ButlerList data={dataButler} />
+    </>
+  );
 };
 
 export default Butler;

@@ -8,6 +8,7 @@ import css from './App.module.css';
 import { Toaster, toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
+import Footer from './components/Footer/Footer';
 
 const buildLinkClass = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/velteko" element={<Velteko />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
       <Toaster toastOptions={toastOptions} />
     </>
   );
