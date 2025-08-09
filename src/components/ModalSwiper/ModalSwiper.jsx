@@ -105,6 +105,12 @@ const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
     dialogRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    // Лочимо скрол фону, поки модалка відкрита
+    document.body.classList.add('no-scroll');
+    return () => document.body.classList.remove('no-scroll');
+  }, []);
+
   return (
     <div className={styles.overlay} role="presentation" onClick={onClose}>
       <div

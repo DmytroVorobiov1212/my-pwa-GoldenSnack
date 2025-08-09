@@ -304,3 +304,7 @@ button:focus-visible {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+body.no-scroll {
+  overflow: hidden;
+}

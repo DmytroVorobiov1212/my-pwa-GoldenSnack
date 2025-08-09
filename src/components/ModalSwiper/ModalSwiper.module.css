@@ -137,11 +137,15 @@
     color: var(--text, #fff);
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
-    padding: 16px;
+    /* safe-area + комфортні паддінги */
+    padding: calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom)) 14px;
     overflow-y: auto;
     position: relative;
     animation: slideUp .28s ease;
     box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
 @keyframes slideUp {
@@ -162,13 +166,13 @@
     height: 5px;
     border-radius: 999px;
     background: color-mix(in oklab, var(--muted, #aaa), transparent 40%);
-    margin: 4px auto 8px auto;
+    margin: 2px auto 8px auto;
 }
 
 /* Кнопка закриття */
 .closeButton {
     position: absolute;
-    top: 10px;
+    top: calc(8px + env(safe-area-inset-top));
     right: 12px;
     background: transparent;
     color: var(--text, #fff);
@@ -186,18 +190,18 @@
     font-size: clamp(18px, 4.6vw, 22px);
     font-weight: 800;
     color: var(--text, #fff);
-    margin-bottom: 10px;
+    margin: 6px auto 10px auto;
 }
 
 /* Зображення */
 .image {
     width: min(560px, 90vw);
-    max-height: 42vh;
+    max-height: 40vh;
     object-fit: contain;
     margin: 0 auto 14px auto;
-    border-radius: 10px;
-    background: var(--bg-elev, #151922);
-    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 30%);
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--bg-elev, #151922), white 2%);
+    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 45%);
 }
 
 /* Параметри: сітка, що тече */
@@ -213,10 +217,10 @@
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
-    padding: 10px 12px;
-    border-radius: 10px;
-    background: var(--bg-elev, #1e1e1e);
-    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 30%);
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--bg-elev, #1e1e1e), white 1%);
+    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 40%);
     font-size: 15px;
 }
 
@@ -226,6 +230,11 @@
 
 .value {
     font-weight: 700;
+}
+
+/* Пагінація — підняли з урахуванням safe-area */
+.swiper-pagination {
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
 }
 
 /* Tablet: модалка стає “картою” по центру */
@@ -239,6 +248,8 @@
         width: min(520px, 92vw);
         height: min(88vh, 780px);
         border-radius: 16px;
+        padding: 16px 16px 20px 16px;
+        /* без safe-area на планшетах/десктопах */
     }
 
     .paramList {
