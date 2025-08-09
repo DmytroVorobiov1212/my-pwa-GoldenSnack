@@ -2,16 +2,12 @@ import { useMemo, useState } from 'react';
 import { FiX, FiSearch } from 'react-icons/fi';
 import ModalSwiper from '../ModalSwiper/ModalSwiper';
 import styles from './ButlerList.module.css';
+import ButlerItem from '../ButlerItem/ButlerItem';
 
 const ButlerList = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-
-  const handleClick = group => {
-    setSelectedGroup(group);
-    setSelectedVariantIndex(0);
-  };
 
   const filteredData = useMemo(() => {
     if (!Array.isArray(data)) return [];
@@ -50,17 +46,14 @@ const ButlerList = ({ data }) => {
       <ul className={styles.list}>
         {filteredData.map((group, index) => (
           <li key={index} className={styles.item}>
-            <button
-              type="button"
-              className={styles.itemBtn}
-              onClick={() => handleClick(group)}
-              aria-label={`Otevřít skupinu ${group.groupName}`}
-            >
-              <span className={styles.itemTitle}>{group.groupName}</span>
-              <span className={styles.itemArrow} aria-hidden>
-                ›
-              </span>
-            </button>
+            <ButlerItem
+              group={group}
+              groupName={group.groupName}
+              onSelect={group => {
+                setSelectedGroup(group);
+                setSelectedVariantIndex(0);
+              }}
+            />
           </li>
         ))}
       </ul>

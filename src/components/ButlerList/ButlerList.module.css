@@ -64,7 +64,7 @@
     border-radius: 12px;
 }
 
-.itemBtn {
+/* .itemBtn {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -85,9 +85,9 @@
 
 .itemBtn:active {
     transform: translateY(1px);
-}
+} */
 
-.itemTitle {
+/* .itemTitle {
     font-weight: 600;
     letter-spacing: .2px;
 }
@@ -95,7 +95,7 @@
 .itemArrow {
     opacity: .65;
     font-size: 20px;
-}
+} */
 
 /* Tablet */
 @media (min-width: 768px) {
