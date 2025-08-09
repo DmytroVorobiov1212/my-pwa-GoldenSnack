@@ -1,58 +1,97 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 32px 16px;
+    min-height: 70svh;
+    /* висоти достатньо для hero */
+    display: grid;
+    place-items: center;
     text-align: center;
-    min-height: 100vh;
-    background-color: #121212;
-    color: white;
-    animation: fadeInUp 1s ease forwards;
-    opacity: 0;
+    padding: 32px 16px;
+    background: var(--bg, #121212);
+    color: var(--text, #fff);
+
+    /* Анімація входу */
+    animation: fadeInUp .7s ease both;
 }
 
-/* Плавна анімація знизу вверх */
 @keyframes fadeInUp {
-    0% {
+    from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(24px);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* Логотип — адаптивно, без “пластиліну” */
 .logo {
-    max-width: 100%;
-    width: 220px;
+    width: clamp(160px, 30vw, 280px);
     height: auto;
-    margin-bottom: 28px;
-    animation: fadeIn 1.5s ease forwards;
+    margin-bottom: 20px;
+    inline-size: auto;
+    block-size: auto;
+    animation: fadeIn .8s ease both .15s;
     opacity: 0;
 }
 
 @keyframes fadeIn {
-    0% {
+    from {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(.96);
     }
 
-    100% {
+    to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
+/* Заголовок — “преміум” градієнт */
 .title {
-    font-size: 24px;
-    margin-bottom: 12px;
-    color: #ffd700;
+    font-size: clamp(22px, 5.5vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    background: linear-gradient(90deg, #ffd700, #ffef9a 60%, #ffd700);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* показуємо градієнт через текст */
+    text-shadow: 0 0 16px color-mix(in oklab, #ffd700, transparent 70%);
 }
 
+/* Підзаголовок — читабельний, обмежена ширина */
 .subtitle {
-    font-size: 18px;
-    color: #ccc;
-    max-width: 320px;
+    font-size: clamp(15px, 3.8vw, 18px);
+    color: var(--muted, #ccc);
+    max-width: min(56ch, 90vw);
+    margin-inline: auto;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .container {
+        padding: 48px 24px;
+    }
+
+    .title {
+        margin-bottom: 12px;
+    }
+
+    .subtitle {
+        max-width: 60ch;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+    .container {
+        padding: 64px 32px;
+    }
+
+    .title {
+        letter-spacing: .3px;
+    }
 }

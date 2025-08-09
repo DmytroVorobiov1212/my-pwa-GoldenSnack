@@ -1,17 +1,11 @@
-/* RESET — скидання дефолтних стилів браузера */
+/* ========== RESET / NORMALIZE ========== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+:where(h1, h2, h3, h4, h5, h6, p) {
   margin: 0;
 }
 
@@ -19,7 +13,7 @@ p:last-child {
   margin-bottom: 0;
 }
 
-ul {
+:where(ul, ol) {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -34,102 +28,279 @@ button {
   cursor: pointer;
 }
 
-img {
+img,
+svg,
+video,
+canvas {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-/* --- ТВОЯ БАЗОВА СТИЛІЗАЦІЯ --- */
+/* Краще керування фокусом для доступності */
+:focus-visible {
+  outline: 3px solid Highlight;
+  outline-offset: 2px;
+}
+
+/* Менше анімацій, якщо користувач просить */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========== DESIGN TOKENS ========== */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* ---- Breakpoints ---- */
+  --bp-mobile: 375px;
+  /* з цього місця "адаптивна" мобілка */
+  --bp-tablet: 768px;
+  --bp-desktop: 1440px;
 
+  /* ---- Типографіка ---- */
+  /* Підключимо шрифти через @import або <link> у index.html:
+     Inter (UI), Manrope (альтернатива). */
+  /* Приклад (у index.html):
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "Liberation Sans", ui-sans-serif, sans-serif;
+
+  /* Fluid шрифт: від 14px на 320px до 16px на ~768px і 18px на 1440+ */
+  --font-size-base: clamp(14px, 2.5vw, 18px);
+  --line-height-base: 1.6;
+
+  /* Масштаб заголовків (fluid через clamp) */
+  --h1: clamp(28px, 6vw, 40px);
+  --h2: clamp(24px, 4.8vw, 32px);
+  --h3: clamp(20px, 3.8vw, 26px);
+
+  /* ---- Простір (spacing) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* ---- Кольори (темна тема за замовчуванням) ---- */
+  color-scheme: dark light;
+  --bg: #0f1115;
+  --bg-elev: #151922;
+  --text: rgba(255, 255, 255, 0.88);
+  --muted: rgba(255, 255, 255, 0.65);
+  --primary: #77baff;
+  /* приємний відтінок без "кислоти" */
+  --primary-hover: #a1cdff;
+  --border: rgba(255, 255, 255, 0.14);
+
+  /* Semantic tokens */
+  --btn-bg: #1a1f2b;
+  --btn-bg-hover: #232a3a;
+  --focus: #74c0fc;
+
+  /* ---- Контейнер ---- */
+  --container-max: 1280px;
+  --container-pad: var(--space-4);
+
+  /* ---- Компонентні змінні (Swiper) ---- */
+  --swiper-bullet: #fff;
+  --swiper-bullet-active: #00ffff;
+}
+
+/* Світла тема (якщо колись треба переключити через атрибут або медіа-запит) */
+:root[data-theme="light"] {
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --bg: #ffffff;
+  --bg-elev: #f6f7f9;
+  --text: #213547;
+  --muted: #5b6573;
+  --primary: #4f68ff;
+  --primary-hover: #6e83ff;
+  --border: rgba(0, 0, 0, 0.12);
+  --btn-bg: #f2f4f8;
+  --btn-bg-hover: #e6e9f0;
+  --focus: #4dabf7;
+  --swiper-bullet: #222;
+  --swiper-bullet-active: #4f68ff;
+}
 
-  font-synthesis: none;
+/* ========== BASE ========== */
+html,
+body {
+  height: 100%;
+}
+
+html {
+  /* Краще згладжування тексту */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Для PWA з адекватною висотою екрану */
+  block-size: 100%;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #242424;
-  color: rgba(255, 255, 255, 0.87);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text);
+  background: var(--bg);
+  /* iOS safe-area для PWA */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
+/* Контейнер для десктопів */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  padding-inline: var(--container-pad);
+  margin-inline: auto;
+}
+
+/* Посилання */
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: var(--primary);
+  text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
+  color: var(--primary-hover);
 }
 
+/* Заголовки на змінних */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--h1);
+  line-height: 1.2;
 }
 
+h2 {
+  font-size: var(--h2);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: var(--h3);
+  line-height: 1.3;
+}
+
+/* Кнопки */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 0.6em 1.1em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  background: var(--btn-bg);
+  color: var(--text);
+  transition: transform .08s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
 button:hover {
-  border-color: #646cff;
+  background: var(--btn-bg-hover);
+  border-color: var(--primary);
 }
 
-button:focus,
+button:active {
+  transform: translateY(1px);
+}
+
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 0;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus), transparent 40%);
 }
 
-/* Light mode */
-@media (prefers-color-scheme: light) {
+/* ========== ADAPTIVE / BREAKPOINTS ========== */
+/* Мобілка — все mobile-first, вже працює з 320px, з 375px читабельніше */
+@media (min-width: 375px) {
   :root {
+    /* Трохи більше базовий кегль, якщо хочеш саме з 375px */
+    --font-size-base: clamp(14px, 2vw, 18px);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+    --container-pad: var(--space-5);
+  }
+
+  /* body {
+  } */
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+  :root {
+    --container-pad: var(--space-6);
+  }
+}
+
+/* ========== THEME VIA MEDIA (опційно) ========== */
+/* Якщо хочеш автоматично світлу для користувачів з light-системою: */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    /* вмикається лише якщо ми явно не задали data-theme */
     color: #213547;
-    background-color: #ffffff;
+    background: #ffffff;
   }
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* ========== SWIPER TUNING ========== */
+.swiper-pagination {
+  bottom: 10px !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: #fff !important;
-  opacity: 0.5;
+  background-color: var(--swiper-bullet) !important;
+  opacity: .5;
   width: 10px;
   height: 10px;
   margin: 0 5px !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #00ffff !important;
+  background-color: var(--swiper-bullet-active) !important;
   opacity: 1;
-  transform: scale(1.3);
+  transform: scale(1.25);
 }
 
-.swiper-pagination {
-  bottom: 10px !important;
+/* ========== SCROLLBAR (desktop приємніше) ========== */
+@media (min-width: 768px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--primary), transparent 20%);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+/* ========== UTILS ========== */
+.hidden {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

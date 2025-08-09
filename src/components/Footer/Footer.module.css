@@ -1,29 +1,69 @@
 .footer {
-    padding: 20px 0;
-    background-color: #121212;
-    text-align: center;
-    color: #888;
+    padding: 16px 0;
+    background-color: var(--bg, #121212);
+    border-top: 1px solid color-mix(in oklab, var(--border, #333), transparent 20%);
+    color: var(--muted, #888);
     font-size: 14px;
-    border-top: 1px solid #333;
 }
 
 .container {
-    max-width: 1440px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    flex-direction: column;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr;
     align-items: center;
     gap: 10px;
+    text-align: center;
 }
 
 .logo {
-    height: 36px;
-    border-radius: 4px;
-    opacity: 0.8;
+    height: 32px;
+    width: auto;
+    border-radius: 6px;
+    opacity: 0.9;
+    margin-inline: auto;
 }
 
 .text {
-    font-size: 14px;
-    color: #aaa;
+    font-size: 13px;
+    color: var(--muted, #aaa);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .footer {
+        padding: 18px 0;
+    }
+
+    .container {
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        text-align: left;
+        padding: 0 24px;
+    }
+
+    .logo {
+        margin-inline: 0;
+        height: 34px;
+    }
+
+    .text {
+        font-size: 14px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1440px) {
+    .footer {
+        padding: 20px 0;
+    }
+
+    .container {
+        padding: 0 32px;
+    }
+
+    .logo {
+        height: 36px;
+    }
 }

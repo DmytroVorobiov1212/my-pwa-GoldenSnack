@@ -1,4 +1,4 @@
-.overlay {
+/* .overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
@@ -73,7 +73,7 @@
 .paramItem {
     display: flex;
     /* justify-content: center; */
-    justify-content: space-between;
+/* justify-content: space-between;
     align-items: center;
     width: 250px;
     background-color: #1e1e1e;
@@ -81,21 +81,21 @@
     padding: 10px;
     color: #fff;
     font-size: 16px;
-}
+} */
 
-.icon {
+/* .icon {
     width: 24px;
     height: 24px;
     margin-right: 10px;
-}
+} */
 
 /* Адаптив */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .modal {
         max-width: 480px;
         border-radius: 16px;
     }
-}
+} */
 
 /* .swiper-pagination-bullet {
     background-color: #fff;
@@ -114,3 +114,167 @@
 .swiper-pagination {
     bottom: 10px !important;
 } */
+
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: end center;
+    /* мобілка: модалка знизу */
+    padding: 8px;
+    /* для safe-area + відступу від краю */
+}
+
+/* Повноекранна на мобілці */
+.modal {
+    width: 100vw;
+    height: 100dvh;
+    /* краще за 100vh на мобільних */
+    background-color: var(--bg, #121212);
+    color: var(--text, #fff);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 16px;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp .28s ease;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(8%);
+        opacity: .98;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* “Handle” для жесту вниз */
+.handle {
+    width: 44px;
+    height: 5px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--muted, #aaa), transparent 40%);
+    margin: 4px auto 8px auto;
+}
+
+/* Кнопка закриття */
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: transparent;
+    color: var(--text, #fff);
+    font-size: 22px;
+    border: none;
+}
+
+/* Контент слайду */
+.slideContent {
+    padding: 12px 4px 48px 4px;
+}
+
+.header {
+    text-align: center;
+    font-size: clamp(18px, 4.6vw, 22px);
+    font-weight: 800;
+    color: var(--text, #fff);
+    margin-bottom: 10px;
+}
+
+/* Зображення */
+.image {
+    width: min(560px, 90vw);
+    max-height: 42vh;
+    object-fit: contain;
+    margin: 0 auto 14px auto;
+    border-radius: 10px;
+    background: var(--bg-elev, #151922);
+    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 30%);
+}
+
+/* Параметри: сітка, що тече */
+.paramList {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.paramItem {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--bg-elev, #1e1e1e);
+    border: 1px solid color-mix(in oklab, var(--border, #333), transparent 30%);
+    font-size: 15px;
+}
+
+.label {
+    opacity: .85;
+}
+
+.value {
+    font-weight: 700;
+}
+
+/* Tablet: модалка стає “картою” по центру */
+@media (min-width: 768px) {
+    .overlay {
+        place-items: center;
+        /* центр */
+    }
+
+    .modal {
+        width: min(520px, 92vw);
+        height: min(88vh, 780px);
+        border-radius: 16px;
+    }
+
+    .paramList {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Desktop: трохи ширше й комфортні паддінги */
+@media (min-width: 1440px) {
+    .modal {
+        width: 560px;
+        height: min(84vh, 820px);
+        padding: 18px;
+    }
+
+    .paramList {
+        grid-template-columns: 1fr;
+        /* лишається однією — але просторо */
+    }
+}
+
+/* Swiper bullets (використовуємо токени з :root) */
+.swiper-pagination {
+    bottom: 10px !important;
+}
+
+.swiper-pagination-bullet {
+    background-color: var(--swiper-bullet, #fff) !important;
+    opacity: .5;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--swiper-bullet-active, #00ffff) !important;
+    opacity: 1;
+    transform: scale(1.25);
+}
