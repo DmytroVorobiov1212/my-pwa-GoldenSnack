@@ -37,13 +37,11 @@ canvas {
   height: auto;
 }
 
-/* Краще керування фокусом для доступності */
 :focus-visible {
   outline: 3px solid Highlight;
   outline-offset: 2px;
 }
 
-/* Менше анімацій, якщо користувач просить */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -56,29 +54,23 @@ canvas {
 :root {
   /* ---- Breakpoints ---- */
   --bp-mobile: 375px;
-  /* з цього місця "адаптивна" мобілка */
   --bp-tablet: 768px;
   --bp-desktop: 1440px;
 
-  /* ---- Типографіка ---- */
-  /* Підключимо шрифти через @import або <link> у index.html:
-     Inter (UI), Manrope (альтернатива). */
-  /* Приклад (у index.html):
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> */
+  /* ---- Fonts ---- */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", "Liberation Sans", ui-sans-serif, sans-serif;
 
-  /* Fluid шрифт: від 14px на 320px до 16px на ~768px і 18px на 1440+ */
+  /* Fluid font */
   --font-size-base: clamp(14px, 2.5vw, 18px);
   --line-height-base: 1.6;
 
-  /* Масштаб заголовків (fluid через clamp) */
+  /* (fluid через clamp) */
   --h1: clamp(28px, 6vw, 40px);
   --h2: clamp(24px, 4.8vw, 32px);
   --h3: clamp(20px, 3.8vw, 26px);
 
-  /* ---- Простір (spacing) ---- */
+  /* ---- (spacing) ---- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -87,14 +79,13 @@ canvas {
   --space-6: 32px;
   --space-7: 48px;
 
-  /* ---- Кольори (темна тема за замовчуванням) ---- */
+  /* ---- Colors ---- */
   color-scheme: dark light;
   --bg: #0f1115;
   --bg-elev: #151922;
   --text: rgba(255, 255, 255, 0.88);
   --muted: rgba(255, 255, 255, 0.65);
   --primary: #77baff;
-  /* приємний відтінок без "кислоти" */
   --primary-hover: #a1cdff;
   --border: rgba(255, 255, 255, 0.14);
 
@@ -103,16 +94,15 @@ canvas {
   --btn-bg-hover: #232a3a;
   --focus: #74c0fc;
 
-  /* ---- Контейнер ---- */
+  /* ---- Container ---- */
   --container-max: 1280px;
   --container-pad: var(--space-4);
 
-  /* ---- Компонентні змінні (Swiper) ---- */
+  /* ---- (Swiper) ---- */
   --swiper-bullet: #fff;
   --swiper-bullet-active: #00ffff;
 }
 
-/* Світла тема (якщо колись треба переключити через атрибут або медіа-запит) */
 :root[data-theme="light"] {
   color-scheme: light dark;
   --bg: #ffffff;
@@ -136,12 +126,10 @@ body {
 }
 
 html {
-  /* Краще згладжування тексту */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Для PWA з адекватною висотою екрану */
   block-size: 100%;
 }
 
@@ -154,11 +142,11 @@ body {
   line-height: var(--line-height-base);
   color: var(--text);
   background: var(--bg);
-  /* iOS safe-area для PWA */
+  /* iOS safe-area for PWA */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* Контейнер для десктопів */
+/* Container for desctopts */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -166,7 +154,6 @@ body {
   margin-inline: auto;
 }
 
-/* Посилання */
 a {
   font-weight: 500;
   color: var(--primary);
@@ -177,7 +164,6 @@ a:hover {
   color: var(--primary-hover);
 }
 
-/* Заголовки на змінних */
 h1 {
   font-size: var(--h1);
   line-height: 1.2;
@@ -193,7 +179,7 @@ h3 {
   line-height: 1.3;
 }
 
-/* Кнопки */
+/* Buttons */
 button {
   border-radius: 10px;
   border: 1px solid var(--border);
@@ -221,10 +207,8 @@ button:focus-visible {
 }
 
 /* ========== ADAPTIVE / BREAKPOINTS ========== */
-/* Мобілка — все mobile-first, вже працює з 320px, з 375px читабельніше */
 @media (min-width: 375px) {
   :root {
-    /* Трохи більше базовий кегль, якщо хочеш саме з 375px */
     --font-size-base: clamp(14px, 2vw, 18px);
   }
 }
@@ -234,9 +218,6 @@ button:focus-visible {
   :root {
     --container-pad: var(--space-5);
   }
-
-  /* body {
-  } */
 }
 
 /* Desktop */
@@ -246,11 +227,9 @@ button:focus-visible {
   }
 }
 
-/* ========== THEME VIA MEDIA (опційно) ========== */
-/* Якщо хочеш автоматично світлу для користувачів з light-системою: */
+/* ========== THEME VIA MEDIA (options) ========== */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    /* вмикається лише якщо ми явно не задали data-theme */
     color: #213547;
     background: #ffffff;
   }
@@ -258,7 +237,7 @@ button:focus-visible {
 
 /* ========== SWIPER TUNING ========== */
 .swiper-pagination {
-  bottom: 10px !important;
+  bottom: calc(10px + env(safe-area-inset-bottom)) !important;
 }
 
 .swiper-pagination-bullet {
@@ -275,7 +254,7 @@ button:focus-visible {
   transform: scale(1.25);
 }
 
-/* ========== SCROLLBAR (desktop приємніше) ========== */
+/* ========== SCROLLBAR (desktop) ========== */
 @media (min-width: 768px) {
   * {
     scrollbar-width: thin;
