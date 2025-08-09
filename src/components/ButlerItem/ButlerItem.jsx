@@ -1,10 +1,6 @@
 import styles from './ButlerItem.module.css';
 
 const ButlerItem = ({ group, groupName, onSelect }) => {
-  const handleClick = group => {
-    setSelectedGroup(group);
-    setSelectedVariantIndex(0);
-  };
   return (
     <>
       <button

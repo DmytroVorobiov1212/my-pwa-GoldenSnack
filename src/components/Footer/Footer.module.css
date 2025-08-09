@@ -37,6 +37,8 @@
     }
 
     .container {
+        display: flex;
+        justify-content: center;
         grid-template-columns: auto 1fr;
         gap: 16px;
         text-align: left;
