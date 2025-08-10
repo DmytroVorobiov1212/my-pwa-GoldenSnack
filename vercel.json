@@ -1,20 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/manifest.webmanifest",
-      "destination": "/manifest.webmanifest"
-    },
-    {
-      "source": "/registerSW.js",
-      "destination": "/registerSW.js"
-    },
-    {
-      "source": "/icons/:match*",
-      "destination": "/icons/:match*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "version": 2,
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

@@ -9,11 +9,11 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
 import Footer from './components/Footer/Footer';
-import { FaCircle } from 'react-icons/fa';
+// import { FaCircle } from 'react-icons/fa';
 
-const buildLinkClass = ({ isActive }) => {
-  return clsx(css.link, isActive && css.active);
-};
+// const buildLinkClass = ({ isActive }) => {
+//   return clsx(css.link, isActive && css.active);
+// };
 
 const App = () => {
   useEffect(() => {
@@ -40,7 +40,7 @@ const App = () => {
       {({ isActive }) => (
         <>
           <span>{label}</span>
-          {isActive && <FaCircle className={css.activeIcon} size={8} />}
+          {/* {isActive && <FaCircle className={css.activeIcon} size={8} />} */}
         </>
       )}
     </NavLink>
