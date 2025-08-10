@@ -1,0 +1,1438 @@
+[
+  {
+    "groupName": "Golden rings 80g",
+    "variants": [
+      {
+        "id": "0ab76de6-d6bd-4d7a-8b3e-2f123bc6312e",
+        "title": "Golden Rings sůl - 80g",
+        "image": "/products/GoldenRings/ring-sul.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16,5",
+          "Program váha": "19",
+          "Program rentgen": "19",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "6d58b652-b585-4f5d-8a51-9e04e3f825cd",
+        "title": "Golden rings 80g sýr",
+        "image": "/products/GoldenRings/ring-syr.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16,5",
+          "Program váha": "22",
+          "Program rentgen": "22",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "8d1db6f2-f3ab-4107-be02-173c53df1256",
+        "title": "Golden Rings paprika - 80g",
+        "image": "/products/GoldenRings/ring-paprika.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16,5",
+          "Program váha": "20",
+          "Program rentgen": "20",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "211d3918-c6d3-421b-be3e-2c02f42f58d3",
+        "title": "Golden Rings šunka - 80g",
+        "image": "/products/GoldenRings/ring-sunka.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16,5",
+          "Program váha": "21",
+          "Program rentgen": "21",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden cracker 80g",
+    "variants": [
+      {
+        "id": "97b1faaa-e1e3-4625-b0f9-1750615a39b6",
+        "title": "Cracker solený 80g",
+        "image": "/products/GoldenCracker/cracker-sul.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16",
+          "Program váha": "14",
+          "Program rentgen": "14",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "eb8b82f9-c48f-4dd0-b602-70e1887c83d9",
+        "title": "Cracker sýrový 80g",
+        "image": "/products/GoldenCracker/cracker-syr.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16",
+          "Program váha": "18",
+          "Program rentgen": "18",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "a23b358d-4843-4d6d-8ca5-be5008709df2",
+        "title": "Cracker paprika 80g",
+        "image": "/products/GoldenCracker/cracker-paprika.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16",
+          "Program váha": "15",
+          "Program rentgen": "15",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "0f7f5458-ed79-40d7-bc43-f9aab6275f4f",
+        "title": "Cracker šunkový 80g",
+        "image": "/products/GoldenCracker/cracker-sunka.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16",
+          "Program váha": "17",
+          "Program rentgen": "17",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "b261e75b-87b0-4575-9fdd-b221cfa66a67",
+        "title": "Cracker česnekový 80g",
+        "image": "/products/GoldenCracker/cracker-cesnek.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "155 mm",
+          "Datum": "16",
+          "Program váha": "16",
+          "Program rentgen": "16",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack 100g",
+    "variants": [
+      {
+        "id": "9c445a67-f8b2-4fbd-bbd6-9245bcfe94e3",
+        "title": "Golden Snack šunkový 100g",
+        "image": "/products/GoldenSnack/snack-sunka100g.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "159 mm",
+          "Datum": "15,5",
+          "Program váha": "29",
+          "Program rentgen": "29",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "b5ae7866-d1b4-48bc-8ac1-b8123a8c64b4",
+        "title": "Golden Snack slaninový 100g",
+        "image": "/products/GoldenSnack/snack-slanina100g.webp",
+        "params": {
+          "Délka sáčku": "360 mm",
+          "Posunutí obrázku": "159 mm",
+          "Datum": "15,5",
+          "Program váha": "30",
+          "Program rentgen": "30",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "GRS",
+    "variants": [
+      {
+        "id": "a792dcfd-13a7-4b59-978f-eebfd7599a4a",
+        "title": "GRS 100g sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "",
+          "Posunutí obrázku": "",
+          "Šířka fólie": "",
+          "Fotobuňka": "",
+          "Datum": "",
+          "Program váha": "24",
+          "Program rentgen": "24",
+          "Tubus": "",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "bb79bf29-adc5-4074-8c08-59739034b672",
+        "title": "GRS 100g paprika",
+        "image": "",
+        "params": {
+          "Délka sáčku": "",
+          "Posunutí obrázku": "",
+          "Šířka fólie": "",
+          "Fotobuňka": "",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "25",
+          "Tubus": "",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "a6270564-a1ec-426c-9893-5e17a560c720",
+        "title": "GRS 100g šunka",
+        "image": "",
+        "params": {
+          "Délka sáčku": "",
+          "Posunutí obrázku": "",
+          "Šířka fólie": "",
+          "Fotobuňka": "",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "26",
+          "Tubus": "",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "f2b64605-8db1-4b80-8f12-57a9de219e36",
+        "title": "GRS 100g sýr",
+        "image": "",
+        "params": {
+          "Délka sáčku": "",
+          "Posunutí obrázku": "",
+          "Šířka fólie": "",
+          "Fotobuňka": "",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "27",
+          "Tubus": "",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Bacon snack slanina - 50g",
+    "variants": [
+      {
+        "id": "e4db5a24-5711-4408-8516-05d28c316d0b",
+        "title": "Bacon snack slanina - 50g",
+        "image": "/products/BaconSnack50g/snack-bacon50g.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "58 mm",
+          "Datum": "22,3",
+          "Program váha": "43",
+          "Program rentgen": "43",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack - hranolky 65g",
+    "variants": [
+      {
+        "id": "e0711553-5d8f-4c1c-bb77-2e55eafd7dd9",
+        "title": "Golden Snack - hranolky solené",
+        "image": "/products/Hranolky/hranolky-sul.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "",
+          "Datum": "",
+          "Program váha": "96",
+          "Program rentgen": "96",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "8309a1d9-9f0c-4d0f-aa2b-0583c7698669",
+        "title": "Golden Snack - hranolky s příchutí chedaru",
+        "image": "/products/Hranolky/hranolky-cheddar.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "",
+          "Datum": "",
+          "Program váha": "95",
+          "Program rentgen": "95",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "7fb98eee-67b5-4083-a361-19eb2cc363bc",
+        "title": "Golden Snack - hranolky s příchutí kečupu",
+        "image": "/products/Hranolky/hranolky-kethup.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "",
+          "Datum": "",
+          "Program váha": "93",
+          "Program rentgen": "93",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Fine CRUNCHY & Crispy",
+    "variants": [
+      {
+        "id": "980a290f-8e43-403e-aeee-1e3002f53ca1",
+        "title": "Fine CRANCHY salted 130g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "353 mm",
+          "Posunutí obrázku": "160 mm",
+          "Datum": "16",
+          "Program váha": "41",
+          "Program rentgen": "41",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "ac147938-ea35-46bf-97f8-aece07a7cc5b",
+        "title": "Fine CRANCHY smet + cib 130g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "353 mm",
+          "Posunutí obrázku": "170 mm",
+          "Datum": "14,5",
+          "Program váha": "70",
+          "Program rentgen": "70",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "a38fa9a5-ad4b-428a-a281-763f34e33379",
+        "title": "Fine Crispy slanina 125 g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "7 mm",
+          "Datum": "21",
+          "Program váha": "48",
+          "Program rentgen": "48",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack Kroužky",
+    "variants": [
+      {
+        "id": "312717c8-8288-464e-96d1-df60dfd1e8a6",
+        "title": "Cibulové kroužky 70g",
+        "image": "/public/products/GoldenOring/oring-cibule.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "6,5",
+          "Program váha": "60",
+          "Program rentgen": "60",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "344ece4a-9105-4956-9967-50ce5a5df3ab",
+        "title": "Klobásové kroužky 70g",
+        "image": "/products/GoldenOring/oring-klobasa.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "6,5",
+          "Program váha": "62",
+          "Program rentgen": "57",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "f2d90c7a-4a75-40e8-a8d0-ad86dc37b91a",
+        "title": "Paprikové kroužky 70g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "6,5",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "ed685ee3-91a5-40f4-acb9-18e7634ffc35",
+        "title": "Sýrové kroužky 70g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "6,5",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack Ghost",
+    "variants": [
+      {
+        "id": "6d1b4e59-f03a-4d2c-999a-911241b4722d",
+        "title": "Ghost Snack solený - 70g",
+        "image": "/products/GhostSnack/ghost-salt.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "56",
+          "Program rentgen": "56",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "db4b7b72-db7e-42d7-85b4-a28d4f298d51",
+        "title": "Ghost Snack sýr - 70g",
+        "image": "/products/GhostSnack/ghost-syr.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "57",
+          "Program rentgen": "51",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "c5d39941-df5e-4044-9d2e-3c98471a2b33",
+        "title": "Ghost Snack kečup - 70g",
+        "image": "/products/GhostSnack/ghost-kethup.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "58",
+          "Program rentgen": "58",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "da2f14c2-bb2c-4a30-9e82-c0ad8f65948e",
+        "title": "Ghost Snack Sour cream - 70g",
+        "image": "/products/GhostSnack/ghost-sours.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "6e63ef5f-79ab-4298-8026-f6dff9596f26",
+        "title": "Ghost Snack Salt EN - 70g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "6e63ef5f-79ab-4298-8026-f6dljkbhfgv",
+        "title": "Ghost Snack Salz DE - 70g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "24",
+          "Program váha": "92",
+          "Program rentgen": "92",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Snack Stars",
+    "variants": [
+      {
+        "id": "1449cc90-e91e-4184-86fe-8f222bda15a4",
+        "title": "Golden Stars solené - 70g",
+        "image": "/products/GoldenStars/stars-salt.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "265 mm",
+          "Datum": "23,5",
+          "Program váha": "98",
+          "Program rentgen": "98",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "9461b48e-2dc4-4afe-98fd-3bc62ff81f59",
+        "title": "Golden Stars s příchutí cheddaru - 70g",
+        "image": "/products/GoldenStars/stars-cheddar.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "265 mm",
+          "Datum": "23,5",
+          "Program váha": "99",
+          "Program rentgen": "99",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "7504e91e-7446-4d3c-8964-0fea0f9d0799",
+        "title": "Golden Stars s příchutí kečupu - 70g",
+        "image": "/products/GoldenStars/stars-kethup.webp",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "265 mm",
+          "Datum": "23,5",
+          "Program váha": "100",
+          "Program rentgen": "100",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Vital CZ",
+    "variants": [
+      {
+        "id": "c0dbf22c-1bd4-49ae-8cbf-758bb061b856",
+        "title": "Vital Snack - cizrnové chipsy s mořskou solí",
+        "image": "/products/VitalCZ/cizrna-salt.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "75",
+          "Program rentgen": "67",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "825a443e-4d94-4c96-9300-f3380bfc35b8",
+        "title": "Vital Snack - čočkové chipsy s mořskou solí",
+        "image": "/products/VitalCZ/cocka-salt.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "73",
+          "Program rentgen": "61",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "36484416-ee2d-428c-8215-515fdf0766c5",
+        "title": "Vital Snack - cizrnové chipsy s příchutí jogurt a bylinky",
+        "image": "/products/VitalCZ/cizrna-yogurt.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "68",
+          "Program rentgen": "69",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "0a7f4907-55ce-4aec-b957-780af3272c7e",
+        "title": "Vital Snack - čočkové chipsy s příchutí sweet chilli",
+        "image": "/products/VitalCZ/cocka-chilli.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "69",
+          "Program rentgen": "62",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "fcfa994d-e91f-458c-9b02-2d98b81f7dbb",
+        "title": "Vital Snack - čočkové chipsy High protein s příchutí limetka & chilli",
+        "image": "/products/VitalCZ/cocka-limeChilli.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "90",
+          "Program rentgen": "90",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "e523bb28-40f6-431a-8aad-b119c09d0e15",
+        "title": "Vital Snack - čočkové chipsy s příchutí Pizza",
+        "image": "/products/VitalCZ/cocka-pizza.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "66",
+          "Program rentgen": "66",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "b6ef6dcf-c1e9-4dd0-805c-45712bbfcc54",
+        "title": "Quinoa chipsy s příchutí BBQ",
+        "image": "/products/VitalCZ/quinoa-bbq.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "84",
+          "Program rentgen": "84",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "295061b0-60c3-49e8-8d65-2b8f1d08955e",
+        "title": "Quinoa chipsy s příchutí Creme Fraiche",
+        "image": "/products/VitalCZ/quinoa-cremeFr.webp",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "63 mm",
+          "Datum": "17",
+          "Program váha": "67",
+          "Program rentgen": "68",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Vital EN",
+    "variants": [
+      {
+        "id": "357653ae-9823-4a9c-b155-edb1960895b2",
+        "title": "Vital Snack - HUMMUS Salt 65g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "60 mm",
+          "Datum": "21,5",
+          "Program váha": "78",
+          "Program rentgen": "78",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "d4ea01e2-c245-4068-8646-12a63c18e95b",
+        "title": "Vital Snack - LENTIL Salt 65g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "60 mm",
+          "Datum": "21,5",
+          "Program váha": "79",
+          "Program rentgen": "79",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "2369cb2d-c208-4c0f-93ed-21a173f1993c",
+        "title": "Vital Snack - HUMMUS Yogurt Herbs 65g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "60 mm",
+          "Datum": "21,5",
+          "Program váha": "82",
+          "Program rentgen": "82",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "5fe9ba82-e68a-4937-8211-5fced044108f",
+        "title": "Vital Snack - LENTIL Chilli 65g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "60 mm",
+          "Datum": "21,5",
+          "Program váha": "80",
+          "Program rentgen": "80",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "ac69b440-f4f5-4dfd-bf15-06df98d3871a",
+        "title": "Vital Snack - LENTIL Pizza 65g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "60 mm",
+          "Datum": "21,5",
+          "Program váha": "81",
+          "Program rentgen": "81",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "864938bb-83f7-43fd-a150-c8c20f91e457",
+        "title": "Vital Snack -",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": " mm",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "4",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "a08046d7-7308-4bc4-b203-dba41ac28ae1",
+        "title": "",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": " mm",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "4",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "3f804a85-0fd9-4112-84e9-cb0595d152c6",
+        "title": "",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": " mm",
+          "Datum": "",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "4",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Vital 40g",
+    "variants": [
+      {
+        "id": "5478b2a1-914d-48f8-a507-fb4f4bcac950",
+        "title": "Vital Snack 40g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "220 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "15",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "XXL Výrobek",
+    "variants": [
+      {
+        "id": "2d81b7b3-a0d5-420c-aff3-a90c091c4a23",
+        "title": "XXL Snack 160g šunka ",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "16 mm",
+          "Datum": "22",
+          "Program váha": "71",
+          "Program rentgen": "71",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "59778dd9-75d3-43cb-96a7-238bbb7b60d3",
+        "title": "XXL Rings 160g sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "14 mm",
+          "Datum": "22",
+          "Program váha": "9",
+          "Program rentgen": "9",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "53fd3836-fc2b-4d52-94ab-714790f6146b",
+        "title": "XXL Rings 160g šunka",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "16 mm",
+          "Datum": "22",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "a0ddd637-8dfb-4c44-a1ac-0545cd36cf9c",
+        "title": "XXL Snack 190g slanina",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "16 mm",
+          "Datum": "22",
+          "Program váha": "51",
+          "Program rentgen": "76",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "5fbb5cbb-428a-4d9a-9706-c50sdf30dflsj",
+        "title": "XXL Ghost 170g sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "14 mm",
+          "Datum": "16,5",
+          "Program váha": "86",
+          "Program rentgen": "86",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "5fbb5cbb-428a-4d9a-9706-c503330f99bb",
+        "title": "XXL Ghost 170g kečup",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "14 mm",
+          "Datum": "16,5",
+          "Program váha": "85",
+          "Program rentgen": "85",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Flop Dobrý výběr",
+    "variants": [
+      {
+        "id": "e0cfb5d3-64a5-4005-bec4-ff998b5bee66",
+        "title": "Flop Dobrý výběr rings 60g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "272 mm",
+          "Datum": "23,5",
+          "Program váha": "45",
+          "Program rentgen": "45",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "36026118-0538-4114-b37a-73449b405e35",
+        "title": "Flop Dobrý výběr crac. 60g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "330 mm",
+          "Posunutí obrázku": "272 mm",
+          "Datum": "23,5",
+          "Program váha": "46",
+          "Program rentgen": "46",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "6157c947-ffdb-4b88-9a97-896bc01ce095",
+        "title": "Flop Dobrý výběr snac.60g - slanina",
+        "image": "",
+        "params": {
+          "Délka sáčku": "300 mm",
+          "Posunutí obrázku": "12 mm",
+          "Datum": "14,5",
+          "Program váha": "47",
+          "Program rentgen": "47",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "145"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Clever",
+    "variants": [
+      {
+        "id": "1bf78a10-a884-4153-a346-395fb39c18f5",
+        "title": "Clever mřížky solené 100g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "13 mm",
+          "Datum": "21",
+          "Program váha": "28",
+          "Program rentgen": "28",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "0dae678b-85fb-4d68-8827-d0b4b5bc54cb",
+        "title": "Clever snack 70g - šunka",
+        "image": "",
+        "params": {
+          "Délka sáčku": "320 mm",
+          "Posunutí obrázku": "44 mm",
+          "Datum": "17,5",
+          "Program váha": "11",
+          "Program rentgen": "11",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "171038a3-1abe-4ed2-b56e-e56e4b92e0ba",
+        "title": "Clever cracker 70g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "315 mm",
+          "Posunutí obrázku": "40 mm",
+          "Datum": "17,5",
+          "Program váha": "10",
+          "Program rentgen": "10",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Č.cena",
+    "variants": [
+      {
+        "id": "7db34c9a-2886-4bef-8d8b-8b61f4b88c0e",
+        "title": "Č.cena rings 60g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "330 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "11",
+          "Program váha": "6",
+          "Program rentgen": "6",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "bf7e3403-3076-46f6-9a59-a0076bd49969",
+        "title": "Č.cena snack 60g - slanina",
+        "image": "",
+        "params": {
+          "Délka sáčku": "310 mm",
+          "Posunutí obrázku": "8 mm",
+          "Datum": "14",
+          "Program váha": "42",
+          "Program rentgen": "42",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "2f82fe76-e674-4453-97db-3614bcd4ec87",
+        "title": "Č.cena cracker 60g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "11",
+          "Program váha": "4",
+          "Program rentgen": "4",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "145"
+        }
+      },
+      {
+        "id": "aeb942a5-5b3e-49e4-bf39-d3e62dc4b0d5",
+        "title": "Č.cena Cibulové kroužky - 70g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "23,5",
+          "Program váha": "61",
+          "Program rentgen": "54",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "145"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Golden Cracker 50g",
+    "variants": [
+      {
+        "id": "fefb7ec5-272a-4aaa-ba56-6d1ac7554b57",
+        "title": "Golden Cracker sůl - 50g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "310 mm",
+          "Posunutí obrázku": "56 mm",
+          "Datum": "8,5",
+          "Program váha": "2",
+          "Program rentgen": "2",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "GSR (RSK) - 80g+25%",
+    "variants": [
+      {
+        "id": "598a5471-3d41-416e-8c9b-ef94adfdf439",
+        "title": "GSR (RSK) - 80g+25% - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "30 mm",
+          "Datum": "15",
+          "Program váha": "",
+          "Program rentgen": "",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Křupeto",
+    "variants": [
+      {
+        "id": "aae36162-bf96-4d00-81cf-63b7d9c97998",
+        "title": "Křupeto cracker 50g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "305 mm",
+          "Posunutí obrázku": "21 mm",
+          "Datum": "13",
+          "Program váha": "44",
+          "Program rentgen": "44",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "a7824890-11c7-4ba6-9591-d90eb0412701",
+        "title": "Křupeto Cibulové kroužky 50g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "9",
+          "Program váha": "52",
+          "Program rentgen": "52",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Záhoracke lupinky (cracker) 60g - sůl",
+    "variants": [
+      {
+        "id": "f14916d5-1731-4cab-be1b-1b6a4dec88c5",
+        "title": "Záhoracke lupinky (cracker) 60g - sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "265 mm",
+          "Datum": "18",
+          "Program váha": "7",
+          "Program rentgen": "7",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Solty",
+    "variants": [
+      {
+        "id": "bd514eca-a36f-4ac2-b154-2fb84c99273b",
+        "title": "Solty Strašidýlka",
+        "image": "",
+        "params": {
+          "Délka sáčku": "310 mm",
+          "Posunutí obrázku": "6 mm",
+          "Datum": "8,5",
+          "Program váha": "55",
+          "Program rentgen": "77",
+          "Tubus": "4",
+          "Šířka podélné čelisti": "5,1"
+        }
+      },
+      {
+        "id": "f6e5e238-d5d0-48fd-84c5-e5a864951868",
+        "title": "Solty SNACK KREKRY jemně solené",
+        "image": "",
+        "params": {
+          "Délka sáčku": "353 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "15",
+          "Program váha": "83",
+          "Program rentgen": "83",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "061a68b4-ccf8-45e5-9346-5d799a37fd50",
+        "title": "Solty kroužky cibule",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "8,9",
+          "Program váha": "91",
+          "Program rentgen": "91",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "82266c9a-a384-45ed-b4a9-057fa4872885",
+        "title": "Solty kroužky klobása",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "8,9",
+          "Program váha": "89",
+          "Program rentgen": "89",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Knuspersnack 75g",
+    "variants": [
+      {
+        "id": "dc2291ea-6785-497e-83e6-d62a656c2bbf",
+        "title": "Knuspersnack 75g - Pfeffer",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "23",
+          "Program váha": "39",
+          "Program rentgen": "39",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      },
+      {
+        "id": "9ced292e-47ed-4e52-8eea-0c45e6f1e027",
+        "title": "Knuspersnack 75g - Paprika",
+        "image": "",
+        "params": {
+          "Délka sáčku": "325 mm",
+          "Posunutí obrázku": "268 mm",
+          "Datum": "23",
+          "Program váha": "38",
+          "Program rentgen": "38",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Knuspersnack Bacon 130g",
+    "variants": [
+      {
+        "id": "70d95afe-07f0-413e-bb91-eeae5a4a591f",
+        "title": "Knusper snack - 130g DE",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "6 mm",
+          "Datum": "19,5",
+          "Program váha": "53",
+          "Program rentgen": "53",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      },
+      {
+        "id": "21b2d5fa-2f1f-486b-a472-c1e6e5a849be",
+        "title": "Knusper snack - 130g CZ",
+        "image": "",
+        "params": {
+          "Délka sáčku": "385 mm",
+          "Posunutí obrázku": "6 mm",
+          "Datum": "19,5",
+          "Program váha": "63",
+          "Program rentgen": "63",
+          "Tubus": "2",
+          "Šířka podélné čelisti": "6,2"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "CBA Amikex cracker",
+    "variants": [
+      {
+        "id": "c177a90b-5521-4123-ae48-75a8fdb20e84",
+        "title": "CBA Amikex cracker",
+        "image": "",
+        "params": {
+          "Délka sáčku": "328 mm",
+          "Posunutí obrázku": "270 mm",
+          "Datum": "6",
+          "Program váha": "49",
+          "Program rentgen": "49",
+          "Tubus": "3",
+          "Šířka podélné čelisti": "6"
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "Knuspriger (Kaufland)",
+    "variants": [
+      {
+        "id": "597a10e4-d5ce-4616-aa7a-8ffb6d871775",
+        "title": "Knuspriger sůl 125g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "33",
+          "Program rentgen": "33",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "2ae5b282-f18c-47aa-903a-74a8441900d6",
+        "title": "Knuspriger sýr 125g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "37",
+          "Program rentgen": "37",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "fd116aa8-36c4-402a-a681-7076f2f38cf8",
+        "title": "Knuspriger paprika 125g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "34",
+          "Program rentgen": "34",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "869acdd5-fae8-467a-ae71-f01db904c562",
+        "title": "Knuspriger šunka 125g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "36",
+          "Program rentgen": "36",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "ed06f698-312f-4a9c-8b4a-ee067dfc3e47",
+        "title": "Knuspriger česnek 125g",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "35",
+          "Program rentgen": "35",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "GUSTARE CROCANTA",
+    "variants": [
+      {
+        "id": "690adda6-b5d9-4520-90c9-995722e1b804",
+        "title": "GUSTARE CROCANTA SARE (sůl)",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "87,94",
+          "Program rentgen": "94",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "5df33511-8e2f-4290-86a3-933b5507447f",
+        "title": "GUSTARE CROCANTA ARDEI (paprika)",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "88",
+          "Program rentgen": "88",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "51cf4579-d3dc-47a8-9cd5-6d38f2f68b6e",
+        "title": "GUSTARE RETATA CU BRANZA (sýr)",
+        "image": "",
+        "params": {
+          "Délka sáčku": "345 mm",
+          "Posunutí obrázku": "225 mm",
+          "Datum": "18,5",
+          "Program váha": "",
+          "Program rentgen": "87",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  },
+  {
+    "groupName": "KLC Potato Crispy",
+    "variants": [
+      {
+        "id": "44db6bd0-5a7d-49c0-9bab-91a5c32b6fd1",
+        "title": "KLC Potato Crispy 125g sůl",
+        "image": "",
+        "params": {
+          "Délka sáčku": "364 mm",
+          "Posunutí obrázku": "170 mm",
+          "Datum": "13,5",
+          "Program váha": "64",
+          "Program rentgen": "64",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      },
+      {
+        "id": "c149cb5a-d681-4f01-a574-9197c18ca8ac",
+        "title": "KLC Potato Crispy 125g - Cream&onion",
+        "image": "",
+        "params": {
+          "Délka sáčku": "364 mm",
+          "Posunutí obrázku": "170 mm",
+          "Datum": "13,5",
+          "Program váha": "65",
+          "Program rentgen": "65",
+          "Tubus": "1",
+          "Šířka podélné čelisti": ""
+        }
+      }
+    ]
+  }
+]

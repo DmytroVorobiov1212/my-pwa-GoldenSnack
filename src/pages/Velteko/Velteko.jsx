@@ -1,8 +1,12 @@
-import Table from '../../components/Table/Table';
-import { dataVelteko } from '../../data/dataVelteko';
+import dataVelteko from '../../data/velteko.json';
+import VeltekoList from '../../components/VeltekoList/VeltekoList';
 
 const Velteko = () => {
-  return <Table data={dataVelteko} />;
+  return (
+    <>
+      <VeltekoList data={dataVelteko} />
+    </>
+  );
 };
 
 export default Velteko;
