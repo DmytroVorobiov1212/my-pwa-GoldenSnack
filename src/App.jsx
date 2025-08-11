@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
 import Footer from './components/Footer/Footer';
 // import { FaCircle } from 'react-icons/fa';
+// import { TiHomeOutline } from 'react-icons/ti';
 
 // const buildLinkClass = ({ isActive }) => {
 //   return clsx(css.link, isActive && css.active);
