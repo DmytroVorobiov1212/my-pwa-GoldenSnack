@@ -27,7 +27,6 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
             type="button"
             className={`${styles.btn} ${styles.btnPrimary}`}
             onClick={() => {
-              // важливо: помітити, що ми ЗАРАЗ оновлюємось
               try {
                 sessionStorage.setItem('pwaJustUpdated', '1');
               } catch {}

@@ -5,54 +5,52 @@ import { showUpdateToast } from "../components/UpdateToast/UpdateToast";
 function askVersion(target) {
     return new Promise((resolve) => {
         const ch = new MessageChannel();
-        const timer = setTimeout(() => resolve(null), 800); // таймаут на випадок тиші
-        ch.port1.onmessage = (e) => {
-            clearTimeout(timer);
-            resolve(e.data?.version ?? null);
-        };
-        try {
-            target.postMessage({ type: "GET_VERSION" }, [ch.port2]);
-        } catch {
-            resolve(null);
-        }
+        const timer = setTimeout(() => resolve(null), 800);
+        ch.port1.onmessage = (e) => { clearTimeout(timer); resolve(e.data?.version ?? null); };
+        try { target.postMessage({ type: "GET_VERSION" }, [ch.port2]); } catch { resolve(null); }
     });
 }
 
 export function usePWAUpdatePrompt() {
     useEffect(() => {
+        // ⬅️ SW тільки у продакшені
+        if (!import.meta.env.PROD) return;
         if (!("serviceWorker" in navigator)) return;
 
         let shownOnce = false;
 
         const shouldShowUpdateToast = async (reg) => {
-            if (shownOnce) return false;
-            if (!reg.waiting) return false;
+            if (shownOnce || !reg.waiting) return false;
 
-            // 1) Витягуємо версію активного SW (через controller)
             const controller = navigator.serviceWorker.controller;
             const activeVersion = controller ? await askVersion(controller) : null;
-
-            // 2) Витягуємо версію waiting SW
             const waitingVersion = await askVersion(reg.waiting);
 
-            // 3) Якщо версії однакові — це фантом, НЕ показуємо тост
-            if (activeVersion && waitingVersion && waitingVersion === activeVersion) {
-                return false;
-            }
+            // якщо версії однакові — фантом, не показуємо
+            if (activeVersion && waitingVersion && waitingVersion === activeVersion) return false;
 
-            // 4) Маленька пауза й повторна перевірка (щоб уникнути проміжного "waiting → redundant")
+            // коротка пауза на випадок переходу waiting -> redundant
             await new Promise((r) => setTimeout(r, 200));
             if (!reg.waiting) return false;
+
+            // анти-флеш одразу після реального оновлення
+            try {
+                if (sessionStorage.getItem("pwaJustUpdated") === "1") {
+                    sessionStorage.removeItem("pwaJustUpdated");
+                    return false;
+                }
+            } catch { }
 
             return true;
         };
 
         const showToastIfRealUpdate = async (reg) => {
             if (!(await shouldShowUpdateToast(reg))) return;
-
             shownOnce = true;
+
             showUpdateToast({
                 onConfirm: () => {
+                    try { sessionStorage.setItem("pwaJustUpdated", "1"); } catch { }
                     reg.waiting.postMessage({ type: "SKIP_WAITING" });
                     const onCtrlChange = () => {
                         navigator.serviceWorker.removeEventListener("controllerchange", onCtrlChange);
@@ -68,7 +66,6 @@ export function usePWAUpdatePrompt() {
 
             if (reg.waiting) await showToastIfRealUpdate(reg);
 
-            // якщо щойно ставиться — дочекаймося, поки стане waiting
             reg.installing?.addEventListener("statechange", () => {
                 if (reg.waiting) showToastIfRealUpdate(reg);
             });
@@ -79,7 +76,7 @@ export function usePWAUpdatePrompt() {
                 });
             });
 
-            // опційно: при поверненні вкладки у фокус — перевірити апдейти
+            // коли вкладка повертається — перевірити апдейти
             const onVisible = async () => {
                 if (document.visibilityState === "visible") {
                     const r = await navigator.serviceWorker.getRegistration();
