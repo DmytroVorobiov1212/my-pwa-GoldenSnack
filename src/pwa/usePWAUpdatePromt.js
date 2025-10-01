@@ -62,7 +62,7 @@ export function usePWAUpdatePrompt() {
         };
 
         const onLoad = async () => {
-            const reg = await navigator.serviceWorker.register("/service-worker.js");
+            const reg = await navigator.serviceWorker.register("/sw.js");
 
             if (reg.waiting) await showToastIfRealUpdate(reg);
 

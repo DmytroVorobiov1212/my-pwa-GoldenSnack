@@ -7,20 +7,13 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      // ❌ не інʼєктимо реєстратор — реєструєш ти сам у хуку
-      injectRegister: 'none',
-      // ✅ використовуємо твій файл SW як джерело
-      strategies: 'injectManifest',
-      srcDir: 'public',
-      filename: 'service-worker.js',
-      // прибирає застарілі кеші Workbox (не завадить)
-      workbox: {
-        cleanupOutdatedCaches: true,
-      },
-      // ❌ не реєструвати SW у dev, щоб HMR не плодив фантомні апдейти
-      devOptions: { enabled: false },
+      injectRegister: 'none',          // реєструємо самі
+      strategies: 'injectManifest',    // інжектимо у наш src/sw.js
+      srcDir: 'src',
+      filename: 'sw.js',               // вихідний файл у корені dist -> /sw.js
+      workbox: { cleanupOutdatedCaches: true },
+      devOptions: { enabled: false },  // не реєструвати SW у dev
 
-      // Маніфест (ок, що немає окремого webmanifest — плагін згенерує)
       manifest: {
         name: 'Mini PWA Table',
         short_name: 'MiniTable',

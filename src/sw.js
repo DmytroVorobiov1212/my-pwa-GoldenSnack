@@ -1,4 +1,10 @@
-// public/service-worker.js
+
+/* eslint-disable no-undef */
+// Workbox precache (обов'язково для injectManifest)
+import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching';
+cleanupOutdatedCaches();
+precacheAndRoute(self.__WB_MANIFEST || []);
+
 
 // ---- Версія кешів (збільшуй на кожний реліз) ------------------------------
 const CACHE_VERSION = "v1.0.0-2025-10-01";
