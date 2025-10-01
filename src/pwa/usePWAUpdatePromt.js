@@ -1,6 +1,5 @@
 // src/pwa/usePWAUpdatePrompt.js
 import { useEffect, useRef } from "react";
-// import { showUpdateToast } from "../components/UpdateToast";
 import { showUpdateToast } from "../components/UpdateToast/UpdateToast";
 
 export function usePWAUpdatePrompt() {
@@ -9,44 +8,44 @@ export function usePWAUpdatePrompt() {
     useEffect(() => {
         if (initOnce.current) return;
         initOnce.current = true;
-
         if (!("serviceWorker" in navigator)) return;
 
-        const onLoad = () => {
-            navigator.serviceWorker
-                .register("/service-worker.js")
-                .then((reg) => {
-                    reg.addEventListener("updatefound", () => {
-                        const newWorker = reg.installing;
-                        if (!newWorker) return;
-
-                        newWorker.addEventListener("statechange", () => {
-                            const isInstalled = newWorker.state === "installed";
-                            const hasActiveController = Boolean(navigator.serviceWorker.controller);
-
-                            if (isInstalled && hasActiveController) {
-                                // показуємо тост з кнопкою «Оновити»
-                                showUpdateToast({
-                                    onConfirm: () => {
-                                        const waitingSW = reg.waiting || newWorker;
-                                        waitingSW?.postMessage({ type: "SKIP_WAITING" });
-
-                                        let reloaded = false;
-                                        navigator.serviceWorker.addEventListener("controllerchange", () => {
-                                            if (reloaded) return;
-                                            reloaded = true;
-                                            window.location.reload();
-                                        });
-                                    },
-                                });
-                            }
-                        });
+        const askToUpdate = (reg) => {
+            if (!reg.waiting) return; // ✅ гарантія, що є справжній апдейт
+            showUpdateToast({
+                onConfirm: () => {
+                    reg.waiting.postMessage({ type: "SKIP_WAITING" }); // ✅ тільки в waiting
+                    let reloaded = false;
+                    navigator.serviceWorker.addEventListener("controllerchange", () => {
+                        if (reloaded) return;
+                        reloaded = true;
+                        window.location.reload();
                     });
-                })
-                .catch((err) => {
-                    // опційно: ваш логер
-                    console.error("SW registration failed:", err);
+                },
+            });
+        };
+
+        const onLoad = async () => {
+            const reg = await navigator.serviceWorker.register("/service-worker.js");
+
+            // 1) Якщо вже є waiting (зайшов після деплою) — покажемо одразу
+            if (reg.waiting) askToUpdate(reg);
+
+            // 2) В процесі встановлення — дочекаємось transition до waiting
+            if (reg.installing) {
+                reg.installing.addEventListener("statechange", () => {
+                    if (reg.waiting) askToUpdate(reg);
                 });
+            }
+
+            // 3) На майбутні оновлення
+            reg.addEventListener("updatefound", () => {
+                const installing = reg.installing;
+                if (!installing) return;
+                installing.addEventListener("statechange", () => {
+                    if (reg.waiting) askToUpdate(reg);
+                });
+            });
         };
 
         window.addEventListener("load", onLoad);

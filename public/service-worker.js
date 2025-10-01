@@ -95,6 +95,11 @@ self.addEventListener("message", async (event) => {
 
 // ---- fetch: політики кешування --------------------------------------------
 self.addEventListener("fetch", (event) => {
+    const url = new URL(event.request.url);
+
+    // ❌ Ніколи не перехоплюємо сам SW-файл
+    if (url.pathname === "/service-worker.js") return;
+
     const { request } = event;
 
     // 1) Навігація/HTML → network-first + офлайн fallback на index.html
