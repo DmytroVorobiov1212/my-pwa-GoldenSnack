@@ -103,7 +103,7 @@ self.addEventListener("fetch", (event) => {
     const url = new URL(event.request.url);
 
     // ❌ Ніколи не перехоплюємо сам SW-файл
-    if (url.pathname === "/service-worker.js") return;
+    if (url.pathname === "/sw.js") return;
 
     const { request } = event;
 
