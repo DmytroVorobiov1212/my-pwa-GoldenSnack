@@ -1,4 +1,3 @@
-// src/pwa/usePWAUpdatePrompt.js
 import { useEffect } from "react";
 import { showUpdateToast } from "../components/UpdateToast/UpdateToast";
 
@@ -6,17 +5,16 @@ export function usePWAUpdatePrompt() {
     useEffect(() => {
         if (!("serviceWorker" in navigator)) return;
 
-        let shown = false; // локальний запобіжник на час життя сторінки
+        let shown = false; // запобіжник від повторів у межах сесії
 
         const askToUpdate = (reg) => {
             if (shown) return;
-            if (!reg.waiting) return;   // ✅ показуємо тільки коли справді є waiting
+            if (!reg.waiting) return; // показуємо тост тільки коли реально є waiting
             shown = true;
 
             showUpdateToast({
                 onConfirm: () => {
                     reg.waiting.postMessage({ type: "SKIP_WAITING" });
-                    // Перезавантажимося лише коли контролер змінився
                     let reloaded = false;
                     const onCtrlChange = () => {
                         if (reloaded) return;
@@ -32,15 +30,16 @@ export function usePWAUpdatePrompt() {
         const onLoad = async () => {
             const reg = await navigator.serviceWorker.register("/service-worker.js");
 
-            // 1) Якщо оновлення вже чекає
             if (reg.waiting) askToUpdate(reg);
 
-            // 2) Якщо щойно ставиться — дочекаймося переходу в waiting
-            reg.installing?.addEventListener("statechange", () => askToUpdate(reg));
+            reg.installing?.addEventListener("statechange", () => {
+                if (reg.waiting) askToUpdate(reg);
+            });
 
-            // 3) На майбутні апдейти
             reg.addEventListener("updatefound", () => {
-                reg.installing?.addEventListener("statechange", () => askToUpdate(reg));
+                reg.installing?.addEventListener("statechange", () => {
+                    if (reg.waiting) askToUpdate(reg);
+                });
             });
         };
 
