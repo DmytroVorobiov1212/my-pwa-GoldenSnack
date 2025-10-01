@@ -1,32 +1,33 @@
-// src/components/UpdateToast.jsx
+// src/components/UpdateToast/UpdateToast.jsx
 import toast from 'react-hot-toast';
 import styles from './UpdateToast.module.css';
 
-/**
- * Показує кастомний toast з кнопками.
- * @param {{ onConfirm: () => void, onDismiss?: () => void }} params
- */
+const TOAST_ID = 'pwa-update';
+
 export function showUpdateToast({ onConfirm, onDismiss }) {
+  // Якщо тост уже активний — не створюємо другий
+  if (toast.isActive(TOAST_ID)) return;
+
   toast.custom(
     t => (
       <div className={styles.toast} role="status" aria-live="polite">
         <span className={styles.msg}>🔥 Доступна нова версія застосунку</span>
         <div className={styles.actions}>
           <button
+            type="button"
             className={`${styles.btn} ${styles.btnSecondary}`}
             onClick={() => {
-              toast.dismiss(t.id);
+              toast.dismiss(TOAST_ID);
               onDismiss?.();
             }}
           >
             Пізніше
           </button>
           <button
+            type="button"
             className={`${styles.btn} ${styles.btnPrimary}`}
             onClick={() => {
-              // 1) Закриваємо toast
-              toast.dismiss(t.id);
-              // 2) Викликаємо колбек, що попросить SW активуватися
+              toast.dismiss(TOAST_ID);
               onConfirm();
             }}
           >
@@ -36,7 +37,8 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
       </div>
     ),
     {
-      duration: 10000, // 10с, щоб не дратувати користувача
+      id: TOAST_ID, // ✅ той самий id → лише 1 тост
+      duration: 10000,
       position: 'bottom-center',
     }
   );
