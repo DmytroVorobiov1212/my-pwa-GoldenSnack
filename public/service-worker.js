@@ -3,6 +3,7 @@ const CACHE_VERSION = "v1.0.0-2025-10-01";
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const IMAGE_CACHE = `images-${CACHE_VERSION}`;
+const SW_VERSION = CACHE_VERSION;
 
 // Скільки максимум записів зберігати у runtime/зображеннях
 const RUNTIME_MAX_ENTRIES = 80;
@@ -72,6 +73,12 @@ self.addEventListener("activate", (event) => {
 // ---- повідомлення з клієнта ------------------------------------------------
 self.addEventListener("message", async (event) => {
     const type = event.data && event.data.type;
+
+    if (type === "GET_VERSION") {
+        // Відповідаємо версією SW
+        event.ports[0]?.postMessage({ ok: true, version: SW_VERSION });
+        return;
+    }
 
     if (type === "SKIP_WAITING") {
         // Активуємо новий SW (викликається з вашого тосту "Оновити")
