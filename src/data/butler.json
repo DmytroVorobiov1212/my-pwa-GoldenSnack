@@ -196,7 +196,7 @@
       {
         "id": "a792dcfd-13a7-4b59-978f-eebfd7599a4a",
         "title": "GRS 100g sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "",
           "Posunutí obrázku": "",
@@ -212,7 +212,7 @@
       {
         "id": "bb79bf29-adc5-4074-8c08-59739034b672",
         "title": "GRS 100g paprika",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "",
           "Posunutí obrázku": "",
@@ -228,7 +228,7 @@
       {
         "id": "a6270564-a1ec-426c-9893-5e17a560c720",
         "title": "GRS 100g šunka",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "",
           "Posunutí obrázku": "",
@@ -244,7 +244,7 @@
       {
         "id": "f2b64605-8db1-4b80-8f12-57a9de219e36",
         "title": "GRS 100g sýr",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "",
           "Posunutí obrázku": "",
@@ -339,7 +339,7 @@
       {
         "id": "980a290f-8e43-403e-aeee-1e3002f53ca1",
         "title": "Fine CRANCHY salted 130g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "47 mm",
@@ -355,7 +355,7 @@
       {
         "id": "ac147938-ea35-46bf-97f8-aece07a7cc5b",
         "title": "Fine CRANCHY smet + cib 130g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "47 mm",
@@ -371,7 +371,7 @@
       {
         "id": "a38fa9a5-ad4b-428a-a281-763f34e33379",
         "title": "Fine Crispy slanina 125 g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "255 mm",
@@ -732,7 +732,7 @@
       {
         "id": "357653ae-9823-4a9c-b155-edb1960895b2",
         "title": "Vital Snack - HUMMUS Salt 65g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -748,7 +748,7 @@
       {
         "id": "d4ea01e2-c245-4068-8646-12a63c18e95b",
         "title": "Vital Snack - LENTIL Salt 65g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -764,7 +764,7 @@
       {
         "id": "2369cb2d-c208-4c0f-93ed-21a173f1993c",
         "title": "Vital Snack - HUMMUS Yogurt Herbs 65g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -780,7 +780,7 @@
       {
         "id": "5fe9ba82-e68a-4937-8211-5fced044108f",
         "title": "Vital Snack - LENTIL Chilli 65g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -796,7 +796,7 @@
       {
         "id": "ac69b440-f4f5-4dfd-bf15-06df98d3871a",
         "title": "Vital Snack - LENTIL Pizza 65g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -812,7 +812,7 @@
       {
         "id": "864938bb-83f7-43fd-a150-c8c20f91e457",
         "title": "Vital Snack -",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -828,7 +828,7 @@
       {
         "id": "a08046d7-7308-4bc4-b203-dba41ac28ae1",
         "title": "",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -844,7 +844,7 @@
       {
         "id": "3f804a85-0fd9-4112-84e9-cb0595d152c6",
         "title": "",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "300 mm",
           "Posunutí obrázku": "52 mm",
@@ -865,7 +865,7 @@
       {
         "id": "5478b2a1-914d-48f8-a507-fb4f4bcac950",
         "title": "Vital Snack 40g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "",
           "Posunutí obrázku": "",
@@ -886,7 +886,7 @@
       {
         "id": "2d81b7b3-a0d5-420c-aff3-a90c091c4a23",
         "title": "XXL Snack 160g šunka ",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "260 mm",
@@ -902,7 +902,7 @@
       {
         "id": "59778dd9-75d3-43cb-96a7-238bbb7b60d3",
         "title": "XXL Rings 160g sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "260 mm",
@@ -918,7 +918,7 @@
       {
         "id": "53fd3836-fc2b-4d52-94ab-714790f6146b",
         "title": "XXL Rings 160g šunka",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "260 mm",
@@ -934,7 +934,7 @@
       {
         "id": "a0ddd637-8dfb-4c44-a1ac-0545cd36cf9c",
         "title": "XXL Snack 190g slanina",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "260 mm",
@@ -950,7 +950,7 @@
       {
         "id": "5fbb5cbb-428a-4d9a-9706-c503330f99bb",
         "title": "XXL Ghost 170g kečup",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "260 mm",
@@ -971,7 +971,7 @@
       {
         "id": "e0cfb5d3-64a5-4005-bec4-ff998b5bee66",
         "title": "Flop Dobrý výběr rings 60g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "322 mm",
           "Posunutí obrázku": "205 mm",
@@ -987,7 +987,7 @@
       {
         "id": "36026118-0538-4114-b37a-73449b405e35",
         "title": "Flop Dobrý výběr crac. 60g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "320 mm",
           "Posunutí obrázku": "199 mm",
@@ -1003,7 +1003,7 @@
       {
         "id": "6157c947-ffdb-4b88-9a97-896bc01ce095",
         "title": "Flop Dobrý výběr snac.60g - slanina",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "320 mm",
           "Posunutí obrázku": "300 mm",
@@ -1024,7 +1024,7 @@
       {
         "id": "1bf78a10-a884-4153-a346-395fb39c18f5",
         "title": "Clever mřížky solené 100g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "232 mm",
@@ -1040,7 +1040,7 @@
       {
         "id": "0dae678b-85fb-4d68-8827-d0b4b5bc54cb",
         "title": "Clever snack 70g - šunka",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "274 mm",
@@ -1056,7 +1056,7 @@
       {
         "id": "171038a3-1abe-4ed2-b56e-e56e4b92e0ba",
         "title": "Clever cracker 70g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "315 mm",
           "Posunutí obrázku": "263 mm",
@@ -1077,7 +1077,7 @@
       {
         "id": "7db34c9a-2886-4bef-8d8b-8b61f4b88c0e",
         "title": "Č.cena rings 60g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "330 mm",
           "Posunutí obrázku": "194 mm",
@@ -1093,7 +1093,7 @@
       {
         "id": "bf7e3403-3076-46f6-9a59-a0076bd49969",
         "title": "Č.cena snack 60g - slanina",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "310 mm",
           "Posunutí obrázku": "296 mm",
@@ -1109,7 +1109,7 @@
       {
         "id": "2f82fe76-e674-4453-97db-3614bcd4ec87",
         "title": "Č.cena cracker 60g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "330 mm",
           "Posunutí obrázku": "194 mm",
@@ -1125,7 +1125,7 @@
       {
         "id": "aeb942a5-5b3e-49e4-bf39-d3e62dc4b0d5",
         "title": "Č.cena Cibulové kroužky - 70g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "193 mm",
@@ -1146,7 +1146,7 @@
       {
         "id": "fefb7ec5-272a-4aaa-ba56-6d1ac7554b57",
         "title": "Golden Cracker sůl - 50g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "310 mm",
           "Posunutí obrázku": "10 mm",
@@ -1167,7 +1167,7 @@
       {
         "id": "598a5471-3d41-416e-8c9b-ef94adfdf439",
         "title": "GSR (RSK) - 80g+25% - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "240 mm",
@@ -1188,7 +1188,7 @@
       {
         "id": "aae36162-bf96-4d00-81cf-63b7d9c97998",
         "title": "Křupeto cracker 50g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "305 mm",
           "Posunutí obrázku": "3 mm",
@@ -1204,7 +1204,7 @@
       {
         "id": "a7824890-11c7-4ba6-9591-d90eb0412701",
         "title": "Křupeto Cibulové kroužky 50g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "204 mm",
@@ -1225,7 +1225,7 @@
       {
         "id": "f14916d5-1731-4cab-be1b-1b6a4dec88c5",
         "title": "Záhoracke lupinky (cracker) 60g - sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "194 mm",
@@ -1246,7 +1246,7 @@
       {
         "id": "a427e9fa-ec43-43bb-b3e1-8d2ec1575ebd",
         "title": "AVE Snack 60g šunka",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "310 mm",
           "Posunutí obrázku": "298 mm",
@@ -1267,7 +1267,7 @@
       {
         "id": "bd514eca-a36f-4ac2-b154-2fb84c99273b",
         "title": "Solty Strašidýlka",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "310 mm",
           "Posunutí obrázku": "295 mm",
@@ -1283,7 +1283,7 @@
       {
         "id": "f6e5e238-d5d0-48fd-84c5-e5a864951868",
         "title": "Solty SNACK KREKRY jemně solené",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "49 mm",
@@ -1299,7 +1299,7 @@
       {
         "id": "061a68b4-ccf8-45e5-9346-5d799a37fd50",
         "title": "Solty kroužky cibule",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "199 mm",
@@ -1315,7 +1315,7 @@
       {
         "id": "82266c9a-a384-45ed-b4a9-057fa4872885",
         "title": "Solty kroužky klobása",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "199 mm",
@@ -1336,7 +1336,7 @@
       {
         "id": "dc2291ea-6785-497e-83e6-d62a656c2bbf",
         "title": "Knuspersnack 75g - Pfeffer",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "195 mm",
@@ -1352,7 +1352,7 @@
       {
         "id": "9ced292e-47ed-4e52-8eea-0c45e6f1e027",
         "title": "Knuspersnack 75g - Paprika",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "325 mm",
           "Posunutí obrázku": "195 mm",
@@ -1373,7 +1373,7 @@
       {
         "id": "70d95afe-07f0-413e-bb91-eeae5a4a591f",
         "title": "Knusper snack - 130g DE",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "235 mm",
@@ -1389,7 +1389,7 @@
       {
         "id": "21b2d5fa-2f1f-486b-a472-c1e6e5a849be",
         "title": "Knusper snack - 130g CZ",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "385 mm",
           "Posunutí obrázku": "235 mm",
@@ -1410,7 +1410,7 @@
       {
         "id": "c177a90b-5521-4123-ae48-75a8fdb20e84",
         "title": "CBA Amikex cracker",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "328 mm",
           "Posunutí obrázku": "197 mm",
@@ -1431,7 +1431,7 @@
       {
         "id": "597a10e4-d5ce-4616-aa7a-8ffb6d871775",
         "title": "Knuspriger sůl 125g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1447,7 +1447,7 @@
       {
         "id": "2ae5b282-f18c-47aa-903a-74a8441900d6",
         "title": "Knuspriger sýr 125g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1463,7 +1463,7 @@
       {
         "id": "fd116aa8-36c4-402a-a681-7076f2f38cf8",
         "title": "Knuspriger paprika 125g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1479,7 +1479,7 @@
       {
         "id": "869acdd5-fae8-467a-ae71-f01db904c562",
         "title": "Knuspriger šunka 125g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1495,7 +1495,7 @@
       {
         "id": "ed06f698-312f-4a9c-8b4a-ee067dfc3e47",
         "title": "Knuspriger česnek 125g",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1516,7 +1516,7 @@
       {
         "id": "690adda6-b5d9-4520-90c9-995722e1b804",
         "title": "GUSTARE CROCANTA SARE (sůl)",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1532,7 +1532,7 @@
       {
         "id": "5df33511-8e2f-4290-86a3-933b5507447f",
         "title": "GUSTARE CROCANTA ARDEI (paprika)",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1548,7 +1548,7 @@
       {
         "id": "51cf4579-d3dc-47a8-9cd5-6d38f2f68b6e",
         "title": "GUSTARE RETATA CU BRANZA (sýr)",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "105 mm",
@@ -1569,7 +1569,7 @@
       {
         "id": "44db6bd0-5a7d-49c0-9bab-91a5c32b6fd1",
         "title": "KLC Potato Crispy 125g sůl",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "53 mm",
@@ -1585,7 +1585,7 @@
       {
         "id": "c149cb5a-d681-4f01-a574-9197c18ca8ac",
         "title": "KLC Potato Crispy 125g - Cream&onion",
-        "image": "",
+        "image": "not-img.webp",
         "params": {
           "Délka sáčku": "353 mm",
           "Posunutí obrázku": "53 mm",

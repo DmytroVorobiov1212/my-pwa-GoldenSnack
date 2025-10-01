@@ -1,0 +1,67 @@
+/* Мінімалістично, темна тема за замовчуванням */
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #1f2937;
+    /* gray-800 */
+    color: #e5e7eb;
+    /* gray-200 */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    max-width: 100%;
+}
+
+.msg {
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: transform .06s ease, opacity .2s ease;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btnPrimary {
+    background: #059669;
+    /* emerald-600 */
+    color: white;
+}
+
+.btnPrimary:hover {
+    opacity: .9;
+}
+
+.btnSecondary {
+    background: transparent;
+    color: #e5e7eb;
+    outline: 1px solid #374151;
+    /* gray-700 */
+}
+
+.btnSecondary:hover {
+    background: #111827;
+    /* gray-900 */
+}
+
+/* Доступність */
+.btn:focus-visible {
+    outline: 2px solid #f59e0b;
+    /* amber-500 */
+    outline-offset: 2px;
+}

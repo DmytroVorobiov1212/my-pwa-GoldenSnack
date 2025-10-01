@@ -9,12 +9,7 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
 import Footer from './components/Footer/Footer';
-// import { FaCircle } from 'react-icons/fa';
-// import { TiHomeOutline } from 'react-icons/ti';
-
-// const buildLinkClass = ({ isActive }) => {
-//   return clsx(css.link, isActive && css.active);
-// };
+import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 
 const App = () => {
   useEffect(() => {
@@ -33,6 +28,8 @@ const App = () => {
     };
   }, []);
 
+  usePWAUpdatePrompt();
+
   const renderLink = (to, label) => (
     <NavLink
       to={to}
@@ -41,7 +38,6 @@ const App = () => {
       {({ isActive }) => (
         <>
           <span>{label}</span>
-          {/* {isActive && <FaCircle className={css.activeIcon} size={8} />} */}
         </>
       )}
     </NavLink>
