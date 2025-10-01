@@ -10,7 +10,9 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
   toast.custom(
     t => (
       <div className={styles.toast} role="status" aria-live="polite">
-        <span className={styles.msg}>🔥 Доступна нова версія застосунку</span>
+        <span className={styles.msg}>
+          🔥 Je k dispozici nová verze aplikace
+        </span>
         <div className={styles.actions}>
           <button
             type="button"
@@ -20,7 +22,7 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
               onDismiss?.();
             }}
           >
-            Пізніше
+            Později
           </button>
 
           <button
@@ -34,7 +36,7 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
               onConfirm();
             }}
           >
-            Оновити
+            Aktualizovat
           </button>
         </div>
       </div>
