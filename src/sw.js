@@ -7,7 +7,7 @@ precacheAndRoute(self.__WB_MANIFEST || []);
 
 
 // ---- Версія кешів (збільшуй на кожний реліз) ------------------------------
-const CACHE_VERSION = "v1.0.0-2025-10-01";
+const CACHE_VERSION = "v2.0.0-2025-10-01";
 const SW_VERSION = CACHE_VERSION;
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
