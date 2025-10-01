@@ -1,17 +1,16 @@
+// src/components/UpdateToast/UpdateToast.jsx
 import toast from 'react-hot-toast';
 import styles from './UpdateToast.module.css';
 
-const TOAST_ID = 'pwa-update'; // фіксований id для унікальності
+const TOAST_ID = 'pwa-update';
 
 export function showUpdateToast({ onConfirm, onDismiss }) {
-  // Гарантовано прибираємо попередній тост (якщо раптом був)
   toast.dismiss(TOAST_ID);
 
   toast.custom(
     t => (
       <div className={styles.toast} role="status" aria-live="polite">
         <span className={styles.msg}>🔥 Доступна нова версія застосунку</span>
-
         <div className={styles.actions}>
           <button
             type="button"
@@ -28,8 +27,12 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
             type="button"
             className={`${styles.btn} ${styles.btnPrimary}`}
             onClick={() => {
+              // важливо: помітити, що ми ЗАРАЗ оновлюємось
+              try {
+                sessionStorage.setItem('pwaJustUpdated', '1');
+              } catch {}
               toast.dismiss(TOAST_ID);
-              onConfirm(); // далі постимо SKIP_WAITING
+              onConfirm();
             }}
           >
             Оновити
@@ -37,10 +40,6 @@ export function showUpdateToast({ onConfirm, onDismiss }) {
         </div>
       </div>
     ),
-    {
-      id: TOAST_ID, // 🔒 робить тост унікальним
-      duration: 10000,
-      position: 'bottom-center',
-    }
+    { id: TOAST_ID, duration: 10000, position: 'bottom-center' }
   );
 }
