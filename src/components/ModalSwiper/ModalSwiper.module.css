@@ -1,4 +1,4 @@
-.overlay {
+/* .overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
@@ -22,6 +22,65 @@
 
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
+} */
+
+/* Overlay розтягуємо на реальну висоту вікна (враховуючи динамічні тулбари) */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: end center;
+    /* на мобі — «шторка» знизу */
+    min-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+    .overlay {
+        min-height: 100dvh;
+    }
+}
+
+@supports (height: 100svh) {
+    .overlay {
+        min-height: 100svh;
+    }
+}
+
+/* Мобільна модалка займає ВСЮ висоту мінус відступи, щоб не «пливла» */
+.modal {
+    inline-size: calc(100% - 16px);
+    height: calc(100vh - 16px);
+    /* fallback */
+    margin: 8px;
+    background-color: var(--bg, #121212);
+    color: var(--text, #fff);
+    border-radius: 16px;
+    padding: calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom)) 14px;
+    overflow: auto;
+    position: relative;
+    animation: slideUp .28s ease;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
+
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    align-self: end;
+    /* жорстко фіксуємо вирівнювання */
+    justify-self: center;
+}
+
+@supports (height: 100dvh) {
+    .modal {
+        height: calc(100dvh - 16px);
+    }
+}
+
+@supports (height: 100svh) {
+    .modal {
+        height: calc(100svh - 16px);
+    }
 }
 
 @keyframes slideUp {
@@ -106,7 +165,7 @@
 }
 
 @media (min-width: 768px) {
-    .overlay {
+    /* .overlay {
         place-items: center;
     }
 
@@ -115,6 +174,31 @@
         block-size: min(88vh, 780px);
         border-radius: 16px;
         padding: 16px 16px 20px 16px;
+    } */
+
+    .overlay {
+        place-items: center;
+    }
+
+    .modal {
+        inline-size: min(520px, 92vw);
+        height: auto;
+        max-height: min(88vh, 780px);
+        padding: 16px 16px 20px;
+        align-self: center;
+        /* центруємо */
+    }
+
+    @supports (height: 100dvh) {
+        .modal {
+            max-height: min(88dvh, 780px);
+        }
+    }
+
+    @supports (height: 100svh) {
+        .modal {
+            max-height: min(88svh, 780px);
+        }
     }
 
     .paramList {

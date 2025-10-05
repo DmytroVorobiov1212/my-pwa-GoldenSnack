@@ -5,8 +5,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './ModalSwiper.module.css';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
+import { createPortal } from 'react-dom';
 
-const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
+// const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
+export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
   const swiperRef = useRef(null);
   const touchStartY = useRef(null);
   const dialogRef = useRef(null);
@@ -36,7 +38,95 @@ const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
     return () => document.body.classList.remove('no-scroll');
   }, []);
 
-  return (
+  useEffect(() => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const originalStyle = {
+      position: document.body.style.position,
+      top: document.body.style.top,
+      left: document.body.style.left,
+      right: document.body.style.right,
+      width: document.body.style.width,
+    };
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+
+    return () => {
+      document.body.style.position = originalStyle.position || '';
+      document.body.style.top = originalStyle.top || '';
+      document.body.style.left = originalStyle.left || '';
+      document.body.style.right = originalStyle.right || '';
+      document.body.style.width = originalStyle.width || '';
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+
+  //   return (
+  //     <div className={styles.overlay} role="presentation" onClick={onClose}>
+  //       <div
+  //         className={styles.modal}
+  //         role="dialog"
+  //         aria-modal="true"
+  //         aria-label={group?.groupName || 'Detail'}
+  //         tabIndex={-1}
+  //         ref={dialogRef}
+  //         onClick={e => e.stopPropagation()}
+  //         onTouchStart={handleTouchStart}
+  //         onTouchEnd={handleTouchEnd}
+  //       >
+  //         <div className={styles.handle} aria-hidden />
+  //         <button
+  //           className={styles.closeButton}
+  //           onClick={onClose}
+  //           aria-label="Zavřít"
+  //         >
+  //           <IoIosCloseCircleOutline />
+  //         </button>
+
+  //         <Swiper
+  //           modules={[Pagination, Keyboard]}
+  //           initialSlide={activeIndex}
+  //           loop
+  //           keyboard={{ enabled: true }}
+  //           pagination={{ clickable: true }}
+  //           onSwiper={swiper => (swiperRef.current = swiper)}
+  //         >
+  //           {group.variants.map(variant => (
+  //             <SwiperSlide key={variant.id}>
+  //               <div className={styles.slideContent}>
+  //                 <h2 className={styles.header}>{variant.title}</h2>
+
+  //                 {variant.image && (
+  //                   <img
+  //                     src={variant.image}
+  //                     alt={variant.title}
+  //                     className={styles.image}
+  //                     loading="lazy"
+  //                   />
+  //                 )}
+
+  //                 <div className={styles.paramList}>
+  //                   {Object.entries(variant.params).map(([label, value]) => (
+  //                     <div className={styles.paramItem} key={label}>
+  //                       <span className={styles.label}>{label}</span>
+  //                       <span className={styles.value}>{value}</span>
+  //                     </div>
+  //                   ))}
+  //                 </div>
+  //               </div>
+  //             </SwiperSlide>
+  //           ))}
+  //         </Swiper>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+  // export default ModalSwiper;
+
+  const content = (
     <div className={styles.overlay} role="presentation" onClick={onClose}>
       <div
         className={styles.modal}
@@ -70,7 +160,6 @@ const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
             <SwiperSlide key={variant.id}>
               <div className={styles.slideContent}>
                 <h2 className={styles.header}>{variant.title}</h2>
-
                 {variant.image && (
                   <img
                     src={variant.image}
@@ -79,7 +168,6 @@ const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
                     loading="lazy"
                   />
                 )}
-
                 <div className={styles.paramList}>
                   {Object.entries(variant.params).map(([label, value]) => (
                     <div className={styles.paramItem} key={label}>
@@ -95,6 +183,6 @@ const ModalSwiper = ({ group, activeIndex = 0, onClose }) => {
       </div>
     </div>
   );
-};
 
-export default ModalSwiper;
+  return createPortal(content, document.body);
+}
