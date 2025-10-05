@@ -21,16 +21,32 @@ const VeltekoList = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.searchWrap}>
+      <form
+        role="search"
+        className={styles.searchWrap}
+        onSubmit={e => e.preventDefault()}
+      >
         <FiSearch className={styles.searchIcon} aria-hidden />
+
+        <label className="hidden" htmlFor="veltekoSearch">
+          Hledat podle názvu
+        </label>
         <input
-          type="text"
+          id="veltekoSearch"
+          name="q"
+          type="search"
           placeholder="Hledat podle názvu…"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className={styles.searchInput}
-          aria-label="Vyhledávání podle názvu"
+          autoComplete="on"
+          enterKeyHint="search"
+          inputMode="search"
+          spellCheck={false}
+          autoCapitalize="off"
+          autoCorrect="off"
         />
+
         {searchTerm && (
           <button
             type="button"
@@ -41,7 +57,7 @@ const VeltekoList = ({ data }) => {
             <FiX />
           </button>
         )}
-      </div>
+      </form>
 
       <ul className={styles.list}>
         {filteredData.map((group, index) => (

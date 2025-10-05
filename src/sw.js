@@ -64,22 +64,23 @@ self.addEventListener('activate', (event) => {
             await Promise.all(
                 keys.map((k) => {
                     const isOurCache =
-                        k.startsWith('static-') || k.startsWith('runtime-') || k.startsWith('images-');
+                        k.startsWith('static-') ||
+                        k.startsWith('runtime-') ||
+                        k.startsWith('images-');
 
                     // якщо це наш кеш, але з іншою версією — видалити
                     if (isOurCache && !k.endsWith(CACHE_VERSION)) {
                         return caches.delete(k);
                     }
-
                     // не чіпаємо workbox-precache-* та інші системні кеші
                     return Promise.resolve(false);
                 })
             );
 
-            // optional: navigation preload
+            // ⚠️ Вимикаємо Navigation Preload, щоб не було ворнінга
             if ('navigationPreload' in self.registration) {
                 try {
-                    await self.registration.navigationPreload.enable();
+                    await self.registration.navigationPreload.disable();
                 } catch { }
             }
 
@@ -195,4 +196,3 @@ self.addEventListener('fetch', (event) => {
 
     // 4) Інше — просто мережа (навігацію вже покриває NavigationRoute)
 });
-
