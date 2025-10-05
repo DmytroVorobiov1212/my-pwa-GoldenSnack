@@ -1,38 +1,12 @@
-/* .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: grid;
-    place-items: end center;
-}
-
-.modal {
-    inline-size: calc(100% - 16px);
-    block-size: calc(100% - 16px);
-    margin: 8px;
-    background-color: var(--bg, #121212);
-    color: var(--text, #fff);
-    border-radius: 16px;
-    padding: calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom)) 14px;
-    overflow-y: auto;
-    position: relative;
-    animation: slideUp .28s ease;
-    box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
-
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-} */
-
-/* Overlay розтягуємо на реальну висоту вікна (враховуючи динамічні тулбари) */
+/* Overlay: реальна висота екрана з урахуванням тулбарів */
 .overlay {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, .6);
     display: grid;
     place-items: end center;
-    /* на мобі — «шторка» знизу */
+    /* мобільна “шторка” */
     min-height: 100vh;
 }
 
@@ -48,26 +22,23 @@
     }
 }
 
-/* Мобільна модалка займає ВСЮ висоту мінус відступи, щоб не «пливла» */
+/* Модалка — на всю висоту екрана (мінус поля), скролимо СЛАЙД */
 .modal {
     inline-size: calc(100% - 16px);
     height: calc(100vh - 16px);
-    /* fallback */
     margin: 8px;
     background-color: var(--bg, #121212);
     color: var(--text, #fff);
     border-radius: 16px;
     padding: calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom)) 14px;
-    overflow: auto;
+    overflow: hidden;
+    /* важливо: не скролити контейнер */
     position: relative;
     animation: slideUp .28s ease;
     box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
-
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-
     align-self: end;
-    /* жорстко фіксуємо вирівнювання */
     justify-self: center;
 }
 
@@ -100,7 +71,7 @@
     height: 5px;
     border-radius: 999px;
     background: color-mix(in oklab, var(--muted, #aaa), transparent 40%);
-    margin: 2px auto 8px auto;
+    margin: 2px auto 8px;
 }
 
 .closeButton {
@@ -114,8 +85,23 @@
     border: none;
 }
 
+/* Swiper займає всю висоту модалки — пагінація завжди внизу */
+.swiper {
+    height: 100%;
+}
+
+/* Кожен слайд має власний скрол */
+.slide {
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .slideContent {
-    padding: 12px 4px 48px 4px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 12px 4px 48px;
 }
 
 .header {
@@ -123,7 +109,7 @@
     font-size: clamp(18px, 4.6vw, 22px);
     font-weight: 800;
     color: var(--text, #fff);
-    margin: 6px auto 10px auto;
+    margin: 6px auto 10px;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
 }
 
@@ -131,7 +117,7 @@
     width: min(560px, 90vw);
     max-height: 40vh;
     object-fit: contain;
-    margin: 0 auto 14px auto;
+    margin: 0 auto 14px;
     border-radius: 12px;
     background: color-mix(in oklab, var(--bg-elev, #151922), white 2%);
     border: 1px solid color-mix(in oklab, var(--border, #333), transparent 45%);
@@ -165,17 +151,6 @@
 }
 
 @media (min-width: 768px) {
-    /* .overlay {
-        place-items: center;
-    }
-
-    .modal {
-        inline-size: min(520px, 92vw);
-        block-size: min(88vh, 780px);
-        border-radius: 16px;
-        padding: 16px 16px 20px 16px;
-    } */
-
     .overlay {
         place-items: center;
     }
@@ -186,7 +161,6 @@
         max-height: min(88vh, 780px);
         padding: 16px 16px 20px;
         align-self: center;
-        /* центруємо */
     }
 
     @supports (height: 100dvh) {
@@ -200,10 +174,6 @@
             max-height: min(88svh, 780px);
         }
     }
-
-    .paramList {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (min-width: 1440px) {
@@ -211,9 +181,5 @@
         width: 560px;
         height: min(84vh, 820px);
         padding: 18px;
-    }
-
-    .paramList {
-        grid-template-columns: 1fr;
     }
 }

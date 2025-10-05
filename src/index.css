@@ -52,25 +52,19 @@ canvas {
 
 /* ========== DESIGN TOKENS ========== */
 :root {
-  /* ---- Breakpoints ---- */
   --bp-mobile: 375px;
   --bp-tablet: 768px;
   --bp-desktop: 1440px;
 
-  /* ---- Fonts ---- */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", "Liberation Sans", ui-sans-serif, sans-serif;
 
-  /* Fluid font */
   --font-size-base: clamp(14px, 2.5vw, 18px);
   --line-height-base: 1.6;
-
-  /* (fluid через clamp) */
   --h1: clamp(28px, 6vw, 40px);
   --h2: clamp(24px, 4.8vw, 32px);
   --h3: clamp(20px, 3.8vw, 26px);
 
-  /* ---- (spacing) ---- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -79,40 +73,36 @@ canvas {
   --space-6: 32px;
   --space-7: 48px;
 
-  /* ---- Colors ---- */
   color-scheme: dark light;
   --bg: #0f1115;
   --bg-elev: #151922;
-  --text: rgba(255, 255, 255, 0.88);
-  --muted: rgba(255, 255, 255, 0.65);
+  --text: rgba(255, 255, 255, .88);
+  --muted: rgba(255, 255, 255, .65);
   --primary: #77baff;
   --primary-hover: #a1cdff;
-  --border: rgba(255, 255, 255, 0.14);
+  --border: rgba(255, 255, 255, .14);
   --gold: #FFD700;
 
-  /* Semantic tokens */
   --btn-bg: #1a1f2b;
   --btn-bg-hover: #232a3a;
   --focus: #74c0fc;
 
-  /* ---- Container ---- */
   --container-max: 1280px;
   --container-pad: var(--space-4);
 
-  /* ---- (Swiper) ---- */
   --swiper-bullet: #fff;
   --swiper-bullet-active: #00ffff;
 }
 
 :root[data-theme="light"] {
   color-scheme: light dark;
-  --bg: #ffffff;
+  --bg: #fff;
   --bg-elev: #f6f7f9;
   --text: #213547;
   --muted: #5b6573;
   --primary: #4f68ff;
   --primary-hover: #6e83ff;
-  --border: rgba(0, 0, 0, 0.12);
+  --border: rgba(0, 0, 0, .12);
   --btn-bg: #f2f4f8;
   --btn-bg-hover: #e6e9f0;
   --focus: #4dabf7;
@@ -130,7 +120,6 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   block-size: 100%;
 }
 
@@ -143,11 +132,18 @@ body {
   line-height: var(--line-height-base);
   color: var(--text);
   background: var(--bg);
-  /* iOS safe-area for PWA */
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* safe-area без top, щоб sticky header не “стрибав” */
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  overscroll-behavior-y: none;
 }
 
-/* Container for desctopts */
+@supports (height: 100svh) {
+  body {
+    min-height: 100svh;
+  }
+}
+
+/* Container */
 .container {
   width: 100%;
   max-width: var(--container-max);
@@ -158,7 +154,6 @@ body {
 a {
   font-weight: 500;
   color: var(--primary);
-  text-decoration: none;
 }
 
 a:hover {
@@ -184,7 +179,7 @@ h3 {
 button {
   border-radius: 10px;
   border: 1px solid var(--border);
-  padding: 0.6em 1.1em;
+  padding: .6em 1.1em;
   font-size: 1em;
   font-weight: 600;
   font-family: inherit;
@@ -207,36 +202,34 @@ button:focus-visible {
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus), transparent 40%);
 }
 
-/* ========== ADAPTIVE / BREAKPOINTS ========== */
+/* Breakpoints */
 @media (min-width: 375px) {
   :root {
     --font-size-base: clamp(14px, 2vw, 18px);
   }
 }
 
-/* Tablet */
 @media (min-width: 768px) {
   :root {
     --container-pad: var(--space-5);
   }
 }
 
-/* Desktop */
 @media (min-width: 1440px) {
   :root {
     --container-pad: var(--space-6);
   }
 }
 
-/* ========== THEME VIA MEDIA (options) ========== */
+/* Theme by media */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color: #213547;
-    background: #ffffff;
+    background: #fff;
   }
 }
 
-/* ========== SWIPER TUNING ========== */
+/* Swiper tuning */
 .swiper-pagination {
   bottom: calc(10px + env(safe-area-inset-bottom)) !important;
 }
@@ -255,7 +248,7 @@ button:focus-visible {
   transform: scale(1.25);
 }
 
-/* ========== SCROLLBAR (desktop) ========== */
+/* Scrollbar desktop */
 @media (min-width: 768px) {
   * {
     scrollbar-width: thin;
@@ -275,7 +268,7 @@ button:focus-visible {
   }
 }
 
-/* ========== UTILS ========== */
+/* Utils */
 .hidden {
   position: absolute !important;
   inline-size: 1px;
@@ -283,8 +276,4 @@ button:focus-visible {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-body.no-scroll {
-  overflow: hidden;
 }

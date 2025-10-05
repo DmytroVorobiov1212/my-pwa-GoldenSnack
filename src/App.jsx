@@ -13,15 +13,11 @@ import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 
 const App = () => {
   useEffect(() => {
-    if (!navigator.onLine) {
-      toast.error('Jste offline');
-    }
+    if (!navigator.onLine) toast.error('Jste offline');
     const handleOnline = () => toast.success('Připojení obnoveno');
     const handleOffline = () => toast.error('Jste nyní offline');
-
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
@@ -35,11 +31,7 @@ const App = () => {
       to={to}
       className={({ isActive }) => clsx(css.link, isActive && css.active)}
     >
-      {({ isActive }) => (
-        <>
-          <span>{label}</span>
-        </>
-      )}
+      <span>{label}</span>
     </NavLink>
   );
 

@@ -1,4 +1,4 @@
-/* Доступність: Skip link */
+/* Skip link */
 .skip {
   position: absolute;
   left: -9999px;
@@ -25,16 +25,19 @@
   backdrop-filter: saturate(160%) blur(10px);
   background: color-mix(in oklab, var(--bg, #0f1115), transparent 30%);
   border-bottom: 1px solid color-mix(in oklab, var(--border, rgba(255, 255, 255, .14)), transparent 35%);
+  padding-top: env(safe-area-inset-top);
+  /* safe-area top тут, не на body */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-/* Навігація — контейнер */
+/* Навігація */
 .nav {
   display: flex;
   justify-content: center;
   gap: 8px;
   padding: 10px env(safe-area-inset-right) 10px env(safe-area-inset-left);
   overflow-x: auto;
-  /* мобілка: прокрутка табів, якщо не влазять */
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -43,14 +46,12 @@
   display: none;
 }
 
-/* Touch-friendly таби */
 .link {
   --pad-x: 14px;
   --pad-y: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
   color: var(--muted, #aaa);
   font-size: 16px;
   font-weight: 600;
@@ -59,44 +60,15 @@
   position: relative;
   transition: color .2s ease, background-color .2s ease, transform .08s ease;
   white-space: nowrap;
-}
-
-/* Hover (desktop), Active underline + трошки фону */
-/* .link:hover {
-  color: var(--text, #fff);
-}
-
-.active {
-  color: var(--text, #fff);
-  background: color-mix(in oklab, var(--btn-bg, #1a1f2b), transparent 35%);
-  border: 1px solid color-mix(in oklab, var(--primary, #77baff), transparent 60%);
-}
-
-.active::after {
-  content: "";
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 6px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--primary, #77baff);
-  opacity: .85;
-} */
-/* Hover — золотий з блиском */
-.link {
-  position: relative;
   overflow: hidden;
-  /* щоб блиск не виходив за межі */
 }
 
 .link:hover {
   color: var(--gold);
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.05));
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(90deg, rgba(255, 215, 0, .15), rgba(255, 215, 0, .05));
+  border: 1px solid rgba(255, 215, 0, .4);
 }
 
-/* Ефект блиску */
 .link:hover::before {
   content: "";
   position: absolute;
@@ -104,14 +76,10 @@
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(120deg,
-      transparent,
-      rgba(255, 255, 255, 0.6),
-      transparent);
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .6), transparent);
   animation: shine 1.2s ease forwards;
 }
 
-/* Анімація проблиску */
 @keyframes shine {
   0% {
     left: -75%;
@@ -122,12 +90,11 @@
   }
 }
 
-/* Активний пункт меню — золотий + світіння */
 .active {
   color: var(--gold);
-  background: linear-gradient(90deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.08));
-  border: 1px solid rgba(255, 215, 0, 0.55);
-  box-shadow: 0 0 6px rgba(255, 215, 0, 0.4), inset 0 0 4px rgba(255, 215, 0, 0.25);
+  background: linear-gradient(90deg, rgba(255, 215, 0, .2), rgba(255, 215, 0, .08));
+  border: 1px solid rgba(255, 215, 0, .55);
+  box-shadow: 0 0 6px rgba(255, 215, 0, .4), inset 0 0 4px rgba(255, 215, 0, .25);
 }
 
 .active::after {
@@ -139,20 +106,18 @@
   height: 2px;
   border-radius: 2px;
   background: linear-gradient(90deg, #FFD700, #ffec8b);
-  box-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+  box-shadow: 0 0 4px rgba(255, 215, 0, .8);
 }
 
-/* Основна область — щоб контент не лип до країв */
+/* Main */
 .main {
   padding-inline: 16px;
   padding-block: 16px 24px;
 }
 
-/* Tablet */
-@media (min-width: 768px) {
+@media (min-width:768px) {
   .nav {
     justify-content: center;
-    /* центр на планшеті+ */
     gap: 10px;
     padding: 12px 24px;
   }
@@ -172,8 +137,7 @@
   }
 }
 
-/* Desktop */
-@media (min-width: 1440px) {
+@media (min-width:1440px) {
   .nav {
     padding: 14px 32px;
     gap: 12px;
