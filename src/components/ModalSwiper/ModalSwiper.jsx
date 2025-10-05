@@ -32,7 +32,7 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
     dialogRef.current?.focus();
   }, []);
 
-  // iOS-safe: блокуємо фон через position:fixed
+  // iOS-safe: блокуємо фон позицією body:fixed
   useEffect(() => {
     const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
     const original = {
@@ -80,7 +80,7 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
         </button>
 
         <Swiper
-          className={styles.swiper} // висота = 100% модалки
+          className={styles.swiper}
           modules={[Pagination, Keyboard]}
           initialSlide={activeIndex}
           loop
@@ -92,7 +92,6 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
             <SwiperSlide key={variant.id} className={styles.slide}>
               <div className={styles.slideContent}>
                 <h2 className={styles.header}>{variant.title}</h2>
-
                 {variant.image && (
                   <img
                     src={variant.image}
@@ -101,7 +100,6 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
                     loading="lazy"
                   />
                 )}
-
                 <div className={styles.paramList}>
                   {Object.entries(variant.params).map(([label, value]) => (
                     <div className={styles.paramItem} key={label}>

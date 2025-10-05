@@ -17,18 +17,14 @@
   box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus, #74c0fc), transparent 45%);
 }
 
-/* Sticky header з blur */
+/* Sticky header */
 .header {
   position: sticky;
-  top: 0;
+  top: env(safe-area-inset-top, 0);
   z-index: 1000;
   backdrop-filter: saturate(160%) blur(10px);
   background: color-mix(in oklab, var(--bg, #0f1115), transparent 30%);
   border-bottom: 1px solid color-mix(in oklab, var(--border, rgba(255, 255, 255, .14)), transparent 35%);
-  padding-top: env(safe-area-inset-top);
-  /* safe-area top тут, не на body */
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 /* Навігація */
@@ -115,7 +111,7 @@
   padding-block: 16px 24px;
 }
 
-@media (min-width:768px) {
+@media (min-width: 768px) {
   .nav {
     justify-content: center;
     gap: 10px;
@@ -137,7 +133,7 @@
   }
 }
 
-@media (min-width:1440px) {
+@media (min-width: 1440px) {
   .nav {
     padding: 14px 32px;
     gap: 12px;

@@ -1,4 +1,4 @@
-/* Overlay: реальна висота екрана з урахуванням тулбарів */
+/* Overlay: реальна висота екрану з урахуванням тулбарів */
 .overlay {
     position: fixed;
     inset: 0;
@@ -6,7 +6,6 @@
     background-color: rgba(0, 0, 0, .6);
     display: grid;
     place-items: end center;
-    /* мобільна “шторка” */
     min-height: 100vh;
 }
 
@@ -22,7 +21,7 @@
     }
 }
 
-/* Модалка — на всю висоту екрана (мінус поля), скролимо СЛАЙД */
+/* Модалка — на всю висоту, скролимо СЛАЙД, а не контейнер */
 .modal {
     inline-size: calc(100% - 16px);
     height: calc(100vh - 16px);
@@ -32,7 +31,7 @@
     border-radius: 16px;
     padding: calc(10px + env(safe-area-inset-top)) 14px calc(18px + env(safe-area-inset-bottom)) 14px;
     overflow: hidden;
-    /* важливо: не скролити контейнер */
+    /* важливо */
     position: relative;
     animation: slideUp .28s ease;
     box-shadow: 0 -8px 24px rgba(0, 0, 0, .4);
@@ -85,9 +84,16 @@
     border: none;
 }
 
-/* Swiper займає всю висоту модалки — пагінація завжди внизу */
+/* Swiper — 100% висоти модалки, пагінація завжди внизу */
 .swiper {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.swiper>.swiper-wrapper {
+    flex: 1;
+    min-height: 0;
 }
 
 /* Кожен слайд має власний скрол */
@@ -128,12 +134,14 @@
     gap: 10px;
     grid-template-columns: 1fr;
     max-width: 720px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .paramItem {
     display: grid;
     grid-template-columns: 1fr auto;
+    column-gap: 12px;
+    /* стабільний відступ */
     align-items: center;
     padding: 12px 14px;
     border-radius: 12px;
@@ -148,6 +156,9 @@
 
 .value {
     font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    /* щоб цифри не “стрибали” */
+    font-feature-settings: "tnum" 1;
 }
 
 @media (min-width: 768px) {

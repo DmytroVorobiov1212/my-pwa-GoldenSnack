@@ -96,7 +96,7 @@ canvas {
 
 :root[data-theme="light"] {
   color-scheme: light dark;
-  --bg: #fff;
+  --bg: #ffffff;
   --bg-elev: #f6f7f9;
   --text: #213547;
   --muted: #5b6573;
@@ -132,8 +132,10 @@ body {
   line-height: var(--line-height-base);
   color: var(--text);
   background: var(--bg);
-  /* safe-area без top, щоб sticky header не “стрибав” */
+
+  /* safe-area: без top — щоб sticky-хедер не смикався на iOS */
   padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+
   overscroll-behavior-y: none;
 }
 
@@ -221,11 +223,11 @@ button:focus-visible {
   }
 }
 
-/* Theme by media */
+/* Theme via media */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color: #213547;
-    background: #fff;
+    background: #ffffff;
   }
 }
 
