@@ -92,3 +92,16 @@
         grid-template-columns: repeat(2, minmax(420px, 1fr));
     }
 }
+
+.groupHeader {
+    position: sticky;
+    top: calc(var(--header-h, 56px) + 56px);
+    /* під чіпами */
+    z-index: 1;
+    padding: 6px 4px;
+    margin: 8px 0;
+    font-weight: 800;
+    letter-spacing: .06em;
+    background: var(--bg, #0f1115);
+    border-bottom: 1px solid color-mix(in oklab, var(--border, #333), transparent 40%);
+}

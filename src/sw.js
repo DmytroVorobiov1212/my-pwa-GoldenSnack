@@ -11,8 +11,9 @@ cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST || []);
 
 // ---- Версії/кеші -----------------------------------------------------------
+const SW_VERSION = (typeof __BUILD_ID__ !== 'undefined' ? __BUILD_ID__ : 'dev');
 const CACHE_VERSION = 'v2.1.0-2025-10-05';
-const SW_VERSION = CACHE_VERSION;
+// const SW_VERSION = CACHE_VERSION;
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const IMAGE_CACHE = `images-${CACHE_VERSION}`;
@@ -91,9 +92,14 @@ self.addEventListener('activate', (event) => {
 
 // ---- повідомлення з клієнта -------------------------------------------------
 self.addEventListener('message', async (event) => {
-    const type = event.data && event.data.type;
+    // const type = event.data && event.data.type;
 
-    if (type === 'GET_VERSION') {
+    // if (type === 'GET_VERSION') {
+    //     event.ports[0]?.postMessage({ ok: true, version: SW_VERSION });
+    //     return;
+    // }
+    const type = event.data?.type;
+    if (type === "GET_VERSION") {
         event.ports[0]?.postMessage({ ok: true, version: SW_VERSION });
         return;
     }
