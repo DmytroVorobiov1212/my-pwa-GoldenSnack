@@ -147,26 +147,136 @@
 
 // export default ButlerList;
 
+// import { useMemo, useState } from 'react';
+// import { useSearchParams } from 'react-router-dom';
+// import ModalSwiper from '../ModalSwiper/ModalSwiper';
+// import styles from './ButlerList.module.css';
+// import ButlerItem from '../ButlerItem/ButlerItem';
+// import AlphaFilter from '../AlphaFilter/AlphaFilter';
+// import SearchModal from '../SearchModal/SearchModal';
+// import { buildIndexMap, firstKey, norm } from '../../utils/text';
+
+// const ButlerList = ({ data }) => {
+//   const [params, setParams] = useSearchParams();
+//   const initialLetter = params.get('letter');
+//   const [letter, setLetter] = useState(initialLetter);
+//   const [searchQ, setSearchQ] = useState(null); // текстовий фільтр з модалки
+//   const [showSearch, setShowSearch] = useState(false);
+
+//   const [selectedGroup, setSelectedGroup] = useState(null);
+//   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+
+//   // зберігаємо останній вибір у URL і localStorage
+//   const onChangeLetter = l => {
+//     setLetter(l);
+//     const next = new URLSearchParams(params);
+//     if (l) next.set('letter', l);
+//     else next.delete('letter');
+//     setParams(next, { replace: true });
+//     try {
+//       localStorage.setItem('alphaLetter', l ?? '');
+//     } catch {}
+//   };
+
+//   // початкове відновлення з localStorage (одноразово)
+//   useMemo(() => {
+//     if (!initialLetter) {
+//       const stored =
+//         typeof window !== 'undefined'
+//           ? localStorage.getItem('alphaLetter')
+//           : '';
+//       if (stored) setLetter(stored);
+//     }
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, []);
+
+//   // індекс для фільтра
+//   const { map, keys } = useMemo(() => buildIndexMap(data), [data]);
+
+//   // комбіноване фільтрування (літера + модал-пошук)
+//   const filteredData = useMemo(() => {
+//     let arr = Array.isArray(data) ? data.slice() : [];
+//     if (letter) arr = arr.filter(g => firstKey(g?.groupName) === letter);
+//     if (searchQ && searchQ.trim()) {
+//       const q = norm(searchQ);
+//       arr = arr.filter(g => norm(g?.groupName).includes(q));
+//     }
+//     return arr;
+//   }, [data, letter, searchQ]);
+
+//   // групування під заголовками
+//   const grouped = useMemo(() => {
+//     const { map: m, keys: k } = buildIndexMap(filteredData);
+//     return { m, k };
+//   }, [filteredData]);
+
+//   return (
+//     <div className={styles.container}>
+//       <AlphaFilter
+//         data={data}
+//         value={letter}
+//         onChange={onChangeLetter}
+//         onOpenSearch={() => setShowSearch(true)}
+//       />
+
+//       {/* Груповані секції A / B / … */}
+//       {grouped.k.map(k => (
+//         <section key={k} aria-labelledby={`sec-${k}`}>
+//           <h3 id={`sec-${k}`} className={styles.groupHeader}>
+//             {k}
+//           </h3>
+//           <ul className={styles.list}>
+//             {(grouped.m.get(k) || []).map((group, index) => (
+//               <li key={`${k}-${index}`} className={styles.item}>
+//                 <ButlerItem
+//                   group={group}
+//                   groupName={group.groupName}
+//                   onSelect={g => {
+//                     setSelectedGroup(g);
+//                     setSelectedVariantIndex(0);
+//                   }}
+//                 />
+//               </li>
+//             ))}
+//           </ul>
+//         </section>
+//       ))}
+
+//       {selectedGroup && (
+//         <ModalSwiper
+//           group={selectedGroup}
+//           activeIndex={selectedVariantIndex}
+//           onClose={() => setSelectedGroup(null)}
+//         />
+//       )}
+
+//       <SearchModal
+//         isOpen={showSearch}
+//         onClose={() => setShowSearch(false)}
+//         onSearch={q => setSearchQ(q)}
+//       />
+//     </div>
+//   );
+// };
+
+// export default ButlerList;
+
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ModalSwiper from '../ModalSwiper/ModalSwiper';
 import styles from './ButlerList.module.css';
 import ButlerItem from '../ButlerItem/ButlerItem';
 import AlphaFilter from '../AlphaFilter/AlphaFilter';
-import SearchModal from '../SearchModal/SearchModal';
 import { buildIndexMap, firstKey, norm } from '../../utils/text';
 
 const ButlerList = ({ data }) => {
   const [params, setParams] = useSearchParams();
-  const initialLetter = params.get('letter');
-  const [letter, setLetter] = useState(initialLetter);
-  const [searchQ, setSearchQ] = useState(null); // текстовий фільтр з модалки
-  const [showSearch, setShowSearch] = useState(false);
+  const initialLetter = params.get('letter') || null;
 
+  const [letter, setLetter] = useState(initialLetter);
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
 
-  // зберігаємо останній вибір у URL і localStorage
   const onChangeLetter = l => {
     setLetter(l);
     const next = new URLSearchParams(params);
@@ -178,7 +288,6 @@ const ButlerList = ({ data }) => {
     } catch {}
   };
 
-  // початкове відновлення з localStorage (одноразово)
   useMemo(() => {
     if (!initialLetter) {
       const stored =
@@ -190,21 +299,14 @@ const ButlerList = ({ data }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // індекс для фільтра
-  const { map, keys } = useMemo(() => buildIndexMap(data), [data]);
-
-  // комбіноване фільтрування (літера + модал-пошук)
+  // застосовуємо лише літерний фільтр (без текстового пошуку)
   const filteredData = useMemo(() => {
     let arr = Array.isArray(data) ? data.slice() : [];
     if (letter) arr = arr.filter(g => firstKey(g?.groupName) === letter);
-    if (searchQ && searchQ.trim()) {
-      const q = norm(searchQ);
-      arr = arr.filter(g => norm(g?.groupName).includes(q));
-    }
     return arr;
-  }, [data, letter, searchQ]);
+  }, [data, letter]);
 
-  // групування під заголовками
+  // груповий рендер A/B/.../#
   const grouped = useMemo(() => {
     const { map: m, keys: k } = buildIndexMap(filteredData);
     return { m, k };
@@ -212,14 +314,8 @@ const ButlerList = ({ data }) => {
 
   return (
     <div className={styles.container}>
-      <AlphaFilter
-        data={data}
-        value={letter}
-        onChange={onChangeLetter}
-        onOpenSearch={() => setShowSearch(true)}
-      />
+      <AlphaFilter data={data} value={letter} onChange={onChangeLetter} />
 
-      {/* Груповані секції A / B / … */}
       {grouped.k.map(k => (
         <section key={k} aria-labelledby={`sec-${k}`}>
           <h3 id={`sec-${k}`} className={styles.groupHeader}>
@@ -249,12 +345,6 @@ const ButlerList = ({ data }) => {
           onClose={() => setSelectedGroup(null)}
         />
       )}
-
-      <SearchModal
-        isOpen={showSearch}
-        onClose={() => setShowSearch(false)}
-        onSearch={q => setSearchQ(q)}
-      />
     </div>
   );
 };
