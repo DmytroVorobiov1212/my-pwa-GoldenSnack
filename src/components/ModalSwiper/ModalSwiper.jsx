@@ -1,61 +1,65 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Keyboard } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
 import styles from './ModalSwiper.module.css';
-import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
-  const swiperRef = useRef(null);
-  const touchStartY = useRef(null);
-  const dialogRef = useRef(null);
+  const variants = group && Array.isArray(group.variants) ? group.variants : [];
+  const safeInitialIndex =
+    activeIndex >= 0 && activeIndex < variants.length ? activeIndex : 0;
+  const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
 
-  const handleTouchStart = e => {
-    touchStartY.current = e.touches[0].clientY;
-  };
-  const handleTouchEnd = e => {
-    const touchEndY = e.changedTouches[0].clientY;
-    if (touchEndY - touchStartY.current > 100) onClose();
-  };
+  const variant = variants[currentIndex];
+  const hasMultipleVariants = variants.length > 1;
 
   useEffect(() => {
-    const onKey = e => {
-      if (e.key === 'Escape') onClose();
+    const onKey = event => {
+      if (event.key === 'Escape') onClose();
+      if (!hasMultipleVariants) return;
+
+      if (event.key === 'ArrowLeft') {
+        setCurrentIndex(index =>
+          index === 0 ? variants.length - 1 : index - 1,
+        );
+      }
+
+      if (event.key === 'ArrowRight') {
+        setCurrentIndex(index =>
+          index === variants.length - 1 ? 0 : index + 1,
+        );
+      }
     };
+
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [hasMultipleVariants, onClose, variants.length]);
 
   useEffect(() => {
-    dialogRef.current?.focus();
-  }, []);
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    const originalOverflow = document.body.style.overflow;
 
-  // iOS-safe: блокуємо фон позицією body:fixed
-  useEffect(() => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-    const original = {
-      position: document.body.style.position,
-      top: document.body.style.top,
-      left: document.body.style.left,
-      right: document.body.style.right,
-      width: document.body.style.width,
-    };
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+
     return () => {
-      document.body.style.position = original.position || '';
-      document.body.style.top = original.top || '';
-      document.body.style.left = original.left || '';
-      document.body.style.right = original.right || '';
-      document.body.style.width = original.width || '';
+      document.body.style.overflow = originalOverflow || '';
       window.scrollTo(0, scrollY);
     };
   }, []);
+
+  if (!variant) return null;
+
+  const showPrevious = () => {
+    setCurrentIndex(index =>
+      index === 0 ? variants.length - 1 : index - 1,
+    );
+  };
+
+  const showNext = () => {
+    setCurrentIndex(index =>
+      index === variants.length - 1 ? 0 : index + 1,
+    );
+  };
+
+  const paramKeys = variant.params ? Object.keys(variant.params) : [];
 
   const content = (
     <div className={styles.overlay} role="presentation" onClick={onClose}>
@@ -63,55 +67,66 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
         className={styles.modal}
         role="dialog"
         aria-modal="true"
-        aria-label={group?.groupName || 'Detail'}
-        tabIndex={-1}
-        ref={dialogRef}
-        onClick={e => e.stopPropagation()}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        aria-label={(group && group.groupName) || 'Detail'}
+        onClick={event => event.stopPropagation()}
       >
-        <div className={styles.handle} aria-hidden />
+        <div className={styles.handle} aria-hidden="true" />
+
         <button
+          type="button"
           className={styles.closeButton}
           onClick={onClose}
           aria-label="Zavřít"
         >
-          <IoIosCloseCircleOutline />
+          ×
         </button>
 
-        <Swiper
-          className={styles.swiper}
-          modules={[Pagination, Keyboard]}
-          initialSlide={activeIndex}
-          loop
-          keyboard={{ enabled: true }}
-          pagination={{ clickable: true }}
-          onSwiper={swiper => (swiperRef.current = swiper)}
-        >
-          {group.variants.map(variant => (
-            <SwiperSlide key={variant.id} className={styles.slide}>
-              <div className={styles.slideContent}>
-                <h2 className={styles.header}>{variant.title}</h2>
-                {variant.image && (
-                  <img
-                    src={variant.image}
-                    alt={variant.title}
-                    className={styles.image}
-                    loading="lazy"
-                  />
-                )}
-                <div className={styles.paramList}>
-                  {Object.entries(variant.params).map(([label, value]) => (
-                    <div className={styles.paramItem} key={label}>
-                      <span className={styles.label}>{label}</span>
-                      <span className={styles.value}>{value}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className={styles.content}>
+          <h2 className={styles.header}>{variant.title}</h2>
+
+          {variant.image ? (
+            <img
+              src={variant.image}
+              alt={variant.title}
+              className={styles.image}
+            />
+          ) : null}
+
+          <div className={styles.paramList}>
+            {paramKeys.map(label => (
+              <div className={styles.paramItem} key={label}>
+                <span className={styles.label}>{label}</span>
+                <span className={styles.value}>{variant.params[label]}</span>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+
+          {hasMultipleVariants ? (
+            <div className={styles.variantNav}>
+              <button
+                type="button"
+                className={styles.navButton}
+                onClick={showPrevious}
+                aria-label="Předchozí varianta"
+              >
+                ‹
+              </button>
+
+              <span className={styles.variantCount}>
+                {currentIndex + 1} / {variants.length}
+              </span>
+
+              <button
+                type="button"
+                className={styles.navButton}
+                onClick={showNext}
+                aria-label="Další varianta"
+              >
+                ›
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );
