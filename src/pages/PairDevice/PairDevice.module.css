@@ -1,157 +1,18 @@
-.screen {
-  min-height: 100vh;
-  min-height: 100svh;
-  padding: 24px 16px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  background: #101216;
-  color: #ffffff;
-  box-sizing: border-box;
-}
-
-.card {
-  width: 100%;
-  max-width: 620px;
-  padding: 34px 30px;
-  background: #1b1e24;
-  border: 2px solid #343842;
-  border-radius: 20px;
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.logo {
-  width: 180px;
-  max-width: 60%;
-  height: auto;
-  margin-bottom: 16px;
-}
-
-.eyebrow {
-  margin: 0 0 8px;
-  color: #ffd100;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
-}
-
-.card h1 {
-  margin: 0 0 10px;
-  font-size: 34px;
-}
-
-.text {
-  margin: 0 auto 28px;
-  max-width: 480px;
-  color: #c4c7ce;
-  font-size: 17px;
-  line-height: 1.45;
-}
-
-.form {
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.form label {
-  display: block;
-  margin-bottom: 8px;
-  text-align: left;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.codeInput {
-  width: 100%;
-  height: 76px;
-  padding: 0 16px;
-  border: 2px solid #484e59;
-  border-radius: 14px;
-  background: #0f1115;
-  color: #ffffff;
-  box-sizing: border-box;
-  text-align: center;
-  font-size: 38px;
-  font-weight: 800;
-  letter-spacing: 10px;
-}
-
-.codeInput:focus {
-  border-color: #ffd100;
-  outline: none;
-}
-
-.form button,
-.retryButton {
-  width: 100%;
-  min-height: 58px;
-  margin-top: 18px;
-  border: 0;
-  border-radius: 14px;
-  background: #d51f26;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.form button:disabled {
-  opacity: 0.5;
-}
-
-.error {
-  margin: 12px 0 0;
-  color: #ff9b9f;
-  font-size: 15px;
-}
-
-.connectionBox {
-  margin: 24px auto 0;
-  max-width: 420px;
-  padding: 14px;
-  border: 1px solid #484e59;
-  border-radius: 12px;
-  background: #242830;
-}
-
-.connectionBox p {
-  margin: 0;
-  color: #d4d6db;
-  font-size: 14px;
-}
-
-.retryButton {
-  min-height: 46px;
-  margin-top: 12px;
-  background: #343944;
-  font-size: 15px;
-}
-
-@media (max-width: 640px) {
-  .screen {
-    padding: 14px 10px;
-  }
-
-  .card {
-    padding: 24px 18px;
-    border-radius: 16px;
-  }
-
-  .card h1 {
-    font-size: 28px;
-  }
-
-  .text {
-    font-size: 15px;
-  }
-
-  .codeInput {
-    height: 68px;
-    font-size: 32px;
-    letter-spacing: 7px;
-  }
-}
+.screen { min-height:100vh; min-height:100svh; padding:24px 16px; display:flex; align-items:center; justify-content:center; background:#090b0e; color:#f7f7f2; box-sizing:border-box; }
+.card { width:100%; max-width:590px; padding:36px 30px; background:#11151a; border:1px solid #303741; border-radius:22px; box-sizing:border-box; text-align:center; box-shadow:0 24px 60px rgba(0,0,0,.42); }
+.logoBox { width:112px; height:82px; margin:0 auto 18px; display:flex; align-items:center; justify-content:center; background:#c92026; border-radius:21px; overflow:hidden; }
+.logo { width:104px; height:72px; object-fit:contain; }
+.eyebrow { margin:0 0 8px; color:#fbe311; font-size:12px; font-weight:950; letter-spacing:1.65px; }
+.card h1 { margin:0 0 10px; font-size:34px; letter-spacing:-.4px; }
+.text { max-width:460px; margin:0 auto 28px; color:#929aa5; font-size:16px; line-height:1.45; }
+.form { max-width:410px; margin:0 auto; }
+.form label { display:block; margin-bottom:8px; color:#c7ccd3; text-align:left; font-size:14px; font-weight:850; }
+.codeInput { width:100%; height:76px; padding:0 16px; box-sizing:border-box; color:#f7f7f2; background:#090c10; border:1px solid #424a55; border-radius:14px; text-align:center; font-size:36px; font-weight:950; letter-spacing:10px; outline:none; }
+.codeInput:focus { border-color:#fbe311; box-shadow:0 0 0 2px rgba(251,227,17,.08); }
+.form button,.retryButton { width:100%; min-height:60px; margin-top:18px; color:#171717; background:#fbe311; border:1px solid #fbe311; border-radius:14px; font-size:17px; font-weight:950; }
+.form button:disabled { opacity:.42; }
+.error { margin:12px 0 0; color:#ff9da1; font-size:14px; }
+.connectionBox { max-width:410px; margin:24px auto 0; padding:14px; background:#1b2027; border:1px solid #3a424c; border-radius:12px; }
+.connectionBox p { margin:0; color:#c9ced5; font-size:14px; }
+.retryButton { min-height:46px; margin-top:12px; color:#f7f7f2; background:#252b33; border-color:#414955; font-size:14px; }
+@media(max-width:640px){.screen{padding:12px 9px}.card{padding:26px 17px;border-radius:17px}.logoBox{width:96px;height:70px;border-radius:18px}.logo{width:90px;height:62px}.card h1{font-size:28px}.text{font-size:14px}.codeInput{height:68px;font-size:31px;letter-spacing:7px}}
