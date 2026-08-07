@@ -1,7 +1,7 @@
-import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home/Home';
-import MachineSelect from './pages/MachineSelect/MachineSelect';
 import MaterialOrder from './pages/MaterialOrder/MaterialOrder';
+import PairDevice from './pages/PairDevice/PairDevice';
 import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
 import Masek from './pages/Masek/Masek';
@@ -11,9 +11,17 @@ import { Toaster, toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
 import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
+import { useDevice } from './device/DeviceContext';
+
+const MACHINE_ROUTES = {
+  butler: '/butler',
+  velteko: '/velteko',
+  masek: '/masek',
+};
 
 const App = () => {
   const location = useLocation();
+  const { device, isChecking } = useDevice();
 
   useEffect(() => {
     if (!navigator.onLine) toast.error('Jste offline');
@@ -32,6 +40,20 @@ const App = () => {
 
   usePWAUpdatePrompt();
 
+  if (isChecking && !device) {
+    return (
+      <main className={css.loadingScreen}>
+        <img src="/logo.png" alt="Golden Snack" className={css.loadingLogo} />
+        <p>Ověřuji výrobní terminál...</p>
+      </main>
+    );
+  }
+
+  if (!device) {
+    return <PairDevice />;
+  }
+
+  const machineRoute = MACHINE_ROUTES[device.machineKey] || '/';
   const machineSectionActive = [
     '/balicka',
     '/butler',
@@ -62,7 +84,7 @@ const App = () => {
           <img src="/logo.png" alt="Golden Snack" className={css.brandLogo} />
           <div>
             <strong className={css.brandTitle}>Golden Snack</strong>
-            <span className={css.brandSubtitle}>Výroba</span>
+            <span className={css.brandSubtitle}>{device.machineName}</span>
           </div>
         </div>
 
@@ -76,7 +98,7 @@ const App = () => {
       <main id="main" className={css.main}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/balicka" element={<MachineSelect />} />
+          <Route path="/balicka" element={<Navigate to={machineRoute} replace />} />
           <Route path="/material" element={<MaterialOrder />} />
           <Route path="/butler" element={<Butler />} />
           <Route path="/velteko" element={<Velteko />} />
