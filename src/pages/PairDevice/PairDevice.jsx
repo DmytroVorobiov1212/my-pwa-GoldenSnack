@@ -8,15 +8,14 @@ const PairDevice = () => {
   const [formError, setFormError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     const nextValue = event.target.value.replace(/\D/g, '').slice(0, 6);
     setCode(nextValue);
     setFormError('');
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
     if (code.length !== 6 || isSubmitting) {
       setFormError('Zadejte 6místný párovací kód.');
       return;
@@ -36,12 +35,12 @@ const PairDevice = () => {
   return (
     <main className={css.screen}>
       <section className={css.card}>
-        <img src="/logo.png" alt="Golden Snack" className={css.logo} />
-        <p className={css.eyebrow}>VÝROBNÍ TERMINÁL</p>
+        <div className={css.logoBox}>
+          <img src="/gs-mark.svg" alt="Golden Snack" className={css.logo} />
+        </div>
+        <p className={css.eyebrow}>GOLDEN SNACK · VÝROBNÍ TERMINÁL</p>
         <h1>Připojit zařízení</h1>
-        <p className={css.text}>
-          Zadejte jednorázový 6místný kód vytvořený administrátorem.
-        </p>
+        <p className={css.text}>Zadejte jednorázový 6místný kód vytvořený administrátorem.</p>
 
         <form onSubmit={handleSubmit} className={css.form}>
           <label htmlFor="pairing-code">Párovací kód</label>
@@ -56,9 +55,7 @@ const PairDevice = () => {
             placeholder="000000"
             className={css.codeInput}
           />
-
           {formError && <p className={css.error}>{formError}</p>}
-
           <button type="submit" disabled={isSubmitting || code.length !== 6}>
             {isSubmitting ? 'Připojuji...' : 'Připojit terminál'}
           </button>
@@ -67,9 +64,7 @@ const PairDevice = () => {
         {error && (
           <div className={css.connectionBox}>
             <p>{error}</p>
-            <button type="button" className={css.retryButton} onClick={verifyDevice}>
-              Zkusit znovu
-            </button>
+            <button type="button" className={css.retryButton} onClick={verifyDevice}>Zkusit znovu</button>
           </div>
         )}
       </section>
