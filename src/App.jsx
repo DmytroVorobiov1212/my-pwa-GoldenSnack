@@ -1,6 +1,7 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import clsx from 'clsx';
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
 import Home from './pages/Home/Home';
+import MachineSelect from './pages/MachineSelect/MachineSelect';
+import MaterialOrder from './pages/MaterialOrder/MaterialOrder';
 import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
 import NotFound from './pages/NotFound/NotFound';
@@ -8,16 +9,20 @@ import css from './App.module.css';
 import { Toaster, toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { toastOptions } from './utils/toastStyle';
-import Footer from './components/Footer/Footer';
 import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 
 const App = () => {
+  const location = useLocation();
+
   useEffect(() => {
     if (!navigator.onLine) toast.error('Jste offline');
+
     const handleOnline = () => toast.success('Připojení obnoveno');
     const handleOffline = () => toast.error('Jste nyní offline');
+
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
+
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
@@ -26,41 +31,57 @@ const App = () => {
 
   usePWAUpdatePrompt();
 
-  const renderLink = (to, label) => (
+  const machineSectionActive = ['/balicka', '/butler', '/velteko'].includes(
+    location.pathname,
+  );
+
+  const renderLink = (to, label, forceActive = false) => (
     <NavLink
       to={to}
-      className={({ isActive }) => clsx(css.link, isActive && css.active)}
+      end={to === '/'}
+      className={({ isActive }) =>
+        `${css.link} ${isActive || forceActive ? css.active : ''}`.trim()
+      }
     >
-      <span>{label}</span>
+      {label}
     </NavLink>
   );
 
   return (
-    <>
+    <div className={css.appShell}>
       <a href="#main" className={css.skip}>
-        Skip to content
+        Přeskočit na obsah
       </a>
 
       <header className={css.header}>
-        <nav className={css.nav} aria-label="Primary">
-          {renderLink('/', 'Home')}
-          {renderLink('/butler', 'Butler')}
-          {renderLink('/velteko', 'Velteko')}
+        <div className={css.brand}>
+          <img src="/logo.png" alt="Golden Snack" className={css.brandLogo} />
+          <div>
+            <strong className={css.brandTitle}>Golden Snack</strong>
+            <span className={css.brandSubtitle}>Výroba</span>
+          </div>
+        </div>
+
+        <nav className={css.nav} aria-label="Hlavní navigace">
+          {renderLink('/', 'Domů')}
+          {renderLink('/balicka', 'Balička', machineSectionActive)}
+          {renderLink('/material', 'Materiál')}
         </nav>
       </header>
 
       <main id="main" className={css.main}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/balicka" element={<MachineSelect />} />
+          <Route path="/material" element={<MaterialOrder />} />
           <Route path="/butler" element={<Butler />} />
           <Route path="/velteko" element={<Velteko />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      <Footer />
       <Toaster toastOptions={toastOptions} />
-    </>
+    </div>
   );
 };
 
