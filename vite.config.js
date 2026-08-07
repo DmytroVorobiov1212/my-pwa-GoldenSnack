@@ -12,21 +12,24 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      injectRegister: 'none',          // реєструємо самі
-      strategies: 'injectManifest',    // інжектимо у наш src/sw.js
+      injectRegister: 'none',
+      strategies: 'injectManifest',
       srcDir: 'src',
-      filename: 'sw.js',               // вихідний файл у корені dist -> /sw.js
+      filename: 'sw.js',
       workbox: { cleanupOutdatedCaches: true },
-      devOptions: { enabled: false },  // не реєструвати SW у dev
+      devOptions: { enabled: false },
 
       manifest: {
-        name: 'Mini PWA Table',
-        short_name: 'MiniTable',
-        description: 'Таблиця виробів з пошуком',
-        theme_color: '#000000',
-        background_color: '#121212',
+        name: 'Golden Snack – Výroba',
+        short_name: 'GS Výroba',
+        description: 'Výrobní terminál Golden Snack',
+        lang: 'cs',
+        theme_color: '#0f1115',
+        background_color: '#0f1115',
         display: 'standalone',
+        orientation: 'portrait',
         start_url: '/',
+        scope: '/',
         icons: [
           { src: 'icons/icon-192x192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512x512.png', sizes: '512x512', type: 'image/png' }

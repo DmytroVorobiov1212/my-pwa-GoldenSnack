@@ -13,11 +13,7 @@ import { toastOptions } from './utils/toastStyle';
 import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 import { useDevice } from './device/DeviceContext';
 
-const MACHINE_ROUTES = {
-  butler: '/butler',
-  velteko: '/velteko',
-  masek: '/masek',
-};
+const MACHINE_ROUTES = { butler: '/butler', velteko: '/velteko', masek: '/masek' };
 
 const App = () => {
   const location = useLocation();
@@ -25,13 +21,10 @@ const App = () => {
 
   useEffect(() => {
     if (!navigator.onLine) toast.error('Jste offline');
-
     const handleOnline = () => toast.success('Připojení obnoveno');
     const handleOffline = () => toast.error('Jste nyní offline');
-
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
-
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
@@ -43,58 +36,38 @@ const App = () => {
   if (isChecking && !device) {
     return (
       <main className={css.loadingScreen}>
-        <img src="/logo.png" alt="Golden Snack" className={css.loadingLogo} />
+        <img src="/gs-mark.svg" alt="Golden Snack" className={css.loadingLogo} />
         <p>Ověřuji výrobní terminál...</p>
       </main>
     );
   }
-
-  if (!device) {
-    return <PairDevice />;
-  }
+  if (!device) return <PairDevice />;
 
   const machineRoute = MACHINE_ROUTES[device.machineKey] || '/';
-  const machineSectionActive = [
-    '/balicka',
-    '/butler',
-    '/velteko',
-    '/masek',
-  ].includes(location.pathname);
-
+  const machineSectionActive = ['/balicka', '/butler', '/velteko', '/masek'].includes(location.pathname);
   const renderLink = (to, label, forceActive = false) => (
-    <NavLink
-      to={to}
-      end={to === '/'}
-      className={({ isActive }) =>
-        `${css.link} ${isActive || forceActive ? css.active : ''}`.trim()
-      }
-    >
+    <NavLink to={to} end={to === '/'} className={({ isActive }) => `${css.link} ${isActive || forceActive ? css.active : ''}`.trim()}>
       {label}
     </NavLink>
   );
 
   return (
     <div className={css.appShell}>
-      <a href="#main" className={css.skip}>
-        Přeskočit na obsah
-      </a>
-
+      <a href="#main" className={css.skip}>Přeskočit na obsah</a>
       <header className={css.header}>
         <div className={css.brand}>
-          <img src="/logo.png" alt="Golden Snack" className={css.brandLogo} />
-          <div>
+          <img src="/gs-mark.svg" alt="Golden Snack" className={css.brandLogo} />
+          <div className={css.brandCopy}>
             <strong className={css.brandTitle}>Golden Snack</strong>
             <span className={css.brandSubtitle}>{device.machineName}</span>
           </div>
         </div>
-
         <nav className={css.nav} aria-label="Hlavní navigace">
           {renderLink('/', 'Domů')}
           {renderLink('/balicka', 'Balička', machineSectionActive)}
           {renderLink('/material', 'Materiál')}
         </nav>
       </header>
-
       <main id="main" className={css.main}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -106,7 +79,6 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-
       <Toaster toastOptions={toastOptions} />
     </div>
   );
