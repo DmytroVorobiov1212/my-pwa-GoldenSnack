@@ -1,92 +1,86 @@
-// src/pwa/usePWAUpdatePrompt.js
-import { useEffect } from "react";
-import { showUpdateToast } from "../components/UpdateToast/UpdateToast";
-
-function askVersion(target) {
-    return new Promise((resolve) => {
-        const ch = new MessageChannel();
-        const timer = setTimeout(() => resolve(null), 800);
-        ch.port1.onmessage = (e) => { clearTimeout(timer); resolve(e.data?.version ?? null); };
-        try { target.postMessage({ type: "GET_VERSION" }, [ch.port2]); } catch { resolve(null); }
-    });
-}
+import { useEffect } from 'react';
 
 export function usePWAUpdatePrompt() {
     useEffect(() => {
-        // ⬅️ SW тільки у продакшені
-        if (!import.meta.env.PROD) return;
-        if (!("serviceWorker" in navigator)) return;
+        if (!import.meta.env.PROD) return undefined;
+        if (!('serviceWorker' in navigator)) return undefined;
 
-        let shownOnce = false;
+        let disposed = false;
+        let reloading = false;
+        let registration = null;
 
-        const shouldShowUpdateToast = async (reg) => {
-            if (shownOnce || !reg.waiting) return false;
+        const reloadForNewController = () => {
+            if (disposed || reloading) return;
+            reloading = true;
+            window.location.reload();
+        };
 
-            const controller = navigator.serviceWorker.controller;
-            const activeVersion = controller ? await askVersion(controller) : null;
-            const waitingVersion = await askVersion(reg.waiting);
+        const activateWaitingWorker = reg => {
+            if (reg && reg.waiting) {
+                reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+            }
+        };
 
-            // якщо версії однакові — фантом, не показуємо
-            if (activeVersion && waitingVersion && waitingVersion === activeVersion) return false;
+        const watchInstallingWorker = reg => {
+            if (!reg || !reg.installing) return;
 
-            // коротка пауза на випадок переходу waiting -> redundant
-            await new Promise((r) => setTimeout(r, 200));
-            if (!reg.waiting) return false;
+            const worker = reg.installing;
+            worker.addEventListener('statechange', () => {
+                if (worker.state === 'installed') {
+                    activateWaitingWorker(reg);
+                }
+            });
+        };
 
-            // анти-флеш одразу після реального оновлення
+        const registerAndUpdate = async () => {
             try {
-                if (sessionStorage.getItem("pwaJustUpdated") === "1") {
-                    sessionStorage.removeItem("pwaJustUpdated");
-                    return false;
-                }
-            } catch { }
+                registration = await navigator.serviceWorker.register('/sw.js');
+                if (disposed) return;
 
-            return true;
-        };
+                activateWaitingWorker(registration);
+                watchInstallingWorker(registration);
 
-        const showToastIfRealUpdate = async (reg) => {
-            if (!(await shouldShowUpdateToast(reg))) return;
-            shownOnce = true;
-
-            showUpdateToast({
-                onConfirm: () => {
-                    try { sessionStorage.setItem("pwaJustUpdated", "1"); } catch { }
-                    reg.waiting.postMessage({ type: "SKIP_WAITING" });
-                    const onCtrlChange = () => {
-                        navigator.serviceWorker.removeEventListener("controllerchange", onCtrlChange);
-                        window.location.reload();
-                    };
-                    navigator.serviceWorker.addEventListener("controllerchange", onCtrlChange, { once: true });
-                },
-            });
-        };
-
-        const onLoad = async () => {
-            const reg = await navigator.serviceWorker.register("/sw.js");
-
-            if (reg.waiting) await showToastIfRealUpdate(reg);
-
-            reg.installing?.addEventListener("statechange", () => {
-                if (reg.waiting) showToastIfRealUpdate(reg);
-            });
-
-            reg.addEventListener("updatefound", () => {
-                reg.installing?.addEventListener("statechange", () => {
-                    if (reg.waiting) showToastIfRealUpdate(reg);
+                registration.addEventListener('updatefound', () => {
+                    watchInstallingWorker(registration);
                 });
-            });
 
-            // коли вкладка повертається — перевірити апдейти
-            const onVisible = async () => {
-                if (document.visibilityState === "visible") {
-                    const r = await navigator.serviceWorker.getRegistration();
-                    r?.update();
+                try {
+                    await registration.update();
+                } catch (error) {
+                    // A temporary network failure must not break the app.
                 }
-            };
-            document.addEventListener("visibilitychange", onVisible);
+            } catch (error) {
+                console.error('Service worker registration failed:', error);
+            }
         };
 
-        window.addEventListener("load", onLoad);
-        return () => window.removeEventListener("load", onLoad);
+        const onVisible = () => {
+            if (document.visibilityState !== 'visible') return;
+            if (!registration) return;
+
+            registration.update().catch(() => undefined);
+        };
+
+        navigator.serviceWorker.addEventListener(
+            'controllerchange',
+            reloadForNewController,
+        );
+        document.addEventListener('visibilitychange', onVisible);
+
+        if (document.readyState === 'complete') {
+            registerAndUpdate();
+        } else {
+            window.addEventListener('load', registerAndUpdate, { once: true });
+        }
+
+        return () => {
+            disposed = true;
+            navigator.serviceWorker.removeEventListener(
+                'controllerchange',
+                reloadForNewController,
+            );
+            document.removeEventListener('visibilitychange', onVisible);
+            window.removeEventListener('load', registerAndUpdate);
+        };
     }, []);
 }
