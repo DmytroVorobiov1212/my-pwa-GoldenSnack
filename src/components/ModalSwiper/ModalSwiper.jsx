@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './ModalSwiper.module.css';
 
@@ -7,6 +7,7 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
   const safeInitialIndex =
     activeIndex >= 0 && activeIndex < variants.length ? activeIndex : 0;
   const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
+  const contentRef = useRef(null);
 
   const variant = variants[currentIndex];
   const hasMultipleVariants = variants.length > 1;
@@ -45,6 +46,15 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
     };
   }, []);
 
+  useEffect(() => {
+    const node = contentRef.current;
+    if (!node) return;
+
+    // Android 5 / old Chrome friendly: reset the modal's own scroll container
+    // whenever a different product variant is displayed.
+    node.scrollTop = 0;
+  }, [currentIndex]);
+
   if (!variant) return null;
 
   const showPrevious = () => {
@@ -81,7 +91,7 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
           ×
         </button>
 
-        <div className={styles.content}>
+        <div className={styles.content} ref={contentRef}>
           <h2 className={styles.header}>{variant.title}</h2>
 
           {variant.image ? (
