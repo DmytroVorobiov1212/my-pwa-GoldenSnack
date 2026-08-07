@@ -25,8 +25,9 @@ function clearDeviceStorage() {
 }
 
 export function DeviceProvider({ children }) {
-  const [device, setDevice] = useState(() => readCachedDevice());
-  const [isChecking, setIsChecking] = useState(true);
+  const cachedDevice = readCachedDevice();
+  const [device, setDevice] = useState(cachedDevice);
+  const [isChecking, setIsChecking] = useState(!cachedDevice);
   const [error, setError] = useState('');
 
   const verifyDevice = async () => {
