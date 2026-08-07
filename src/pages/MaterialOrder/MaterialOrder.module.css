@@ -175,7 +175,6 @@
   display: flex;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  gap: 12px;
   margin-top: 18px;
 }
 
@@ -192,6 +191,7 @@
 .addButton {
   -webkit-flex: 1 1 220px;
   flex: 1 1 220px;
+  margin-right: 12px;
   background: #30343d;
   color: #ffffff;
   border: 1px solid #494e59;
@@ -240,6 +240,10 @@
   .addButton,
   .submitButton {
     width: 100%;
+  }
+
+  .addButton {
+    margin-right: 0;
   }
 
   .submitButton {
