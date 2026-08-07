@@ -4,30 +4,43 @@ import css from './Home.module.css';
 
 const Home = () => {
   const { device } = useDevice();
+
   return (
     <section className={css.container}>
-      <div className={css.hero}>
-        <img src="/gs-mark.svg" alt="Golden Snack" className={css.logo} />
-        <div>
-          <p className={css.eyebrow}>VÝROBNÍ TERMINÁL · {device.machineName.toUpperCase()}</p>
-          <h1 className={css.title}>Co potřebujete udělat?</h1>
-          <p className={css.subtitle}>Terminál je přiřazen k baličce <strong>{device.machineName}</strong>.</p>
-        </div>
-      </div>
+      <header className={css.hero}>
+        <p className={css.eyebrow}>VÝROBNÍ TERMINÁL</p>
+        <h1 className={css.title}>Co potřebujete udělat?</h1>
+        <p className={css.subtitle}>
+          Terminál <strong>{device.name}</strong> je připraven pro baličku <strong>{device.machineName}</strong>.
+        </p>
+      </header>
+
       <div className={css.actions}>
-        <Link to="/balicka" className={css.actionCard}>
+        <Link to="/balicka" className={`${css.actionCard} ${css.primary}`}>
           <span className={css.icon} aria-hidden="true">⚙</span>
-          <span className={css.actionText}><strong>Nastavit baličku</strong><small>Otevřít konfiguraci {device.machineName}</small></span>
+          <span className={css.actionText}>
+            <strong>Nastavit baličku</strong>
+            <small>Parametry produktu a stroje</small>
+          </span>
           <span className={css.arrow} aria-hidden="true">›</span>
         </Link>
+
         <Link to="/material" className={css.actionCard}>
-          <span className={css.icon} aria-hidden="true">▣</span>
-          <span className={css.actionText}><strong>Objednat materiál</strong><small>Požadavek ze stroje {device.machineName}</small></span>
+          <span className={`${css.icon} ${css.darkIcon}`} aria-hidden="true">▣</span>
+          <span className={css.actionText}>
+            <strong>Objednat materiál</strong>
+            <small>Požadavek pro sklad ze stroje {device.machineName}</small>
+          </span>
           <span className={css.arrow} aria-hidden="true">›</span>
         </Link>
       </div>
-      <p className={css.hint}>{device.name} · Golden Snack Výroba</p>
+
+      <div className={css.footerLine}>
+        <span className={css.statusDot} />
+        {device.machineName} · Golden Snack Výroba
+      </div>
     </section>
   );
 };
+
 export default Home;
