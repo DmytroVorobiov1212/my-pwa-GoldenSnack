@@ -28,9 +28,15 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
   overflow: hidden;
   box-sizing: border-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
 }
 
 .handle {
+  -webkit-flex: 0 0 auto;
+  flex: 0 0 auto;
   width: 44px;
   height: 5px;
   margin: 10px auto 2px;
@@ -57,11 +63,13 @@
 }
 
 .content {
-  max-height: 88vh;
+  min-height: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 14px 18px 24px;
+  padding: 14px 18px 16px;
   box-sizing: border-box;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .header {
@@ -126,8 +134,14 @@
 }
 
 .variantNav {
-  max-width: 460px;
-  margin: 18px auto 0;
+  -webkit-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 68px;
+  padding: 8px 18px 10px;
+  border-top: 1px solid #303641;
+  background: #101217;
+  box-sizing: border-box;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
@@ -168,8 +182,7 @@
   }
 
   .content {
-    max-height: 91vh;
-    padding: 12px 12px 20px;
+    padding: 12px 12px 12px;
   }
 
   .header {
@@ -193,5 +206,10 @@
 
   .value {
     font-size: 17px;
+  }
+
+  .variantNav {
+    min-height: 62px;
+    padding: 6px 12px 8px;
   }
 }
