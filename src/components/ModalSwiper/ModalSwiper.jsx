@@ -7,6 +7,7 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
   const safeInitialIndex =
     activeIndex >= 0 && activeIndex < variants.length ? activeIndex : 0;
   const [currentIndex, setCurrentIndex] = useState(safeInitialIndex);
+  const [imageFailed, setImageFailed] = useState(false);
   const contentRef = useRef(null);
 
   const variant = variants[currentIndex];
@@ -48,11 +49,8 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
 
   useEffect(() => {
     const node = contentRef.current;
-    if (!node) return;
-
-    // Android 5 / old Chrome friendly: reset the modal's own scroll container
-    // whenever a different product variant is displayed.
-    node.scrollTop = 0;
+    if (node) node.scrollTop = 0;
+    setImageFailed(false);
   }, [currentIndex]);
 
   if (!variant) return null;
@@ -70,6 +68,9 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
   };
 
   const paramKeys = variant.params ? Object.keys(variant.params) : [];
+  const imagePath = variant.image ? String(variant.image) : '';
+  const hasRealImage =
+    imagePath && imagePath.toLowerCase().indexOf('not-img') === -1 && !imageFailed;
 
   const content = (
     <div className={styles.overlay} role="presentation" onClick={onClose}>
@@ -94,11 +95,12 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
         <div className={styles.content} ref={contentRef}>
           <h2 className={styles.header}>{variant.title}</h2>
 
-          {variant.image ? (
+          {hasRealImage ? (
             <img
-              src={variant.image}
+              src={imagePath}
               alt={variant.title}
               className={styles.image}
+              onError={() => setImageFailed(true)}
             />
           ) : null}
 
@@ -110,33 +112,33 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
               </div>
             ))}
           </div>
-
-          {hasMultipleVariants ? (
-            <div className={styles.variantNav}>
-              <button
-                type="button"
-                className={styles.navButton}
-                onClick={showPrevious}
-                aria-label="Předchozí varianta"
-              >
-                ‹
-              </button>
-
-              <span className={styles.variantCount}>
-                {currentIndex + 1} / {variants.length}
-              </span>
-
-              <button
-                type="button"
-                className={styles.navButton}
-                onClick={showNext}
-                aria-label="Další varianta"
-              >
-                ›
-              </button>
-            </div>
-          ) : null}
         </div>
+
+        {hasMultipleVariants ? (
+          <div className={styles.variantNav}>
+            <button
+              type="button"
+              className={styles.navButton}
+              onClick={showPrevious}
+              aria-label="Předchozí varianta"
+            >
+              ‹
+            </button>
+
+            <span className={styles.variantCount}>
+              {currentIndex + 1} / {variants.length}
+            </span>
+
+            <button
+              type="button"
+              className={styles.navButton}
+              onClick={showNext}
+              aria-label="Další varianta"
+            >
+              ›
+            </button>
+          </div>
+        ) : null}
       </div>
     </div>
   );
