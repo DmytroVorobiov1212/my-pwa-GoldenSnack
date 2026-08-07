@@ -4,6 +4,7 @@ import MachineSelect from './pages/MachineSelect/MachineSelect';
 import MaterialOrder from './pages/MaterialOrder/MaterialOrder';
 import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
+import Masek from './pages/Masek/Masek';
 import NotFound from './pages/NotFound/NotFound';
 import css from './App.module.css';
 import { Toaster, toast } from 'react-hot-toast';
@@ -31,9 +32,12 @@ const App = () => {
 
   usePWAUpdatePrompt();
 
-  const machineSectionActive = ['/balicka', '/butler', '/velteko'].includes(
-    location.pathname,
-  );
+  const machineSectionActive = [
+    '/balicka',
+    '/butler',
+    '/velteko',
+    '/masek',
+  ].includes(location.pathname);
 
   const renderLink = (to, label, forceActive = false) => (
     <NavLink
@@ -76,6 +80,7 @@ const App = () => {
           <Route path="/material" element={<MaterialOrder />} />
           <Route path="/butler" element={<Butler />} />
           <Route path="/velteko" element={<Velteko />} />
+          <Route path="/masek" element={<Masek />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
