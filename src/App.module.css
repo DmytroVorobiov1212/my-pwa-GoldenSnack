@@ -1,45 +1,132 @@
 :root {
-  --gs-bg: #0b0d10;
-  --gs-panel: #15191f;
-  --gs-panel-2: #1b2027;
-  --gs-border: #303640;
-  --gs-text: #f7f7f4;
-  --gs-muted: #a7adb6;
+  --gs-bg: #0a0c0f;
+  --gs-panel: #12161b;
+  --gs-panel-2: #191e24;
+  --gs-border: #2b323b;
+  --gs-text: #f7f7f2;
+  --gs-muted: #929aa5;
   --gs-yellow: #fbe311;
   --gs-red: #c92026;
-  --gs-brown: #261606;
 }
 
-.appShell { min-height: 100vh; min-height: 100svh; background: radial-gradient(circle at 50% -180px, #232831 0, var(--gs-bg) 520px); color: var(--gs-text); }
-.loadingScreen { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--gs-bg); color: var(--gs-text); font-size: 17px; font-weight: 700; }
-.loadingLogo { width: 122px; height: auto; margin-bottom: 18px; }
+.appShell {
+  min-height: 100vh;
+  min-height: 100svh;
+  background: linear-gradient(180deg, #0f1318 0, var(--gs-bg) 420px);
+  color: var(--gs-text);
+}
+
+.loadingScreen {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gs-bg);
+  color: var(--gs-text);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.loadingLogo { width: 110px; height: auto; margin-bottom: 18px; }
 .skip { position: absolute; left: -9999px; top: -9999px; }
 .skip:focus { left: 12px; top: 12px; z-index: 9999; padding: 8px 12px; background: var(--gs-panel-2); color: white; border-radius: 8px; }
-.header { position: sticky; top: 0; z-index: 20; min-height: 76px; padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; background: rgba(15,17,21,.96); border-bottom: 1px solid #2a2f37; box-sizing: border-box; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
-.brand { display: flex; align-items: center; min-width: 210px; }
-.brandLogo { width: 64px; height: 46px; object-fit: contain; margin-right: 11px; }
-.brandCopy { min-width: 0; }
-.brandTitle,.brandSubtitle { display:block; }
-.brandTitle { color: var(--gs-text); font-size: 20px; line-height:1.05; }
-.brandSubtitle { margin-top:4px; color:var(--gs-yellow); font-size:12px; font-weight:900; letter-spacing:1.4px; text-transform:uppercase; }
-.nav { display:flex; align-items:center; }
-.link { min-height:48px; margin-left:8px; padding:0 16px; display:inline-flex; align-items:center; justify-content:center; color:#c1c6ce; background:#1c2128; border:1px solid #343b45; border-radius:13px; text-decoration:none; font-size:16px; font-weight:800; box-sizing:border-box; -webkit-tap-highlight-color:rgba(251,227,17,.16); }
-.link:active,.link:focus { outline:none; border-color:var(--gs-yellow); }
-.active { color:#151515; background:var(--gs-yellow); border-color:var(--gs-yellow); box-shadow:0 4px 16px rgba(251,227,17,.12); }
-.main { max-width:1200px; margin:0 auto; padding:16px; box-sizing:border-box; }
 
-@media (max-width:720px) {
-  .header { min-height:68px; padding:8px 10px; }
-  .brand { min-width:0; }
-  .brandLogo { width:50px; height:38px; margin-right:7px; }
-  .brandTitle { font-size:16px; }
-  .brandSubtitle { font-size:10px; letter-spacing:1px; }
-  .link { min-height:44px; margin-left:5px; padding:0 10px; border-radius:11px; font-size:14px; }
-  .main { padding:10px; }
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(10, 12, 15, .98);
+  border-bottom: 1px solid #242a31;
+  box-shadow: 0 10px 30px rgba(0,0,0,.24);
 }
-@media (max-width:520px) {
-  .brandTitle { display:none; }
-  .brandSubtitle { margin-top:0; }
-  .brandLogo { width:42px; height:34px; }
-  .link { padding:0 8px; font-size:13px; }
+
+.topBar {
+  max-width: 1200px;
+  min-height: 82px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.brand { display: flex; align-items: center; min-width: 0; }
+.logoBox {
+  width: 58px;
+  height: 58px;
+  margin-right: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 58px;
+  border-radius: 16px;
+  background: #c92026;
+  overflow: hidden;
+}
+.brandLogo { width: 52px; height: 52px; object-fit: contain; }
+.brandCopy { min-width: 0; }
+.brandTitle { display: block; font-size: 21px; line-height: 1.05; font-weight: 900; letter-spacing: -.25px; }
+.terminalLabel { display: block; margin-top: 6px; color: var(--gs-muted); font-size: 10px; font-weight: 900; letter-spacing: 1.55px; }
+
+.machineStatus { text-align: right; }
+.machineStatus > strong { display: block; color: var(--gs-yellow); font-size: 18px; line-height: 1; letter-spacing: .8px; }
+.machineStatus > span { margin-top: 7px; display: inline-flex; align-items: center; color: #aab1ba; font-size: 12px; font-weight: 800; }
+.machineStatus i { width: 8px; height: 8px; margin-right: 6px; display: inline-block; border-radius: 50%; }
+.online i { background: #57d68d; box-shadow: 0 0 9px rgba(87,214,141,.5); }
+.offline i { background: #e05a5f; }
+
+.nav {
+  min-height: 56px;
+  padding: 7px max(14px, calc((100% - 1200px) / 2 + 20px));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #20252b;
+  box-sizing: border-box;
+}
+
+.link {
+  min-height: 42px;
+  padding: 0 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #aab1ba;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 850;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(251,227,17,.16);
+}
+.link:active, .link:focus { outline: none; border-color: #505862; }
+.active { color: #171717; background: var(--gs-yellow); border-color: var(--gs-yellow); box-shadow: 0 5px 16px rgba(251,227,17,.12); }
+.main { max-width: 1200px; margin: 0 auto; padding: 18px 16px 28px; box-sizing: border-box; }
+
+@media (max-width: 720px) {
+  .topBar { min-height: 72px; padding: 8px 12px; }
+  .logoBox { width: 50px; height: 50px; margin-right: 10px; flex-basis: 50px; border-radius: 14px; }
+  .brandLogo { width: 45px; height: 45px; }
+  .brandTitle { font-size: 18px; }
+  .terminalLabel { margin-top: 4px; font-size: 8px; letter-spacing: 1.15px; }
+  .machineStatus > strong { font-size: 15px; }
+  .machineStatus > span { margin-top: 5px; font-size: 11px; }
+  .nav { min-height: 52px; padding: 6px 10px; }
+  .link { min-height: 40px; padding: 0 15px; font-size: 14px; }
+  .main { padding: 14px 10px 24px; }
+}
+
+@media (max-width: 430px) {
+  .brandTitle { font-size: 16px; }
+  .terminalLabel { display: none; }
+  .logoBox { width: 44px; height: 44px; flex-basis: 44px; }
+  .brandLogo { width: 40px; height: 40px; }
+  .machineStatus > strong { font-size: 13px; }
+  .nav { justify-content: stretch; }
+  .link { flex: 1 1 0; padding: 0 8px; }
 }
