@@ -6,6 +6,8 @@ import { getDeviceToken, useDevice } from '../../device/DeviceContext';
 import { materialCatalog } from '../../data/materialCatalog';
 import css from './MaterialOrder.module.css';
 
+const CATEGORY_KEYS = ['priprava', 'polotovar', 'folga'];
+
 function createEmptyItem() {
   return {
     category: 'priprava',
@@ -13,6 +15,18 @@ function createEmptyItem() {
     quantity: '',
     unit: '',
   };
+}
+
+function getProduct(categoryKey, productName) {
+  const products = materialCatalog[categoryKey].products;
+
+  for (let index = 0; index < products.length; index += 1) {
+    if (products[index].name === productName) {
+      return products[index];
+    }
+  }
+
+  return null;
 }
 
 const MaterialOrder = () => {
@@ -33,9 +47,7 @@ const MaterialOrder = () => {
       }
 
       if (field === 'product') {
-        const product = materialCatalog[nextItem.category].products.find(
-          (catalogProduct) => catalogProduct.name === value,
-        );
+        const product = getProduct(nextItem.category, value);
         nextItem.unit = product ? product.unit : '';
       }
 
@@ -56,7 +68,7 @@ const MaterialOrder = () => {
   };
 
   const validate = () => {
-    const invalidItem = items.find(
+    const hasInvalidItem = items.some(
       (item) =>
         !item.category ||
         !item.product ||
@@ -64,7 +76,7 @@ const MaterialOrder = () => {
         Number(item.quantity) <= 0,
     );
 
-    if (invalidItem) {
+    if (hasInvalidItem) {
       setError('Vyplňte u každé položky materiál a množství větší než 0.');
       return false;
     }
@@ -165,9 +177,9 @@ const MaterialOrder = () => {
                     handleChange(index, 'category', event.target.value)
                   }
                 >
-                  {Object.entries(materialCatalog).map(([key, category]) => (
+                  {CATEGORY_KEYS.map((key) => (
                     <option key={key} value={key}>
-                      {category.label}
+                      {materialCatalog[key].label}
                     </option>
                   ))}
                 </select>
