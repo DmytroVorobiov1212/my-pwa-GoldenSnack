@@ -1,0 +1,174 @@
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 18px 32px;
+  color: #ffffff;
+}
+
+.topRow {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.backButton {
+  min-height: 48px;
+  padding: 0 16px;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #ffffff;
+  background: #252932;
+  border: 1px solid #3a3f49;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sectionLabel {
+  color: #ffd100;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.heading {
+  margin-bottom: 24px;
+}
+
+.heading h1 {
+  margin: 0 0 8px;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.heading p {
+  margin: 0;
+  color: #b8bcc5;
+  font-size: 17px;
+}
+
+.machineList {
+  width: 100%;
+}
+
+.machineCard {
+  min-height: 112px;
+  margin-bottom: 18px;
+  padding: 18px 22px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #ffffff;
+  background: #1d2027;
+  border: 2px solid #343842;
+  border-radius: 18px;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.machineCard:active,
+.machineCard:focus {
+  border-color: #ffd100;
+  background: #252932;
+  outline: none;
+}
+
+.number {
+  width: 66px;
+  height: 66px;
+  margin-right: 18px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex: 0 0 66px;
+  flex: 0 0 66px;
+  border-radius: 16px;
+  background: #d51f26;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.machineText {
+  display: block;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.machineText strong,
+.machineText small {
+  display: block;
+}
+
+.machineText strong {
+  margin-bottom: 6px;
+  font-size: 27px;
+}
+
+.machineText small {
+  color: #b8bcc5;
+  font-size: 16px;
+}
+
+.arrow {
+  margin-left: 16px;
+  color: #ffd100;
+  font-size: 48px;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 18px 12px 26px;
+  }
+
+  .topRow {
+    margin-bottom: 20px;
+  }
+
+  .sectionLabel {
+    font-size: 12px;
+  }
+
+  .heading h1 {
+    font-size: 28px;
+  }
+
+  .heading p {
+    font-size: 15px;
+  }
+
+  .machineCard {
+    min-height: 100px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .number {
+    width: 58px;
+    height: 58px;
+    margin-right: 14px;
+    -webkit-flex-basis: 58px;
+    flex-basis: 58px;
+    font-size: 21px;
+  }
+
+  .machineText strong {
+    font-size: 22px;
+  }
+
+  .machineText small {
+    font-size: 14px;
+  }
+}

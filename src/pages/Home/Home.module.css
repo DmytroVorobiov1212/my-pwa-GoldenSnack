@@ -1,97 +1,177 @@
 .container {
-    min-height: 70svh;
-    /* висоти достатньо для hero */
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 32px 16px;
-    background: var(--bg, #121212);
-    color: var(--text, #fff);
-
-    /* Анімація входу */
-    animation: fadeInUp .7s ease both;
+  min-height: 620px;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 18px 30px;
+  text-align: center;
+  color: #ffffff;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.hero {
+  margin-bottom: 28px;
 }
 
-/* Логотип — адаптивно, без “пластиліну” */
 .logo {
-    width: clamp(160px, 30vw, 280px);
-    height: auto;
-    margin-bottom: 20px;
-    inline-size: auto;
-    block-size: auto;
-    animation: fadeIn .8s ease both .15s;
-    opacity: 0;
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.eyebrow {
+  margin: 0 0 8px;
+  color: #ffd100;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
 }
 
-/* Заголовок — “преміум” градієнт */
 .title {
-    font-size: clamp(22px, 5.5vw, 40px);
-    line-height: 1.2;
-    margin-bottom: 10px;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    background: linear-gradient(90deg, #ffd700, #ffef9a 60%, #ffd700);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    /* показуємо градієнт через текст */
-    text-shadow: 0 0 16px color-mix(in oklab, #ffd700, transparent 70%);
+  margin: 0 0 8px;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 800;
 }
 
-/* Підзаголовок — читабельний, обмежена ширина */
 .subtitle {
-    font-size: clamp(15px, 3.8vw, 18px);
-    color: var(--muted, #ccc);
-    max-width: min(56ch, 90vw);
-    margin-inline: auto;
+  margin: 0;
+  color: #b8bcc5;
+  font-size: 18px;
 }
 
-/* Tablet */
-@media (min-width: 768px) {
-    .container {
-        padding: 48px 24px;
-    }
-
-    .title {
-        margin-bottom: 12px;
-    }
-
-    .subtitle {
-        max-width: 60ch;
-    }
+.actions {
+  width: 100%;
 }
 
-/* Desktop */
-@media (min-width: 1440px) {
-    .container {
-        padding: 64px 32px;
-    }
+.actionCard {
+  min-height: 118px;
+  margin-bottom: 18px;
+  padding: 20px 22px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  text-align: left;
+  text-decoration: none;
+  color: #ffffff;
+  background: #1d2027;
+  border: 2px solid #343842;
+  border-radius: 18px;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 209, 0, 0.18);
+}
 
-    .title {
-        letter-spacing: .3px;
-    }
+.actionCard:active,
+.actionCard:focus {
+  border-color: #ffd100;
+  background: #252932;
+  outline: none;
+}
+
+.icon {
+  width: 74px;
+  height: 74px;
+  margin-right: 20px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex: 0 0 74px;
+  flex: 0 0 74px;
+  border-radius: 18px;
+  background: #ffd100;
+  color: #16181d;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.actionText {
+  display: block;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.actionText strong,
+.actionText small {
+  display: block;
+}
+
+.actionText strong {
+  margin-bottom: 7px;
+  font-size: 27px;
+  line-height: 1.1;
+}
+
+.actionText small {
+  color: #b8bcc5;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.arrow {
+  margin-left: 18px;
+  color: #ffd100;
+  font-size: 50px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.hint {
+  margin: 28px 0 0;
+  color: #777d88;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    min-height: 520px;
+    padding: 18px 12px 24px;
+  }
+
+  .hero {
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .title {
+    font-size: 27px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .actionCard {
+    min-height: 104px;
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .icon {
+    width: 62px;
+    height: 62px;
+    margin-right: 14px;
+    -webkit-flex-basis: 62px;
+    flex-basis: 62px;
+    border-radius: 14px;
+    font-size: 31px;
+  }
+
+  .actionText strong {
+    font-size: 22px;
+  }
+
+  .actionText small {
+    font-size: 14px;
+  }
+
+  .arrow {
+    margin-left: 10px;
+    font-size: 40px;
+  }
 }
