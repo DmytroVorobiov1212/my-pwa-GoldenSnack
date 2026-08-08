@@ -39,7 +39,7 @@ const ReportFault = () => {
     try {
       setIsSubmitting(true);
       setError('');
-      const response = await fetch(`${API_BASE_URL}/device-faults`, {
+      const response = await fetch(`${API_BASE_URL}/device-orders/fault`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,25 +74,14 @@ const ReportFault = () => {
       <form onSubmit={handleSubmit}>
         <div className={css.faultGrid}>
           {FAULTS.map(([key, label]) => (
-            <button
-              key={key}
-              type="button"
-              className={`${css.faultButton} ${faultType === key ? css.selected : ''}`}
-              onClick={() => { setFaultType(key); setError(''); }}
-            >
+            <button key={key} type="button" className={`${css.faultButton} ${faultType === key ? css.selected : ''}`} onClick={() => { setFaultType(key); setError(''); }}>
               {label}
             </button>
           ))}
         </div>
         <label className={css.noteLabel}>
           <span>Poznámka <small>(nepovinné)</small></span>
-          <textarea
-            value={note}
-            onChange={event => setNote(event.target.value.slice(0, 300))}
-            maxLength="300"
-            rows="4"
-            placeholder="Krátce popište problém…"
-          />
+          <textarea value={note} onChange={event => setNote(event.target.value.slice(0, 300))} maxLength="300" rows="4" placeholder="Krátce popište problém…" />
           <small className={css.counter}>{note.length}/300</small>
         </label>
         {error && <p className={css.error}>{error}</p>}
