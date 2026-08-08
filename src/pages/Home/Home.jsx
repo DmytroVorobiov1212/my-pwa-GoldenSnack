@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaGear, FaCartShopping } from 'react-icons/fa6';
 import { useDevice } from '../../device/DeviceContext';
 import css from './Home.module.css';
 
@@ -17,7 +18,7 @@ const Home = () => {
 
       <div className={css.actions}>
         <Link to="/balicka" className={`${css.actionCard} ${css.primary}`}>
-          <span className={css.icon} aria-hidden="true">⚙</span>
+          <span className={css.icon} aria-hidden="true"><FaGear /></span>
           <span className={css.actionText}>
             <strong>Nastavit baličku</strong>
             <small>Parametry produktu a stroje</small>
@@ -26,7 +27,7 @@ const Home = () => {
         </Link>
 
         <Link to="/material" className={css.actionCard}>
-          <span className={`${css.icon} ${css.darkIcon}`} aria-hidden="true">▣</span>
+          <span className={`${css.icon} ${css.darkIcon}`} aria-hidden="true"><FaCartShopping /></span>
           <span className={css.actionText}>
             <strong>Objednat materiál</strong>
             <small>Požadavek pro sklad ze stroje {device.machineName}</small>
