@@ -1,6 +1,7 @@
 import { Routes, Route, NavLink, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import MaterialOrder from './pages/MaterialOrder/MaterialOrder';
+import ReportFault from './pages/ReportFault/ReportFault';
 import PairDevice from './pages/PairDevice/PairDevice';
 import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
@@ -105,6 +106,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/balicka" element={<Navigate to={machineRoute} replace />} />
           <Route path="/material" element={<MaterialOrder />} />
+          <Route path="/porucha" element={<ReportFault />} />
           <Route path="/butler" element={<Butler />} />
           <Route path="/velteko" element={<Velteko />} />
           <Route path="/masek" element={<Masek />} />
