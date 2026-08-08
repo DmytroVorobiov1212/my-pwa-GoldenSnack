@@ -5,48 +5,20 @@
   padding: 44px 18px 30px;
   color: #f7f7f2;
 }
-
 .hero { max-width: 690px; margin: 0 auto 34px; text-align: center; }
 .eyebrow { margin: 0 0 10px; color: #fbe311; font-size: 13px; font-weight: 950; letter-spacing: 2px; }
 .title { margin: 0 0 12px; font-size: 40px; line-height: 1.08; font-weight: 950; letter-spacing: -.8px; }
 .subtitle { margin: 0; color: #929aa5; font-size: 17px; line-height: 1.45; }
 .subtitle strong { color: #f7f7f2; }
 .actions { width: 100%; }
-
-.actionCard {
-  min-height: 116px;
-  margin-bottom: 16px;
-  padding: 18px 22px;
-  display: flex;
-  align-items: center;
-  text-align: left;
-  text-decoration: none;
-  color: #f7f7f2;
-  background: #151a20;
-  border: 1px solid #303741;
-  border-radius: 19px;
-  box-sizing: border-box;
-  box-shadow: 0 16px 34px rgba(0,0,0,.18);
-  -webkit-tap-highlight-color: rgba(251,227,17,.15);
-}
+.actionCard { min-height: 116px; margin-bottom: 16px; padding: 18px 22px; display: flex; align-items: center; text-align: left; text-decoration: none; color: #f7f7f2; background: #151a20; border: 1px solid #303741; border-radius: 19px; box-sizing: border-box; box-shadow: 0 16px 34px rgba(0,0,0,.18); -webkit-tap-highlight-color: rgba(251,227,17,.15); }
 .actionCard:active, .actionCard:focus { outline: none; transform: translateY(1px); border-color: #fbe311; }
 .primary { color: #171717; background: #fbe311; border-color: #fbe311; box-shadow: 0 16px 36px rgba(251,227,17,.08); }
-
-.icon {
-  width: 68px;
-  height: 68px;
-  margin-right: 19px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 68px;
-  border-radius: 17px;
-  background: #171717;
-  color: #fbe311;
-  font-size: 32px;
-  font-weight: 900;
-}
+.icon { width: 68px; height: 68px; margin-right: 19px; display: flex; align-items: center; justify-content: center; flex: 0 0 68px; border-radius: 17px; background: #171717; color: #fbe311; font-size: 32px; font-weight: 900; }
 .darkIcon { background: #fbe311; color: #171717; }
+.faultCard { border-color: #573033; background: linear-gradient(135deg,#1c171a,#15191f); }
+.faultCard:active,.faultCard:focus { border-color:#e05257; }
+.faultIcon { background:#c92026; color:#fff; }
 .actionText { display: block; flex: 1 1 auto; min-width: 0; }
 .actionText strong, .actionText small { display: block; }
 .actionText strong { margin-bottom: 7px; font-size: 25px; line-height: 1.1; font-weight: 950; }
@@ -54,9 +26,9 @@
 .primary .actionText small { color: #57520b; }
 .arrow { margin-left: 18px; color: #fbe311; font-size: 46px; line-height: 1; font-weight: 300; }
 .primary .arrow { color: #171717; }
+.faultCard .arrow { color:#e05257; }
 .footerLine { margin-top: 28px; display: flex; align-items: center; justify-content: center; color: #6f7781; font-size: 13px; font-weight: 700; }
 .statusDot { width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: #57d68d; box-shadow: 0 0 8px rgba(87,214,141,.35); }
-
 @media (max-width: 640px) {
   .container { min-height: 500px; padding: 30px 10px 24px; }
   .hero { margin-bottom: 25px; }
@@ -69,7 +41,6 @@
   .actionText small { font-size: 13px; }
   .arrow { margin-left: 10px; font-size: 38px; }
 }
-
 @media (max-width: 420px) {
   .container { padding-top: 24px; }
   .title { font-size: 28px; }
