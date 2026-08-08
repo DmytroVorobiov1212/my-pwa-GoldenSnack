@@ -29,6 +29,19 @@ function getProduct(categoryKey, productName) {
   return null;
 }
 
+function isItemComplete(item) {
+  const quantity = Number(item.quantity);
+
+  return Boolean(
+    item.category &&
+      item.product &&
+      item.unit &&
+      item.quantity.toString().trim() &&
+      Number.isFinite(quantity) &&
+      quantity > 0,
+  );
+}
+
 const MaterialOrder = () => {
   const { device, forgetDevice } = useDevice();
   const [items, setItems] = useState([createEmptyItem()]);
@@ -59,22 +72,25 @@ const MaterialOrder = () => {
   };
 
   const addItem = () => {
-    setItems([...items, createEmptyItem()]);
+    const lastItem = items[items.length - 1];
+
+    if (!isItemComplete(lastItem)) {
+      setError('Nejprve vyplňte aktuální položku a množství větší než 0.');
+      return;
+    }
+
+    setItems((currentItems) => [...currentItems, createEmptyItem()]);
+    setError('');
   };
 
   const removeItem = (index) => {
     if (items.length === 1) return;
     setItems(items.filter((_, itemIndex) => itemIndex !== index));
+    setError('');
   };
 
   const validate = () => {
-    const hasInvalidItem = items.some(
-      (item) =>
-        !item.category ||
-        !item.product ||
-        !item.quantity.toString().trim() ||
-        Number(item.quantity) <= 0,
-    );
+    const hasInvalidItem = items.some((item) => !isItemComplete(item));
 
     if (hasInvalidItem) {
       setError('Vyplňte u každé položky materiál a množství větší než 0.');
