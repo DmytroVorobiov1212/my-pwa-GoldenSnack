@@ -47,6 +47,9 @@
   font-weight: 900;
 }
 .darkIcon { background: #fbe311; color: #171717; }
+.faultCard { border-color: #573033; background: linear-gradient(135deg, #1c171a, #15191f); }
+.faultCard:active, .faultCard:focus { border-color: #e05257; }
+.faultIcon { background: #c92026; color: #fff; }
 .actionText { display: block; flex: 1 1 auto; min-width: 0; }
 .actionText strong, .actionText small { display: block; }
 .actionText strong { margin-bottom: 7px; font-size: 25px; line-height: 1.1; font-weight: 950; }
@@ -54,6 +57,7 @@
 .primary .actionText small { color: #57520b; }
 .arrow { margin-left: 18px; color: #fbe311; font-size: 46px; line-height: 1; font-weight: 300; }
 .primary .arrow { color: #171717; }
+.faultCard .arrow { color: #e05257; }
 .footerLine { margin-top: 28px; display: flex; align-items: center; justify-content: center; color: #6f7781; font-size: 13px; font-weight: 700; }
 .statusDot { width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: #57d68d; box-shadow: 0 0 8px rgba(87,214,141,.35); }
 
