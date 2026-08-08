@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaGear, FaCartShopping } from 'react-icons/fa6';
+import { FaGear, FaCartShopping, FaScrewdriverWrench } from 'react-icons/fa6';
 import { useDevice } from '../../device/DeviceContext';
 import css from './Home.module.css';
 
@@ -31,6 +31,15 @@ const Home = () => {
           <span className={css.actionText}>
             <strong>Objednat materiál</strong>
             <small>Požadavek pro sklad ze stroje {device.machineName}</small>
+          </span>
+          <span className={css.arrow} aria-hidden="true">›</span>
+        </Link>
+
+        <Link to="/porucha" className={`${css.actionCard} ${css.faultCard}`}>
+          <span className={`${css.icon} ${css.faultIcon}`} aria-hidden="true"><FaScrewdriverWrench /></span>
+          <span className={css.actionText}>
+            <strong>Nahlásit poruchu</strong>
+            <small>Odeslat hlášení vedoucímu výroby</small>
           </span>
           <span className={css.arrow} aria-hidden="true">›</span>
         </Link>
