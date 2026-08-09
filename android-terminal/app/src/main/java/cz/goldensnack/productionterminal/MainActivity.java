@@ -12,14 +12,19 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends Activity {
     private static final String APP_URL = "https://my-pwa-golden-snack.vercel.app/";
+    private static final String GS_MARK_PATH = "/gs-mark.svg";
 
     private WebView webView;
     private TextView errorView;
@@ -89,6 +94,18 @@ public class MainActivity extends Activity {
             }
 
             @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                WebResourceResponse local = getLocalGsMark(url);
+                return local != null ? local : super.shouldInterceptRequest(view, url);
+            }
+
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                WebResourceResponse local = getLocalGsMark(request.getUrl().toString());
+                return local != null ? local : super.shouldInterceptRequest(view, request);
+            }
+
+            @Override
             public void onPageFinished(WebView view, String url) {
                 if (isAllowedUrl(url)) {
                     errorView.setVisibility(View.GONE);
@@ -103,6 +120,19 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+
+    private WebResourceResponse getLocalGsMark(String url) {
+        if (url == null || !url.startsWith("https://my-pwa-golden-snack.vercel.app") || !url.contains(GS_MARK_PATH)) {
+            return null;
+        }
+
+        try {
+            InputStream stream = getAssets().open("gs-mark.svg");
+            return new WebResourceResponse("image/svg+xml", "UTF-8", stream);
+        } catch (IOException ignored) {
+            return null;
+        }
     }
 
     private boolean isAllowedUrl(String url) {
