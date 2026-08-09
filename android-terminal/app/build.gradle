@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+def releaseKeystorePath = System.getenv('ANDROID_KEYSTORE_PATH')
+def releaseStorePassword = System.getenv('ANDROID_KEYSTORE_PASSWORD')
+def releaseKeyPassword = System.getenv('ANDROID_KEY_PASSWORD')
+
 android {
     namespace 'cz.goldensnack.productionterminal'
     compileSdk 35
@@ -14,8 +18,20 @@ android {
         versionName '1.0.0'
     }
 
+    signingConfigs {
+        release {
+            if (releaseKeystorePath && releaseStorePassword && releaseKeyPassword) {
+                storeFile file(releaseKeystorePath)
+                storePassword releaseStorePassword
+                keyAlias 'goldensnack-terminal'
+                keyPassword releaseKeyPassword
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
