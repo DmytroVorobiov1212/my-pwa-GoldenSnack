@@ -15,6 +15,7 @@ import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 import { useDevice } from './device/DeviceContext';
 
 const MACHINE_ROUTES = { butler: '/butler', velteko: '/velteko', masek: '/masek' };
+const BRAND_MARK = '/icons/icon-192x192.png';
 
 const App = () => {
   const location = useLocation();
@@ -46,7 +47,7 @@ const App = () => {
   if (isChecking && !device) {
     return (
       <main className={css.loadingScreen}>
-        <img src="/gs-mark.svg" alt="Golden Snack" className={css.loadingLogo} />
+        <img src={BRAND_MARK} alt="Golden Snack" className={css.loadingLogo} />
         <p>Ověřuji výrobní terminál...</p>
       </main>
     );
@@ -77,7 +78,7 @@ const App = () => {
         <div className={css.topBar}>
           <div className={css.brand}>
             <div className={css.logoBox}>
-              <img src="/gs-mark.svg" alt="GS" className={css.brandLogo} />
+              <img src={BRAND_MARK} alt="GS" className={css.brandLogo} />
             </div>
             <div className={css.brandCopy}>
               <strong className={css.brandTitle}>Golden Snack</strong>
