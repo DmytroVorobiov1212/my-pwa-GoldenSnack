@@ -1,26 +1,26 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
 import ModalSwiper from '../ModalSwiper/ModalSwiper';
 import styles from './ButlerList.module.css';
 import ButlerItem from '../ButlerItem/ButlerItem';
 import AlphaFilter from '../AlphaFilter/AlphaFilter';
 import { buildIndexMap, firstKey, norm } from '../../utils/text';
 
-const ButlerList = ({ data }) => {
-  const [params, setParams] = useSearchParams();
-  const initialLetter = params.get('letter') || null;
+function readStoredLetter() {
+  try {
+    return localStorage.getItem('alphaLetter') || null;
+  } catch (error) {
+    return null;
+  }
+}
 
-  const [letter, setLetter] = useState(initialLetter);
+const ButlerList = ({ data }) => {
+  const [letter, setLetter] = useState(readStoredLetter);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
 
   const onChangeLetter = nextLetter => {
     setLetter(nextLetter);
-    const next = new URLSearchParams(params);
-    if (nextLetter) next.set('letter', nextLetter);
-    else next.delete('letter');
-    setParams(next, { replace: true });
 
     try {
       localStorage.setItem('alphaLetter', nextLetter || '');
@@ -28,17 +28,6 @@ const ButlerList = ({ data }) => {
       // Storage is optional for the filter state.
     }
   };
-
-  useEffect(() => {
-    if (initialLetter) return;
-
-    try {
-      const stored = localStorage.getItem('alphaLetter');
-      if (stored) setLetter(stored);
-    } catch (error) {
-      // Storage is optional for the filter state.
-    }
-  }, [initialLetter]);
 
   const filteredData = useMemo(() => {
     let items = Array.isArray(data) ? data.slice() : [];
