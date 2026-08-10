@@ -1,6 +1,7 @@
 // vite.config.js
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import legacy from "@vitejs/plugin-legacy";
 import { VitePWA } from "vite-plugin-pwa";
 
 const BUILD_ID = process.env.VERCEL_GIT_COMMIT_SHA || new Date().toISOString();
@@ -11,6 +12,13 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    legacy({
+      // Golden Snack production terminals currently include Android 5.0.1
+      // with Chromium/WebView 45/46. Generate a SystemJS legacy bundle and
+      // the required polyfills instead of relying on the terminal OS update.
+      targets: ["Chrome >= 45"],
+      modernPolyfills: false,
+    }),
     VitePWA({
       injectRegister: 'none',
       strategies: 'injectManifest',

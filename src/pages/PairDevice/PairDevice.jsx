@@ -36,7 +36,7 @@ const PairDevice = () => {
     <main className={css.screen}>
       <section className={css.card}>
         <div className={css.logoBox}>
-          <img src="/gs-mark.svg" alt="Golden Snack" className={css.logo} />
+          <img src="/icons/icon-192x192.png" alt="Golden Snack" className={css.logo} />
         </div>
         <p className={css.eyebrow}>GOLDEN SNACK · VÝROBNÍ TERMINÁL</p>
         <h1>Připojit zařízení</h1>
