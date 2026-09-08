@@ -23,6 +23,7 @@
 .paramItem { min-height:57px; margin-bottom:9px; padding:11px 14px; display:flex; align-items:center; justify-content:space-between; background:#171c22; border:1px solid #303741; border-radius:13px; box-sizing:border-box; }
 .label { padding-right:14px; color:#9da5af; font-size:16px; line-height:1.25; }
 .value { color:#f7f7f2; font-size:18px; line-height:1.25; font-weight:950; text-align:right; white-space:nowrap; }
+.sarzeValue { max-width:65%; white-space:normal; overflow-wrap:anywhere; }
 .variantNav { flex:0 0 auto; width:100%; min-height:70px; padding:9px 18px 11px; display:flex; align-items:center; justify-content:center; box-sizing:border-box; background:#0e1115; border-top:1px solid #2b323b; }
 .navButton { width:64px; height:48px; margin:0 16px; padding:0; color:#fbe311; background:#1d232a; border:1px solid #454e59; border-radius:12px; font-size:34px; line-height:40px; font-weight:900; }
 .navButton:active { color:#171717; background:#fbe311; border-color:#fbe311; }
