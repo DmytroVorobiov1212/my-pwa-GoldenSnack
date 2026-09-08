@@ -21,6 +21,57 @@ function saveCachedCards(machineKey, cards) {
   }
 }
 
+function collectImagePaths(cards) {
+  const seen = {};
+  const paths = [];
+
+  (Array.isArray(cards) ? cards : []).forEach((group) => {
+    const variants = group && Array.isArray(group.variants) ? group.variants : [];
+
+    variants.forEach((variant) => {
+      const image = variant && variant.image ? String(variant.image).trim() : '';
+      if (!image || image.toLowerCase().indexOf('not-img') !== -1) return;
+      if (image.indexOf('/products/') !== 0) return;
+      if (seen[image]) return;
+      seen[image] = true;
+      paths.push(image);
+    });
+  });
+
+  return paths.sort();
+}
+
+async function warmProductionImages(machineKey, cards) {
+  if (typeof navigator === 'undefined' || navigator.onLine === false) return;
+  if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return;
+
+  const paths = collectImagePaths(cards);
+  if (!paths.length) return;
+
+  const signatureKey = `gs_production_image_signature_${machineKey}`;
+  const signature = paths.join('|');
+
+  try {
+    if (localStorage.getItem(signatureKey) === signature) return;
+  } catch (error) {
+    // Continue without the optimization if storage is unavailable.
+  }
+
+  for (let index = 0; index < paths.length; index += 1) {
+    try {
+      await fetch(paths[index], { credentials: 'same-origin' });
+    } catch (error) {
+      // One unavailable image must not stop the rest of the offline warm-up.
+    }
+  }
+
+  try {
+    localStorage.setItem(signatureKey, signature);
+  } catch (error) {
+    // Images are already cached; the signature is only an optimization.
+  }
+}
+
 export function useProductionCards(machineKey, fallbackData, options = {}) {
   const { forgetDevice } = useDevice();
   const allowEmptyServer = Boolean(options.allowEmptyServer);
@@ -81,6 +132,21 @@ export function useProductionCards(machineKey, fallbackData, options = {}) {
       document.removeEventListener('visibilitychange', onVisible);
     };
   }, [refresh]);
+
+  useEffect(() => {
+    const warm = () => warmProductionImages(machineKey, cards);
+    const timer = window.setTimeout(warm, 1500);
+    const serviceWorker = 'serviceWorker' in navigator ? navigator.serviceWorker : null;
+
+    if (serviceWorker) {
+      serviceWorker.addEventListener('controllerchange', warm);
+    }
+
+    return () => {
+      window.clearTimeout(timer);
+      if (serviceWorker) serviceWorker.removeEventListener('controllerchange', warm);
+    };
+  }, [cards, machineKey]);
 
   return {
     cards,
