@@ -68,6 +68,9 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
   };
 
   const paramKeys = variant.params ? Object.keys(variant.params) : [];
+  const sarze = Array.isArray(variant.sarze)
+    ? variant.sarze.filter(value => String(value || '').trim())
+    : [];
   const imagePath = variant.image ? String(variant.image) : '';
   const hasRealImage =
     imagePath && imagePath.toLowerCase().indexOf('not-img') === -1 && !imageFailed;
@@ -111,6 +114,15 @@ export default function ModalSwiper({ group, activeIndex = 0, onClose }) {
                 <span className={styles.value}>{variant.params[label]}</span>
               </div>
             ))}
+
+            {sarze.length ? (
+              <div className={styles.paramItem}>
+                <span className={styles.label}>Šarže</span>
+                <span className={`${styles.value} ${styles.sarzeValue}`}>
+                  {sarze.join(', ')}
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
 
