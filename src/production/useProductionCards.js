@@ -7,7 +7,7 @@ function readCachedCards(machineKey) {
     const raw = localStorage.getItem(`gs_production_cards_${machineKey}`);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) && parsed.length ? parsed : null;
+    return Array.isArray(parsed) ? parsed : null;
   } catch (error) {
     return null;
   }
@@ -21,11 +21,13 @@ function saveCachedCards(machineKey, cards) {
   }
 }
 
-export function useProductionCards(machineKey, fallbackData) {
+export function useProductionCards(machineKey, fallbackData, options = {}) {
   const { forgetDevice } = useDevice();
+  const allowEmptyServer = Boolean(options.allowEmptyServer);
   const cached = readCachedCards(machineKey);
-  const [cards, setCards] = useState(cached || fallbackData || []);
-  const [source, setSource] = useState(cached ? 'cache' : 'static');
+  const hasCachedCards = Array.isArray(cached) && cached.length > 0;
+  const [cards, setCards] = useState(hasCachedCards ? cached : fallbackData || []);
+  const [source, setSource] = useState(hasCachedCards ? 'cache' : 'static');
   const [lastUpdatedAt, setLastUpdatedAt] = useState(null);
 
   const refresh = useCallback(async () => {
@@ -51,8 +53,9 @@ export function useProductionCards(machineKey, fallbackData) {
       const result = await response.json();
       const nextCards = Array.isArray(result.data) ? result.data : [];
 
-      // During migration an empty database must never blank a production tablet.
-      if (!nextCards.length) return;
+      // Butler/Velteko keep their static data until legacy migration is complete.
+      // Mašek has no legacy catalog, so an empty server response is authoritative.
+      if (!nextCards.length && !allowEmptyServer) return;
 
       setCards(nextCards);
       setSource('server');
@@ -61,7 +64,7 @@ export function useProductionCards(machineKey, fallbackData) {
     } catch (error) {
       // Offline/network failure: keep the last known good cards already in state.
     }
-  }, [forgetDevice, machineKey]);
+  }, [allowEmptyServer, forgetDevice, machineKey]);
 
   useEffect(() => {
     refresh();
