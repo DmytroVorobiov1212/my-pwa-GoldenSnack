@@ -7,6 +7,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.InputType;
@@ -94,7 +96,11 @@ public class MainActivity extends Activity {
         settings.setSupportZoom(false);
         settings.setAllowFileAccess(false);
         settings.setAllowContentAccess(false);
-        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setCacheMode(
+                isNetworkAvailable()
+                        ? WebSettings.LOAD_DEFAULT
+                        : WebSettings.LOAD_CACHE_ELSE_NETWORK
+        );
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
 
         webView.setBackgroundColor(Color.rgb(9, 11, 14));
@@ -131,6 +137,10 @@ public class MainActivity extends Activity {
                 if (isAllowedUrl(url)) {
                     errorView.setVisibility(View.GONE);
                     webView.setVisibility(View.VISIBLE);
+
+                    if (isNetworkAvailable()) {
+                        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+                    }
                 }
             }
 
@@ -140,7 +150,41 @@ public class MainActivity extends Activity {
                     showNetworkError();
                 }
             }
+
+            @Override
+            @SuppressWarnings("deprecation")
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                String currentUrl = view.getUrl();
+                if (currentUrl != null && currentUrl.equals(failingUrl)) {
+                    showNetworkError();
+                }
+            }
         });
+    }
+
+    private boolean isNetworkAvailable() {
+        try {
+            ConnectivityManager connectivityManager =
+                    (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager != null
+                    ? connectivityManager.getActiveNetworkInfo()
+                    : null;
+            return networkInfo != null && networkInfo.isConnected();
+        } catch (Exception ignored) {
+            return true;
+        }
+    }
+
+    private void prepareCacheModeForReload() {
+        if (webView == null) {
+            return;
+        }
+
+        webView.getSettings().setCacheMode(
+                isNetworkAvailable()
+                        ? WebSettings.LOAD_DEFAULT
+                        : WebSettings.LOAD_CACHE_ELSE_NETWORK
+        );
     }
 
     private WebResourceResponse getLocalGsMark(String url) {
@@ -165,9 +209,13 @@ public class MainActivity extends Activity {
 
     private void showNetworkError() {
         webView.setVisibility(View.GONE);
-        errorView.setText("Terminál není připojen k síti.\n\nZkontrolujte Wi-Fi a klepnutím obnovte.");
+        errorView.setText(
+                "Terminál nemohl načíst uloženou offline verzi.\n\n" +
+                "Zkontrolujte Wi-Fi a klepnutím obnovte."
+        );
         errorView.setVisibility(View.VISIBLE);
         errorView.setOnClickListener(v -> {
+            prepareCacheModeForReload();
             errorView.setVisibility(View.GONE);
             webView.setVisibility(View.VISIBLE);
             webView.reload();
@@ -383,6 +431,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        prepareCacheModeForReload();
         enterImmersiveMode();
         enableKioskIfDeviceOwner();
     }
