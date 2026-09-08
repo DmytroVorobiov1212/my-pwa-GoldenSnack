@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { API_BASE_URL } from '../../config/api';
 import { getDeviceToken, useDevice } from '../../device/DeviceContext';
 import { materialCatalog } from '../../data/materialCatalog';
+import { submitOrQueue } from '../../offline/offlineQueue';
 import css from './MaterialOrder.module.css';
 
 const CATEGORY_KEYS = ['priprava', 'polotovar', 'folga'];
@@ -126,29 +127,33 @@ const MaterialOrder = () => {
       setIsSubmitting(true);
       setError('');
 
-      const response = await fetch(`${API_BASE_URL}/device-orders`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(preparedOrder),
+      const result = await submitOrQueue({
+        type: 'material-order',
+        endpoint: `${API_BASE_URL}/device-orders`,
+        body: preparedOrder,
+        deviceId: device.id,
+        token,
       });
 
-      const result = await response.json();
+      if (result.status === 'unauthorized') {
+        forgetDevice();
+        return;
+      }
 
-      if (!response.ok) {
-        if (response.status === 401) {
-          forgetDevice();
-        }
-
-        throw new Error(result.message || 'Žádost se nepodařilo odeslat');
+      if (result.status === 'error') {
+        setError(result.message || 'Žádost se nepodařilo odeslat');
+        return;
       }
 
       setItems([createEmptyItem()]);
-      toast.success(`Žádost z ${device.machineName} byla odeslána do skladu`);
+
+      if (result.status === 'queued') {
+        toast.success('Bez připojení: žádost je uložená a odešle se automaticky.');
+      } else {
+        toast.success(`Žádost z ${device.machineName} byla odeslána do skladu`);
+      }
     } catch (requestError) {
-      setError(requestError.message || 'Žádost se nepodařilo odeslat');
+      setError(requestError.message || 'Žádost se nepodařilo uložit');
     } finally {
       setIsSubmitting(false);
     }
@@ -250,7 +255,7 @@ const MaterialOrder = () => {
             className={css.submitButton}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Odesílám...' : 'Odeslat žádost do skladu'}
+            {isSubmitting ? 'Ukládám...' : 'Odeslat žádost do skladu'}
           </button>
         </div>
       </form>
