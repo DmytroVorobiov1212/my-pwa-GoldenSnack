@@ -17,6 +17,7 @@ const IMAGE_CACHE = `images-${CACHE_VERSION}`;
 
 const RUNTIME_MAX_ENTRIES = 80;
 const IMAGES_MAX_ENTRIES = 120;
+const PRODUCTION_CARDS_DEVICE_PATH = '/devices/production-cards/device';
 
 const sameOrigin = url =>
     new URL(url, self.location.href).origin === self.location.origin;
@@ -125,6 +126,11 @@ registerRoute(navigationRoute);
 self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     if (url.pathname === '/sw.js') return;
+
+    // Production cards are safety-critical live machine data. Do not let the
+    // service-worker stale-while-revalidate API cache answer this request.
+    // The React layer keeps its own explicit last-known-good offline copy.
+    if (url.pathname === PRODUCTION_CARDS_DEVICE_PATH) return;
 
     const request = event.request;
 
