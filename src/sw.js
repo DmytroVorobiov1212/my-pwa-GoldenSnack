@@ -20,6 +20,7 @@ const RUNTIME_MAX_ENTRIES = 80;
 const IMAGES_MAX_ENTRIES = 120;
 const PRODUCTION_IMAGES_MAX_ENTRIES = 400;
 const PRODUCTION_CARDS_DEVICE_PATH = '/devices/production-cards/device';
+const PRODUCTION_IMAGE_API_PATH = '/devices/production-cards/images/';
 
 const sameOrigin = url =>
     new URL(url, self.location.href).origin === self.location.origin;
@@ -41,8 +42,14 @@ const isImage = request => {
 
 const isProductionImage = request => {
     const url = new URL(request.url);
-    return sameOrigin(url) && url.pathname.startsWith('/products/');
+    return (
+        (sameOrigin(url) && url.pathname.startsWith('/products/')) ||
+        url.pathname.startsWith(PRODUCTION_IMAGE_API_PATH)
+    );
 };
+
+const isCacheableImageResponse = response =>
+    Boolean(response && (response.ok || response.type === 'opaque'));
 
 const isApiGet = request =>
     request.method === 'GET' &&
@@ -171,7 +178,7 @@ self.addEventListener('fetch', event => {
 
                 const networkPromise = fetch(request)
                     .then(async response => {
-                        if (response && response.ok) {
+                        if (isCacheableImageResponse(response)) {
                             await putWithLimit(
                                 IMAGE_CACHE,
                                 request,
