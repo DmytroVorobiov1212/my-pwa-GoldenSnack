@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { API_BASE_URL } from '../../config/api';
 import { getDeviceToken, useDevice } from '../../device/DeviceContext';
+import { submitOrQueue } from '../../offline/offlineQueue';
 import css from './ReportFault.module.css';
 
 const FAULTS = [
@@ -43,32 +44,36 @@ const ReportFault = () => {
       setIsSubmitting(true);
       setError('');
 
-      const response = await fetch(`${API_BASE_URL}/devices/fault`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
+      const result = await submitOrQueue({
+        type: 'fault',
+        endpoint: `${API_BASE_URL}/device-orders/fault`,
+        body: {
           faultType,
           note: note.trim(),
-        }),
+        },
+        deviceId: device.id,
+        token,
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          forgetDevice();
-        }
-
-        throw new Error(result.message || 'Poruchu se nepodařilo nahlásit.');
+      if (result.status === 'unauthorized') {
+        forgetDevice();
+        return;
       }
 
-      toast.success(`Porucha na ${device.machineName} byla nahlášena`);
+      if (result.status === 'error') {
+        setError(result.message || 'Poruchu se nepodařilo nahlásit.');
+        return;
+      }
+
+      if (result.status === 'queued') {
+        toast.success('Bez připojení: porucha je uložená a odešle se automaticky.');
+      } else {
+        toast.success(`Porucha na ${device.machineName} byla nahlášena`);
+      }
+
       navigate('/', { replace: true });
     } catch (requestError) {
-      setError(requestError.message || 'Poruchu se nepodařilo nahlásit.');
+      setError(requestError.message || 'Poruchu se nepodařilo uložit.');
     } finally {
       setIsSubmitting(false);
     }
@@ -128,7 +133,7 @@ const ReportFault = () => {
           className={css.submitButton}
           disabled={isSubmitting || !faultType}
         >
-          {isSubmitting ? 'Odesílám…' : 'Nahlásit poruchu'}
+          {isSubmitting ? 'Ukládám…' : 'Nahlásit poruchu'}
         </button>
       </form>
     </section>

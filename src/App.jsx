@@ -13,14 +13,16 @@ import { useEffect, useState } from 'react';
 import { toastOptions } from './utils/toastStyle';
 import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 import { useDevice } from './device/DeviceContext';
+import { useOfflineQueueSync } from './offline/useOfflineQueueSync';
 
 const MACHINE_ROUTES = { butler: '/butler', velteko: '/velteko', masek: '/masek' };
 const BRAND_MARK = '/icons/icon-192x192.png';
 
 const App = () => {
   const location = useLocation();
-  const { device, isChecking } = useDevice();
+  const { device, isChecking, forgetDevice } = useDevice();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const offlineQueue = useOfflineQueueSync(device, forgetDevice);
 
   useEffect(() => {
     const handleOnline = () => {
@@ -92,6 +94,13 @@ const App = () => {
               <i aria-hidden="true" />
               {isOnline ? 'Online' : 'Offline'}
             </span>
+            {offlineQueue.total > 0 && (
+              <span className={offlineQueue.blocked > 0 ? css.queueError : css.queuePending}>
+                {offlineQueue.blocked > 0
+                  ? `Nevyřízeno: ${offlineQueue.blocked}`
+                  : `Čeká na odeslání: ${offlineQueue.pending}`}
+              </span>
+            )}
           </div>
         </div>
 

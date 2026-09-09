@@ -14,9 +14,13 @@ const CACHE_VERSION = String(SW_VERSION);
 const STATIC_CACHE = `static-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `runtime-${CACHE_VERSION}`;
 const IMAGE_CACHE = `images-${CACHE_VERSION}`;
+const PRODUCTION_IMAGE_CACHE = 'production-images-v1';
 
 const RUNTIME_MAX_ENTRIES = 80;
 const IMAGES_MAX_ENTRIES = 120;
+const PRODUCTION_IMAGES_MAX_ENTRIES = 400;
+const PRODUCTION_CARDS_DEVICE_PATH = '/devices/production-cards/device';
+const PRODUCTION_IMAGE_API_PATH = '/devices/production-cards/images/';
 
 const sameOrigin = url =>
     new URL(url, self.location.href).origin === self.location.origin;
@@ -35,6 +39,17 @@ const isImage = request => {
     const url = new URL(request.url);
     return /\.(png|jpe?g|webp|gif|svg|ico)$/i.test(url.pathname);
 };
+
+const isProductionImage = request => {
+    const url = new URL(request.url);
+    return (
+        (sameOrigin(url) && url.pathname.startsWith('/products/')) ||
+        url.pathname.startsWith(PRODUCTION_IMAGE_API_PATH)
+    );
+};
+
+const isCacheableImageResponse = response =>
+    Boolean(response && (response.ok || response.type === 'opaque'));
 
 const isApiGet = request =>
     request.method === 'GET' &&
@@ -126,6 +141,11 @@ self.addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     if (url.pathname === '/sw.js') return;
 
+    // Production cards are safety-critical live machine data. Do not let the
+    // service-worker stale-while-revalidate API cache answer this request.
+    // The React layer keeps its own explicit last-known-good offline copy.
+    if (url.pathname === PRODUCTION_CARDS_DEVICE_PATH) return;
+
     const request = event.request;
 
     if (isHashedAsset(request)) {
@@ -147,17 +167,33 @@ self.addEventListener('fetch', event => {
         event.respondWith(
             (async () => {
                 const cache = await caches.open(IMAGE_CACHE);
-                const cached = await cache.match(request);
+                const persistentCache = isProductionImage(request)
+                    ? await caches.open(PRODUCTION_IMAGE_CACHE)
+                    : null;
+                const persistent = persistentCache
+                    ? await persistentCache.match(request)
+                    : null;
+                const runtime = await cache.match(request);
+                const cached = persistent || runtime;
 
                 const networkPromise = fetch(request)
-                    .then(response => {
-                        if (response && response.ok) {
-                            putWithLimit(
+                    .then(async response => {
+                        if (isCacheableImageResponse(response)) {
+                            await putWithLimit(
                                 IMAGE_CACHE,
                                 request,
                                 response.clone(),
                                 IMAGES_MAX_ENTRIES
                             );
+
+                            if (persistentCache) {
+                                await putWithLimit(
+                                    PRODUCTION_IMAGE_CACHE,
+                                    request,
+                                    response.clone(),
+                                    PRODUCTION_IMAGES_MAX_ENTRIES
+                                );
+                            }
                         }
                         return response;
                     })
