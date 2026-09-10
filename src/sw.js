@@ -144,7 +144,7 @@ self.addEventListener('fetch', event => {
     // Production cards are safety-critical live machine data. Do not let the
     // service-worker stale-while-revalidate API cache answer this request.
     // The React layer keeps its own explicit last-known-good offline copy.
-    if (url.pathname === PRODUCTION_CARDS_DEVICE_PATH) return;
+    if (url.pathname.startsWith(PRODUCTION_CARDS_DEVICE_PATH)) return;
 
     const request = event.request;
 
