@@ -31,7 +31,6 @@ function collectImagePaths(cards) {
     variants.forEach((variant) => {
       const image = variant && variant.image ? String(variant.image).trim() : '';
       if (!image || image.toLowerCase().indexOf('not-img') !== -1) return;
-      if (image.indexOf('/products/') !== 0) return;
       if (seen[image]) return;
       seen[image] = true;
       paths.push(image);
@@ -86,13 +85,16 @@ export function useProductionCards(machineKey, fallbackData, options = {}) {
     if (!token) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/devices/production-cards/device`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
+      const response = await fetch(
+        `${API_BASE_URL}/devices/production-cards/device/${encodeURIComponent(machineKey)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+          cache: 'no-store',
         },
-        cache: 'no-store',
-      });
+      );
 
       if (response.status === 401) {
         forgetDevice();
