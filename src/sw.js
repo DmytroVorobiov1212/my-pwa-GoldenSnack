@@ -163,7 +163,7 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    if (isImage(request)) {
+    if (isImage(request) || isProductionImage(request)) {
         event.respondWith(
             (async () => {
                 const cache = await caches.open(IMAGE_CACHE);
