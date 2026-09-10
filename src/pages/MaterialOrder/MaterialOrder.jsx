@@ -150,7 +150,7 @@ const MaterialOrder = () => {
       if (result.status === 'queued') {
         toast.success('Bez připojení: žádost je uložená a odešle se automaticky.');
       } else {
-        toast.success(`Žádost z ${device.machineName} byla odeslána do skladu`);
+        toast.success(`Žádost z terminálu ${device.name} byla odeslána do skladu`);
       }
     } catch (requestError) {
       setError(requestError.message || 'Žádost se nepodařilo uložit');
@@ -163,13 +163,13 @@ const MaterialOrder = () => {
     <section className={css.container}>
       <div className={css.topRow}>
         <Link to="/" className={css.backButton}>‹ Domů</Link>
-        <span className={css.sectionLabel}>SKLAD · {device.machineName.toUpperCase()}</span>
+        <span className={css.sectionLabel}>SKLAD · {device.name.toUpperCase()}</span>
       </div>
 
       <div className={css.heading}>
         <h1>Objednat materiál</h1>
         <p>
-          Zdroj žádosti: <strong>{device.name}</strong> · balička {device.machineName}
+          Zdroj žádosti: <strong>{device.name}</strong>
         </p>
       </div>
 
