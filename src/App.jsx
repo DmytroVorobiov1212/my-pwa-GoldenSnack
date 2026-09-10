@@ -16,6 +16,7 @@ import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 import { useDevice } from './device/DeviceContext';
 import { useOfflineQueueSync } from './offline/useOfflineQueueSync';
 import { getDeviceMachineKeys, getMachineName, MACHINE_ROUTES } from './production/machines';
+import { useWarmAssignedProductionCards } from './production/useWarmAssignedProductionCards';
 
 const BRAND_MARK = '/icons/icon-192x192.png';
 
@@ -24,6 +25,9 @@ const App = () => {
   const { device, isChecking, forgetDevice } = useDevice();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const offlineQueue = useOfflineQueueSync(device, forgetDevice);
+  const machineKeys = getDeviceMachineKeys(device);
+
+  useWarmAssignedProductionCards(machineKeys);
 
   useEffect(() => {
     const handleOnline = () => {
@@ -58,7 +62,6 @@ const App = () => {
 
   if (!device) return <PairDevice />;
 
-  const machineKeys = getDeviceMachineKeys(device);
   const singleMachineKey = machineKeys.length === 1 ? machineKeys[0] : '';
   const machineRoute = singleMachineKey ? MACHINE_ROUTES[singleMachineKey] : '/balicka';
   const machineStatusLabel = singleMachineKey
