@@ -3,6 +3,7 @@ import Home from './pages/Home/Home';
 import MaterialOrder from './pages/MaterialOrder/MaterialOrder';
 import ReportFault from './pages/ReportFault/ReportFault';
 import PairDevice from './pages/PairDevice/PairDevice';
+import MachineSelect from './pages/MachineSelect/MachineSelect';
 import Butler from './pages/Butler/Butler';
 import Velteko from './pages/Velteko/Velteko';
 import Masek from './pages/Masek/Masek';
@@ -14,8 +15,9 @@ import { toastOptions } from './utils/toastStyle';
 import { usePWAUpdatePrompt } from './pwa/usePWAUpdatePromt';
 import { useDevice } from './device/DeviceContext';
 import { useOfflineQueueSync } from './offline/useOfflineQueueSync';
+import { getDeviceMachineKeys, getMachineName, MACHINE_ROUTES } from './production/machines';
+import { useWarmAssignedProductionCards } from './production/useWarmAssignedProductionCards';
 
-const MACHINE_ROUTES = { butler: '/butler', velteko: '/velteko', masek: '/masek' };
 const BRAND_MARK = '/icons/icon-192x192.png';
 
 const App = () => {
@@ -23,6 +25,9 @@ const App = () => {
   const { device, isChecking, forgetDevice } = useDevice();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const offlineQueue = useOfflineQueueSync(device, forgetDevice);
+  const machineKeys = getDeviceMachineKeys(device);
+
+  useWarmAssignedProductionCards(machineKeys);
 
   useEffect(() => {
     const handleOnline = () => {
@@ -57,8 +62,13 @@ const App = () => {
 
   if (!device) return <PairDevice />;
 
-  const machineRoute = MACHINE_ROUTES[device.machineKey] || '/';
+  const singleMachineKey = machineKeys.length === 1 ? machineKeys[0] : '';
+  const machineRoute = singleMachineKey ? MACHINE_ROUTES[singleMachineKey] : '/balicka';
+  const machineStatusLabel = singleMachineKey
+    ? getMachineName(singleMachineKey).toUpperCase()
+    : `${machineKeys.length} BALIČKY`;
   const machineSectionActive = ['/balicka', '/butler', '/velteko', '/masek'].includes(location.pathname);
+  const canUseMachine = (machineKey) => machineKeys.includes(machineKey);
 
   const renderLink = (to, label, forceActive = false) => (
     <NavLink
@@ -89,7 +99,7 @@ const App = () => {
           </div>
 
           <div className={css.machineStatus}>
-            <strong>{device.machineName.toUpperCase()}</strong>
+            <strong>{machineStatusLabel}</strong>
             <span className={isOnline ? css.online : css.offline}>
               <i aria-hidden="true" />
               {isOnline ? 'Online' : 'Offline'}
@@ -114,12 +124,24 @@ const App = () => {
       <main id="main" className={css.main}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/balicka" element={<Navigate to={machineRoute} replace />} />
+          <Route
+            path="/balicka"
+            element={singleMachineKey ? <Navigate to={machineRoute} replace /> : <MachineSelect />}
+          />
           <Route path="/material" element={<MaterialOrder />} />
           <Route path="/porucha" element={<ReportFault />} />
-          <Route path="/butler" element={<Butler />} />
-          <Route path="/velteko" element={<Velteko />} />
-          <Route path="/masek" element={<Masek />} />
+          <Route
+            path="/butler"
+            element={canUseMachine('butler') ? <Butler /> : <Navigate to="/balicka" replace />}
+          />
+          <Route
+            path="/velteko"
+            element={canUseMachine('velteko') ? <Velteko /> : <Navigate to="/balicka" replace />}
+          />
+          <Route
+            path="/masek"
+            element={canUseMachine('masek') ? <Masek /> : <Navigate to="/balicka" replace />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -13,7 +13,7 @@ function readCachedCards(machineKey) {
   }
 }
 
-function saveCachedCards(machineKey, cards) {
+export function saveCachedProductionCards(machineKey, cards) {
   try {
     localStorage.setItem(`gs_production_cards_${machineKey}`, JSON.stringify(cards));
   } catch (error) {
@@ -31,7 +31,6 @@ function collectImagePaths(cards) {
     variants.forEach((variant) => {
       const image = variant && variant.image ? String(variant.image).trim() : '';
       if (!image || image.toLowerCase().indexOf('not-img') !== -1) return;
-      if (image.indexOf('/products/') !== 0) return;
       if (seen[image]) return;
       seen[image] = true;
       paths.push(image);
@@ -41,7 +40,7 @@ function collectImagePaths(cards) {
   return paths.sort();
 }
 
-async function warmProductionImages(machineKey, cards) {
+export async function warmProductionImages(machineKey, cards) {
   if (typeof navigator === 'undefined' || navigator.onLine === false) return;
   if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return;
 
@@ -86,13 +85,16 @@ export function useProductionCards(machineKey, fallbackData, options = {}) {
     if (!token) return;
 
     try {
-      const response = await fetch(`${API_BASE_URL}/devices/production-cards/device`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/json',
+      const response = await fetch(
+        `${API_BASE_URL}/devices/production-cards/device/${encodeURIComponent(machineKey)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+          cache: 'no-store',
         },
-        cache: 'no-store',
-      });
+      );
 
       if (response.status === 401) {
         forgetDevice();
@@ -104,14 +106,14 @@ export function useProductionCards(machineKey, fallbackData, options = {}) {
       const result = await response.json();
       const nextCards = Array.isArray(result.data) ? result.data : [];
 
-      // Butler/Velteko keep their static data until legacy migration is complete.
+      // Keep the static Butler/Velteko catalog only as a recovery fallback.
       // Mašek has no legacy catalog, so an empty server response is authoritative.
       if (!nextCards.length && !allowEmptyServer) return;
 
       setCards(nextCards);
       setSource('server');
       setLastUpdatedAt(new Date());
-      saveCachedCards(machineKey, nextCards);
+      saveCachedProductionCards(machineKey, nextCards);
     } catch (error) {
       // Offline/network failure: keep the last known good cards already in state.
     }

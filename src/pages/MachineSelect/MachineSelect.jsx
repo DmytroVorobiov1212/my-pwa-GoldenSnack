@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useDevice } from '../../device/DeviceContext';
+import { getDeviceMachineKeys, getMachineName, MACHINE_ROUTES } from '../../production/machines';
 import css from './MachineSelect.module.css';
 
 const MachineSelect = () => {
+  const { device } = useDevice();
+  const machineKeys = getDeviceMachineKeys(device);
+
   return (
     <section className={css.container}>
       <div className={css.topRow}>
@@ -11,36 +16,24 @@ const MachineSelect = () => {
 
       <div className={css.heading}>
         <h1>Vyberte baličku</h1>
-        <p>Po výběru se otevře konfigurátor konkrétního stroje.</p>
+        <p>Terminál <strong>{device.name}</strong> může pracovat s více baličkami.</p>
       </div>
 
       <div className={css.machineList}>
-        <Link to="/butler" className={css.machineCard}>
-          <span className={css.number}>01</span>
-          <span className={css.machineText}>
-            <strong>Butler</strong>
-            <small>Konfigurace výrobku a parametrů</small>
-          </span>
-          <span className={css.arrow}>›</span>
-        </Link>
-
-        <Link to="/velteko" className={css.machineCard}>
-          <span className={css.number}>02</span>
-          <span className={css.machineText}>
-            <strong>Velteko</strong>
-            <small>Konfigurace výrobku a parametrů</small>
-          </span>
-          <span className={css.arrow}>›</span>
-        </Link>
-
-        <Link to="/masek" className={css.machineCard}>
-          <span className={css.number}>03</span>
-          <span className={css.machineText}>
-            <strong>Mašek</strong>
-            <small>Stroj je připraven v systému, parametry doplníme</small>
-          </span>
-          <span className={css.arrow}>›</span>
-        </Link>
+        {machineKeys.map((machineKey, index) => (
+          <Link
+            key={machineKey}
+            to={MACHINE_ROUTES[machineKey]}
+            className={css.machineCard}
+          >
+            <span className={css.number}>{String(index + 1).padStart(2, '0')}</span>
+            <span className={css.machineText}>
+              <strong>{getMachineName(machineKey)}</strong>
+              <small>Výrobní karty a parametry stroje</small>
+            </span>
+            <span className={css.arrow}>›</span>
+          </Link>
+        ))}
       </div>
     </section>
   );

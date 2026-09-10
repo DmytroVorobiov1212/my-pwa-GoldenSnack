@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { API_BASE_URL } from '../../config/api';
 import { getDeviceToken, useDevice } from '../../device/DeviceContext';
 import { submitOrQueue } from '../../offline/offlineQueue';
+import { getDeviceMachineKeys, getMachineName } from '../../production/machines';
 import css from './ReportFault.module.css';
 
 const FAULTS = [
@@ -18,6 +19,13 @@ const FAULTS = [
 const ReportFault = () => {
   const { device, forgetDevice } = useDevice();
   const navigate = useNavigate();
+  const machineKeys = getDeviceMachineKeys(device);
+  const [selectedMachineKey, setSelectedMachineKey] = useState('');
+  const machineKey = machineKeys.length === 1
+    ? machineKeys[0]
+    : machineKeys.includes(selectedMachineKey)
+      ? selectedMachineKey
+      : '';
   const [faultType, setFaultType] = useState('');
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
@@ -27,6 +35,11 @@ const ReportFault = () => {
     event.preventDefault();
 
     if (isSubmitting) return;
+
+    if (!machineKey) {
+      setError('Vyberte baličku, na které je porucha.');
+      return;
+    }
 
     if (!faultType) {
       setError('Vyberte, kde je problém.');
@@ -48,6 +61,7 @@ const ReportFault = () => {
         type: 'fault',
         endpoint: `${API_BASE_URL}/device-orders/fault`,
         body: {
+          machineKey,
           faultType,
           note: note.trim(),
         },
@@ -68,7 +82,7 @@ const ReportFault = () => {
       if (result.status === 'queued') {
         toast.success('Bez připojení: porucha je uložená a odešle se automaticky.');
       } else {
-        toast.success(`Porucha na ${device.machineName} byla nahlášena`);
+        toast.success(`Porucha na ${getMachineName(machineKey)} byla nahlášena`);
       }
 
       navigate('/', { replace: true });
@@ -79,23 +93,48 @@ const ReportFault = () => {
     }
   };
 
+  const selectedMachineName = getMachineName(machineKey);
+
   return (
     <section className={css.container}>
       <div className={css.topRow}>
         <Link to="/" className={css.backButton}>‹ Domů</Link>
         <span className={css.sectionLabel}>
-          PORUCHA · {device.machineName.toUpperCase()}
+          PORUCHA{selectedMachineName ? ` · ${selectedMachineName.toUpperCase()}` : ''}
         </span>
       </div>
 
       <div className={css.heading}>
         <h1>Nahlásit poruchu</h1>
         <p>
-          Vyberte zařízení. Balička <strong>{device.machineName}</strong> se doplní automaticky.
+          {machineKeys.length > 1
+            ? 'Nejprve vyberte baličku a potom zařízení, kde je problém.'
+            : <>Balička <strong>{selectedMachineName}</strong> se doplní automaticky.</>}
         </p>
       </div>
 
       <form onSubmit={handleSubmit}>
+        {machineKeys.length > 1 && (
+          <div className={css.machineSection}>
+            <span className={css.machineLabel}>Balička</span>
+            <div className={css.machineGrid}>
+              {machineKeys.map((key) => (
+                <button
+                  key={key}
+                  type="button"
+                  className={`${css.machineButton} ${machineKey === key ? css.machineSelected : ''}`}
+                  onClick={() => {
+                    setSelectedMachineKey(key);
+                    setError('');
+                  }}
+                >
+                  {getMachineName(key)}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className={css.faultGrid}>
           {FAULTS.map(([key, label]) => (
             <button
@@ -131,7 +170,7 @@ const ReportFault = () => {
         <button
           type="submit"
           className={css.submitButton}
-          disabled={isSubmitting || !faultType}
+          disabled={isSubmitting || !machineKey || !faultType}
         >
           {isSubmitting ? 'Ukládám…' : 'Nahlásit poruchu'}
         </button>

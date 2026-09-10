@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { FaGear, FaCartShopping, FaScrewdriverWrench } from 'react-icons/fa6';
 import { useDevice } from '../../device/DeviceContext';
+import { getDeviceMachineNames } from '../../production/machines';
 import css from './Home.module.css';
 
 const Home = () => {
   const { device } = useDevice();
+  const machineNames = getDeviceMachineNames(device);
+  const machineText = machineNames.join(', ');
+  const machineWord = machineNames.length === 1 ? 'baličku' : 'baličky';
 
   return (
     <section className={css.container}>
@@ -12,7 +16,7 @@ const Home = () => {
         <p className={css.eyebrow}>VÝROBNÍ TERMINÁL</p>
         <h1 className={css.title}>Co potřebujete udělat?</h1>
         <p className={css.subtitle}>
-          Terminál <strong>{device.name}</strong> je připraven pro baličku <strong>{device.machineName}</strong>.
+          Terminál <strong>{device.name}</strong> je připraven pro {machineWord} <strong>{machineText}</strong>.
         </p>
       </header>
 
@@ -30,7 +34,7 @@ const Home = () => {
           <span className={`${css.icon} ${css.darkIcon}`} aria-hidden="true"><FaCartShopping /></span>
           <span className={css.actionText}>
             <strong>Objednat materiál</strong>
-            <small>Požadavek pro sklad ze stroje {device.machineName}</small>
+            <small>Požadavek pro sklad z terminálu {device.name}</small>
           </span>
           <span className={css.arrow} aria-hidden="true">›</span>
         </Link>
@@ -47,7 +51,7 @@ const Home = () => {
 
       <div className={css.footerLine}>
         <span className={css.statusDot} />
-        {device.machineName} · Golden Snack Výroba
+        {device.name} · Golden Snack Výroba
       </div>
     </section>
   );

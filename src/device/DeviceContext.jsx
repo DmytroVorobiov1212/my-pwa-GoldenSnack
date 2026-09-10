@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { API_BASE_URL } from '../config/api';
 
 const TOKEN_KEY = 'gs_production_device_token';
@@ -30,7 +30,7 @@ export function DeviceProvider({ children }) {
   const [isChecking, setIsChecking] = useState(!cachedDevice);
   const [error, setError] = useState('');
 
-  const verifyDevice = async () => {
+  const verifyDevice = useCallback(async () => {
     const token = localStorage.getItem(TOKEN_KEY);
 
     if (!token) {
@@ -46,6 +46,7 @@ export function DeviceProvider({ children }) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: 'no-store',
       });
 
       const result = await response.json();
@@ -66,11 +67,26 @@ export function DeviceProvider({ children }) {
     } finally {
       setIsChecking(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     verifyDevice();
-  }, []);
+
+    const onOnline = () => verifyDevice();
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') verifyDevice();
+    };
+    const timer = window.setInterval(verifyDevice, 60 * 1000);
+
+    window.addEventListener('online', onOnline);
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      window.removeEventListener('online', onOnline);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.clearInterval(timer);
+    };
+  }, [verifyDevice]);
 
   const pairDevice = async (pairingCode) => {
     const response = await fetch(`${API_BASE_URL}/devices/pair`, {
@@ -95,11 +111,11 @@ export function DeviceProvider({ children }) {
     return result.data.device;
   };
 
-  const forgetDevice = () => {
+  const forgetDevice = useCallback(() => {
     clearDeviceStorage();
     setDevice(null);
     setError('');
-  };
+  }, []);
 
   return (
     <DeviceContext.Provider
