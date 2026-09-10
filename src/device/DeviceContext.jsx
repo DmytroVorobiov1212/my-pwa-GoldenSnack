@@ -46,6 +46,7 @@ export function DeviceProvider({ children }) {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        cache: 'no-store',
       });
 
       const result = await response.json();
@@ -70,6 +71,21 @@ export function DeviceProvider({ children }) {
 
   useEffect(() => {
     verifyDevice();
+
+    const onOnline = () => verifyDevice();
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') verifyDevice();
+    };
+    const timer = window.setInterval(verifyDevice, 60 * 1000);
+
+    window.addEventListener('online', onOnline);
+    document.addEventListener('visibilitychange', onVisible);
+
+    return () => {
+      window.removeEventListener('online', onOnline);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.clearInterval(timer);
+    };
   }, []);
 
   const pairDevice = async (pairingCode) => {
