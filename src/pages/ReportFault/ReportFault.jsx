@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { API_BASE_URL } from '../../config/api';
@@ -20,21 +20,16 @@ const ReportFault = () => {
   const { device, forgetDevice } = useDevice();
   const navigate = useNavigate();
   const machineKeys = getDeviceMachineKeys(device);
-  const machineSignature = machineKeys.join('|');
-  const [machineKey, setMachineKey] = useState(
-    machineKeys.length === 1 ? machineKeys[0] : '',
-  );
+  const [selectedMachineKey, setSelectedMachineKey] = useState('');
+  const machineKey = machineKeys.length === 1
+    ? machineKeys[0]
+    : machineKeys.includes(selectedMachineKey)
+      ? selectedMachineKey
+      : '';
   const [faultType, setFaultType] = useState('');
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    setMachineKey((current) => {
-      if (machineKeys.includes(current)) return current;
-      return machineKeys.length === 1 ? machineKeys[0] : '';
-    });
-  }, [machineSignature]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -129,7 +124,7 @@ const ReportFault = () => {
                   type="button"
                   className={`${css.machineButton} ${machineKey === key ? css.machineSelected : ''}`}
                   onClick={() => {
-                    setMachineKey(key);
+                    setSelectedMachineKey(key);
                     setError('');
                   }}
                 >
